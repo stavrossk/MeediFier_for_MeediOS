@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MediaFairy</RootNamespace>
+    <AssemblyName>MediaFairy</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_MEEDIO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RegisterForComInterop>false</RegisterForComInterop>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;USE_MEEDIO</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Meedio_Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Meedio_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_MEEDIO</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Meedio_Release|AnyCPU' ">
+    <OutputPath>bin\Meedio_Release\</OutputPath>
+    <DefineConstants>TRACE;USE_MEEDIO</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MeediOS_Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\MeediOS_Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;USE_MEEDIOS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'MeediOS_Release|AnyCPU' ">
+    <OutputPath>bin\MeediOS_Release\</OutputPath>
+    <DefineConstants>TRACE;USE_MEEDIOS</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CustomProperties, Version=0.6.4.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Assemblies\MediaFairy for MeediOS\CustomProperties.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JCUtils">
+      <HintPath>..\..\Assemblies\MediaFairy for MeediOS\JCUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaFoldersAPI">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MediaFoldersAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MediaLibrary">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MediaLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MeediOS.Cache">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MeediOS.Cache.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MeediOS.Configuration">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MeediOS.Configuration.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MeediOSInterfaces">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MeediOSInterfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MetaDataFoldersAPI">
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\MetaDataFoldersAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="taglib-sharp, Version=2.0.3.7, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\taglib-sharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TVDBLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\MeediOS\assemblies\TVDBLibrary.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Code\Compatibility\Compatibility.cs" />
+    <Compile Include="Code\Diagnostics\InternetConnectionDiagnostic.cs" />
+    <Compile Include="Code\Helpers\FileServerChecker.cs" />
+    <Compile Include="Code\Helpers\ImageResizer.cs" />
+    <Compile Include="Code\Compatibility\meePopupProvider.cs" />
+    <Compile Include="Code\Helpers\ImageFileConstructor.cs" />
+    <Compile Include="Code\File Metadata Extractors\EpisodeFileMetadataExtractor.cs" />
+    <Compile Include="Code\Downloaders\HtmlDownloaders.cs" />
+    <Compile Include="Code\Helpers\StringProcessors.cs" />
+    <Compile Include="Code\Importer Properties\FilmDetailsPropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\LibraryManagementPropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\MediaOrganizersPropertiesGetter.cs" />
+    <Compile Include="Code\Media File Importers\Media Analyzer\MediaExtensionDictionaryMatcher.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\MediaSectionCacher.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemChainLinker.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemProccessSigner.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemSecondaryUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemUpdaterHelpers.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\MultipartFilmLibraryItemDetector.cs" />
+    <Compile Include="Code\Metadata Scrapers\Cover Art\FilmCoverArtDownloadingEngine.cs" />
+    <Compile Include="Code\Metadata Scrapers\Cover Art\IMDbCoverArtScraper.cs" />
+    <Compile Include="Code\Metadata Scrapers\Backdrops\TheMovieDbFilmBackdropDownloader.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Movie Details Downloader\IMDbMovieDetailsDownloaderHelpers.cs" />
+    <Compile Include="Code\Importing Engine\ImporterPropertiesAgents.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\ExistingMediaItemSeachEngine.cs" />
+    <Compile Include="Code\Media Updaters\Media Section Updaters\Movie Section Updater\MoviesSectionUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Media Section Updaters\Music Section Updater\MusicSectionUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Media Section Updaters\Tv Section Updater\TvSectionUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Media Section Updaters\Tv Section Updater\TvSectionUpdaterHelpers.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\SingleMovieItemUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\MusicTrack Item Updater\MusicTrackItemUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\MusicTrack Item Updater\MusicTrackItemUpdaterHelpers.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\MusicTrack Item Updater\TagLibAudioTagPopulator.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\TV Episode Item Updater\SingleTvEpisodeItemUpdater.cs" />
+    <Compile Include="Code\Media Updaters\Single Item Updaters\TV Episode Item Updater\SingleTvEpisodeItemUpdaterHelpers.cs" />
+    <Compile Include="Code\MediaInfo\MediaInfoDLL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\MediaInfo\MediaInfonrmation.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbOperations.cs" />
+    <Compile Include="Code\Downloaders\Downloaders.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\ExactMatchDetector.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\IMDbTitleMatchingEngine.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Searching engines\IMDbConventionalFilmSearchEngine.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\TitleMatchingEngineHelpers.cs" />
+    <Compile Include="Code\Metadata Scrapers\Cover Art\ImpAwardsSearch.cs" />
+    <Compile Include="Code\Importer Properties\ConfigurationMode.cs" />
+    <Compile Include="Code\Importer Properties\MediaImporters.cs" />
+    <Compile Include="Code\Importing Engine\MainImportingEngine.cs" />
+    <Compile Include="Code\Media Snapshot Engine\MediaSnapshotEngine.cs" />
+    <Compile Include="Code\Library Cleaners\LibraryCleaners.cs" />
+    <Compile Include="Code\Media File Importers\Directory Scanner\DirectoryScanner.cs" />
+    <Compile Include="Code\Media File Importers\DvdDirectoryImporter.cs" />
+    <Compile Include="Code\Media File Importers\Media Analyzer\MediaInfoExtractor.cs" />
+    <Compile Include="Code\Media File Importers\Media Analyzer\MediaTypeDetector.cs" />
+    <Compile Include="Code\Media File Importers\Media Section Populator\MediaSectionPopulatorHelpers.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\MediaImportingEngineHelpers.cs" />
+    <Compile Include="Code\Media File Importers\Media Section Populator\MediaSectionPopulator.cs" />
+    <Compile Include="Code\Media Snapshot Engine\MediaSnapshotComparingEngine.cs" />
+    <Compile Include="Code\Media File Importers\MovieTitleLocatingEngine.cs" />
+    <Compile Include="Code\Media File Importers\MultipartMovieDetectionEngine.cs" />
+    <Compile Include="Code\Media File Importers\Media Importing Engine\MediaImportingEngine.cs" />
+    <Compile Include="Code\Media File Importers\Directory Scanner\RecursiveDirectoryScanner.cs" />
+    <Compile Include="Code\Media File Importers\Single Media File Importer\SingleMediaFileImporter.cs" />
+    <Compile Include="Code\Media File Importers\Single Media File Importer\SingleMediaFileImporterHelpers.cs" />
+    <Compile Include="Code\Media Organizers\MediaOrganizers.cs" />
+    <Compile Include="Code\Media Updaters\MediaUpdaters.cs" />
+    <Compile Include="Code\File Metadata Extractors\MovieFileMetadataExtractor.cs" />
+    <Compile Include="Code\Library Cleaners\MissingItemRemover.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\NfoFileParser.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\MovieDescriptorWriter.cs" />
+    <Compile Include="Code\OSDb\OsDbConnector.cs" />
+    <Compile Include="Code\OSDb\OSInterface.cs" />
+    <Compile Include="Code\RegEx Matchers\RegExMatchers.cs" />
+    <Compile Include="Code\RSS Importer\RssNewsImporter.cs" />
+    <Compile Include="Code\RSS Importer\RssReader.cs" />
+    <Compile Include="Code\Settings\ImdbFilmDetailsIndividualChoices.cs" />
+    <Compile Include="Code\Settings\MediaImportersAndUpdatersCoreSettings.cs" />
+    <Compile Include="Code\Settings\Settings.cs" />
+    <Compile Include="Code\Helpers\StringProcessing.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\theMovieDb.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDb\TVDbTvEpisodeDetailsDownloader.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDb\TVdbTvEpisodeDetailsDownloaderHelpers.cs" />
+    <Compile Include="Code\Media Updaters\Media Section Updaters\Tv Section Updater\TvSeriesOperations.cs" />
+    <Compile Include="Code\User Interface\ImageSelectionEngine.cs" />
+    <Compile Include="Code\User Interface\UI.cs" />
+    <Compile Include="Code\File Metadata Extractors\VideoFilenameCleaner.cs" />
+    <Compile Include="Code\Media Identifiers\Video Fingerprint Identifier\OSDbVideoFingeprintIdentifier.cs" />
+    <Compile Include="Code\Media Identifiers\Video Fingerprint Identifier\TMDbVideoFingerprintIdentifier.cs" />
+    <Compile Include="Code\Media Identifiers\Video Fingerprint Identifier\VideoFingerprintIdentifier.cs" />
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDetails.Designer.cs">
+      <DependentUpon>frmDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelect.Designer.cs">
+      <DependentUpon>frmSelect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Code\OSDb\Hasher.cs" />
+    <Compile Include="Code\Helpers\Helpers.cs" />
+    <Compile Include="Code\Helpers\Debugger.cs" />
+    <Compile Include="Code\OSDb\OSOperations.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbMovie.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbMovieCollection.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbPerson.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbPersonCollection.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbSearchResult.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Searching engines\IMDbAdvancedFilmSearchEngine.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Movie Details Downloader\IMDbMovieDetailsDownloader.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbFilmDetails.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Movies\IMDbMovie.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Movies\IMDbMovieCollection.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\People\IMDbPeople.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\People\IMDbPerson.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbRegEx.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Movies\IMDbSearchResult.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\IMDbTitleIdentifier.cs" />
+    <Compile Include="Code\Importer Properties\MediaSections.cs" />
+    <Compile Include="Code\Importer.cs" />
+    <Compile Include="Code\Helpers\Inputbox.cs" />
+    <Compile Include="Forms\InputBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Code\Importing Engine\ImportingEngineHelpers.cs" />
+    <Compile Include="Code\Importing Engine\MediaSectionsAllocator.cs" />
+    <Compile Include="Code\Importer Properties\ImporterProperties.cs" />
+    <Compile Include="Code\Importer Properties\PropertiesSetter.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\MovieDescriptorReader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatusForm.designer.cs">
+      <DependentUpon>StatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="ToolBox\Utils\JSONparser.cs" />
+    <Compile Include="ToolBox\Utils\StringProcessing.cs" />
+    <Compile Include="ToolBox\Utils\TimeDateUtils.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\DateTime8601.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\GuidEx.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\IHttpRequest.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\IHttpRequestHandler.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\IHttpResponse.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\IXmlRpcProxy.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\RequestResponseLogger.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\SystemMethodsBase.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\Tracer.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\util.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcAsyncResult.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcBeginAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcBoolean.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcClientFormatterSink.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcClientFormatterSinkProvider.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcClientProtocol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcDateTime.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcDocWriter.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcDouble.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcEndAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcException.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcFaultException.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcHttpRequest.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcHttpResponse.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcHttpServerProtocol.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcInt.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcListenerRequest.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcListenerResponse.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcListenerService.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcLogger.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcMemberAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcMethodAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcMethodInfo.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcMissingMappingAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcNonStandard.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcParameterAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcParameterInfo.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcProxyCodeGen.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcProxyGen.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcRequest.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcRequestEventArgs.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcResponse.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcResponseEventArgs.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcReturnValueAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcSerializer.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcServerFormatterSink.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcServerFormatterSinkProvider.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcServerProtocol.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcService.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcServiceAttribute.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcServiceInfo.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcStruct.cs" />
+    <Compile Include="ToolBox\Xml-Rpc.Net\XmlRpcUrlAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDetails.resx">
+      <DependentUpon>frmDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelect.resx">
+      <DependentUpon>frmSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputBoxForm.resx">
+      <DependentUpon>InputBoxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StatusForm.resx">
+      <DependentUpon>StatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\paypal_donate.png" />
+    <None Include="Resources\paypal_donate.jpg" />
+    <None Include="Resources\MediaFairy.ico" />
+    <None Include="Resources\hide2.png" />
+    <None Include="Resources\show.png" />
+    <None Include="Resources\hide1.png" />
+    <None Include="Resources\hide.png" />
+    <None Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Notes\ChangeLog.txt" />
+    <Content Include="Notes\TODO\Media Scrapers.txt" />
+    <Content Include="Notes\TODO\ToDo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code\Metadata Scrapers\Film\IMDb\Details\" />
+    <Folder Include="Code\Metadata Scrapers\Game\" />
+    <Folder Include="Code\Metadata Scrapers\Music\" />
+    <Folder Include="Notes\Wiki\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.*" "C:\Program Files (x86)\MeediOS\Plugins\import\MediaFairy"
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>

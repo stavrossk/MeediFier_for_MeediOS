@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaFairy", "MediaFairy.csproj", "{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Meedio_Debug|Any CPU = Meedio_Debug|Any CPU
+		Meedio_Release|Any CPU = Meedio_Release|Any CPU
+		MeediOS_Debug|Any CPU = MeediOS_Debug|Any CPU
+		MeediOS_Release|Any CPU = MeediOS_Release|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Meedio_Debug|Any CPU.ActiveCfg = Meedio_Debug|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Meedio_Debug|Any CPU.Build.0 = Meedio_Debug|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Meedio_Release|Any CPU.ActiveCfg = Meedio_Release|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Meedio_Release|Any CPU.Build.0 = Meedio_Release|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.MeediOS_Debug|Any CPU.ActiveCfg = MeediOS_Debug|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.MeediOS_Debug|Any CPU.Build.0 = MeediOS_Debug|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.MeediOS_Release|Any CPU.ActiveCfg = MeediOS_Release|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.MeediOS_Release|Any CPU.Build.0 = MeediOS_Release|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		AMDCaProjectFile = C:\Users\Σταύρος\Documents\Visual Studio 2008\Projects\MediaFairyForMeediOS\CodeAnalyst\MediaFairy.caw
+	EndGlobalSection
+EndGlobal
