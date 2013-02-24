@@ -1,13 +1,13 @@
 MediaFairy for MeediOS
 ======================
 
-#### MediaFairy - An intelligent Media Importing System for MeediOS.
+### MediaFairy - An intelligent Media Importing System for MeediOS.
 
 
 
-#### Summary
+### Summary
 
-MediaFairy is a multi-purpose media importer and updater plugin
+MediaFairy is a multi-purpose entertainment media importer and updater plugin
 which aims to provide a complete solution for Meedio and MeediOS users
 to easily import and acquire meta-information for their media collections.
 
@@ -21,7 +21,7 @@ The plugin currently supports importing media files and downloading media inform
 
 
 
-#### Introduction
+### Introduction
 
 ```
 Note: Information about basic concepts of media identification follows.
@@ -89,7 +89,7 @@ MediaFairy's built-in media files importer:
 
 
 
-#### Media format Information importer:[/b][/size]
+#### Media format Information importer:
 
 * Similarly to the popular MediaInfo plugin, this process will analyze your media files and import media information like video/audio formats and bitrate qualities. Most modern themes display this information graphically on the frontend's interface.
 
@@ -174,11 +174,11 @@ Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of
 
 
 
-[size=140]   [b] [color=green]Downloading Locations[/color][/b][/size]
+#### Downloading Locations:
 
 [Download from MeediOS OpenMAID plugin repository](http://www.meedios.com/OpenMAIDOS/detail.php?plugin_id=3AE69DCF-B3C6-4DD3-85A8-2744A3B50452)
 
-[url=http://code.google.com/p/mediafairy-for-meedios/][size=130][b]Download from Google Code[/b][/size][/url]
+[Download from Google Code](http://code.google.com/p/mediafairy-for-meedios)
 
 
 
