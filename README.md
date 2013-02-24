@@ -127,48 +127,49 @@ Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of
 
 
 
-[size=100][b] Automated subtitles downloader:[/b][/size]  
+#### Automated video subtitles downloader:  
 
- - Downloads from OpenSubtitles.org  synchronized subtitles for your films or tv episodes in your preferred language(s).
+* Downloads from OpenSubtitles.org synchronized subtitles for your films or tv episodes in your preferred language(s).
 
- - The video fingerprint matching algorithm ensures that the subtitles will always be perfectly synchronized to the particular version of your film.
+* The video fingerprint matching algorithm ensures that the subtitles will always be perfectly synchronized to the particular version of your film.
 
- - Allows to specify an alternative language in case no subtitles are found for your primary language.
-
-
-
-[size=100][b] Media Organizer: [/b][/size]
-
- - Automatically sorts (renames and moves) identified media files to your specified locations for each media type according to your desired filesystem structure.
+* Allows to specify an alternative language in case no subtitles are found for your primary language.
 
 
 
-[size=100][b] Library Cleaner: [/b][/size]
 
- - Automatically deletes library items which refer to non-existent (deleted) media files. The built-in network diagnostics will ensure that files residing on offline drives will not be accidentaly deleted.
+#### Media Organizer:
 
- - Optionally removes empty library section tags ensuring a cleaner media section and faster library accessing opearations.
-
- - Scans and links together multiple video files which constitute a single film. This process ensures that those video files will be chained together even if a previously used file importer was unable to do so.
+* Automatically sorts (renames and moves) identified media files to your specified locations for each media type according to your desired filesystem structure.
 
 
 
-[size=100][b] Archive Extractor: [/b][/size]    
+#### Library Cleaner:
 
- - Automatically extracts compressed archives contained in the specified media locations and imports any media files of interest they contain. Optionally deletes extracted archives. Is also able to mantain a user-specified free space amount.
+* Automatically deletes library items which refer to non-existent (deleted) media files. The built-in network diagnostics will ensure that files residing on offline drives will not be accidentaly deleted.
 
+* Optionally removes empty library section tags ensuring a cleaner media section and faster library accessing opearations.
 
-
-[size=100][b] Media Archiver: [/b][/size]    
-
- - Optionally compresses and stores in your specified location a compressed archive for each already watched film, (containing the entire film's directory) for disk space and archiving purposes. Each archived film is removed from the media library, ensuring that only new material is displayed in the frontend.
+* Scans and links together multiple video files which constitute a single film. This process ensures that those video files will be chained together even if a previously used file importer was unable to do so.
 
 
- [b]Miscellaneous:[/b]
 
- - Intelligently detects media files which reside on a network disk and skips them if your file server or network disk is offline.
+#### Archive Extractor:    
 
- - Built-in internet connection and databases availability diagnostics, to cut down retrying delays and prevent connection errors.
+* Automatically extracts compressed archives contained in the specified media locations and imports any media files of interest they contain. Optionally deletes extracted archives. Is also able to mantain a user-specified free space amount.
+
+
+
+#### Media Archiver:    
+
+* Optionally compresses and stores in your specified location a compressed archive for each already watched film, (containing the entire film's directory) for disk space and archiving purposes. Each archived film is removed from the media library, ensuring that only new material is displayed in the frontend.
+
+
+#### Miscellaneous:
+
+* Intelligently detects media files which reside on a network disk and skips them if your file server or network disk is offline.
+
+* Built-in internet connection and databases availability diagnostics, to cut down retrying delays and prevent connection errors.
 
 
 
