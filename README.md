@@ -1,6 +1,8 @@
 MediaFairy for MeediOS
 ======================
 
+**Copyright (C) 2008-2013 Skamagkis Stavros**
+
 ### MediaFairy - An intelligent Media Importing System for MeediOS.
 
 
