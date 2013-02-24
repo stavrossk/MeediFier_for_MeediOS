@@ -64,62 +64,66 @@ as well as provide advanced media organizing and searching capabilities.
 
 
 
-#### Capabilities & Features
+### Capabilities & Features
 
-[size=100][b] Intelligent & adaptive media files importer:[/b][/size]
- Compared to traditional file importing plugins (tag mask importers), MediaFairy's built-in media files importer:
+#### Intelligent & adaptive media files importer:
 
- - Needs very minimal initial configuration (only needs to know the location of user's media collection on disk).
+Compared to traditional file importing plugins (tag mask importers),
+MediaFairy's built-in media files importer:
 
-- Recognizes and imports only media files of interest within the specified root directories, ignoring non-media files or files which do not belong to the desired media type. (film, tv episode or music)
+* Needs very minimal initial configuration (only needs to know the location of user's media collection on disk).
 
- - The file importing algorithm works completely idependently from video/audio extensions ensuring that you 'll never have to specify any, and also that any media file which the system is able to playback will be imported regardless of it's file extension.  
+* Recognizes and imports only media files of interest within the specified root directories, ignoring non-media files or files which do not belong to the desired media type. (film, tv episode or music)
 
- - Distinguishes media types of interest inside directories which contain mixed content, eliminating the need of manual media collection organizing.
+* The file importing algorithm works completely idependently from video/audio extensions ensuring that you 'll never have to specify any, and also that any media file which the system is able to playback will be imported regardless of it's file extension.  
 
-
-
-[size=100][b] Audio Tag importer:[/b][/size]
-
- - Extracts the track information contained in the audio file's IDV3 tags and imports them in their respective library tags.
-
- - Has the ability to embed downloaded information and/or album cover into the audio file's IDV3 tags.
+* Distinguishes media types of interest inside directories which contain mixed content, eliminating the need of manual media collection organizing.
 
 
 
-[size=100][b] Media format Information importer:[/b][/size]
+#### Audio Tag importer:
 
- - Similarly to the popular MediaInfo plugin, this process will analyze your media files and import media information like video/audio formats and bitrate qualities. Most modern themes display this information graphically on the frontend's interface.
+* Extracts the track information contained in the audio file's IDV3 tags and imports them in their respective library tags.
 
-
-
-[size=100][b] Built-in filenames parser and cleaner :[/b][/size]
- Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of this sub-process is to detect the media material's title from the filesystem and extract adittional information about the material which will later help the online identifier to recognize and import details for the media product More specifically:
-
- - Cleans the filenames of media files from release format tags, and extracts the media's actual title.
-
- - Locates media identification information like a film's production year and IMDb id or a tv episode's number and season number. This crucial information then helps the built-in online details downloader to automatically identify the media file without requiring user assistance.
-
- - Parses .nfo files existing in a film's or music album's directory and extracts required media identification information further increasing matching acurracy.
+* Has the ability to embed downloaded information and/or album cover into the audio file's IDV3 tags.
 
 
 
-[size=100][b] Media details and cover art downloader:[/b][/size]
+#### Media format Information importer:[/b][/size]
 
- - Matches the media file's unique hash or 'fingerprint' with online databases (OSdb and MusicIP) to identify films, tv episodes and music. Requires no previously existing information for the media file to recognize it and tremendously maximizes the identifier's acurracy and minimizes the need of identifying assistance from the user.
+* Similarly to the popular MediaInfo plugin, this process will analyze your media files and import media information like video/audio formats and bitrate qualities. Most modern themes display this information graphically on the frontend's interface.
 
- - Downloads media information from multiple online databases:
+
+
+#### Built-in filenames parser and cleaner:
+
+Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of this sub-process is to detect the media material's title from the filesystem and extract adittional information about the material which will later help the online identifier to recognize and import details for the media product More specifically:
+
+* Cleans the filenames of media files from release format tags, and extracts the media's actual title.
+* Locates media identification information like a film's production year and IMDb id or a tv episode's number and season number. This crucial information then helps the built-in online details downloader to automatically identify the media file without requiring user assistance.
+* Parses .nfo files existing in a film's or music album's directory and extracts required media identification information further increasing matching acurracy.
+
+
+
+#### Media details and cover art downloader:
+
+* Matches the media file's unique hash or 'fingerprint' with online databases (OSdb and MusicIP) to identify films, tv episodes and music. Requires no previously existing information for the media file to recognize it and tremendously maximizes the identifier's acurracy and minimizes the need of identifying assistance from the user.
+
+* Downloads media information from multiple online databases:
       - imdb.com, themoviedb.org and opensubtitles.org for films.
       - thetvdb.com and imdb.com for tv series.
 
- - Downloads cover art and frontend backdrops fully unattended from the following online sources: (switching between them as necessary)
+
+
+* Downloads cover art and frontend backdrops fully unattended from the following online sources: (switching between them as necessary)
       - themoviedb.org, ImpAwards and IMDb for films.
       - thetvdb.com for tv shows & tv series.
 
- - Provides you with the ability to disable unattended operation on the fly, letting you select your preferred cover image from the found images on all sources. 
 
- - Saves film description .xml files on sucessful identification.
- In case the user's Films media section is re-imported from scratch, the plugin will acquire the required information from these descriptors, skipping the online lookup and significantly decrease importing time.
+
+* Provides ability to disable unattended operation on the fly, letting you select your preferred cover image from the found images on all sources. 
+
+* Saves film description .xml files on sucessful identification. In case the user's Films media section is re-imported from scratch, the plugin will acquire the required information from these descriptors, skipping the online lookup and significantly decrease importing time.
 
 
 
@@ -171,7 +175,7 @@ as well as provide advanced media organizing and searching capabilities.
 
 [size=140]   [b] [color=green]Downloading Locations[/color][/b][/size]
 
-[url=http://www.meedios.com/OpenMAIDOS/detail.php?plugin_id=3AE69DCF-B3C6-4DD3-85A8-2744A3B50452][size=130][b]Download from OpenMaid[/b][/size][/url]
+[Download from MeediOS OpenMAID plugin repository](http://www.meedios.com/OpenMAIDOS/detail.php?plugin_id=3AE69DCF-B3C6-4DD3-85A8-2744A3B50452)
 
 [url=http://code.google.com/p/mediafairy-for-meedios/][size=130][b]Download from Google Code[/b][/size][/url]
 
