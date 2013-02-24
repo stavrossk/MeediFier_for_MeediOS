@@ -179,13 +179,18 @@ Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of
 
 [url=http://code.google.com/p/mediafairy-for-meedios/][size=130][b]Download from Google Code[/b][/size][/url]
 
-[color=red][b]Important:[/b][/color]
- Users with 64-bit operating sytem will need to seperately download from [url=http://mediainfo.sourceforge.net/el/Download]here[/url] the 64-bit version of MediaInfo.dll and copy it to the plugin's directory replacing it's original 32-bit version.
 
 
 
-[b]For detailed installation, configuration and usage instructions 
-please refer to the corresponding plugin's wiki pages on Google Code:[/b]
+**Important:**
 
-[url=http://code.google.com/p/mediafairy-for-meedios/w/list][size=130][b]Wiki Documentation[/b][/size][/url]
+Users with 64-bit operating sytem will need to seperately download
+from [here](http://mediainfo.sourceforge.net/el/Download) the 64-bit version
+of MediaInfo.dll and copy it to the plugin's directory replacing it's original 32-bit version.
+
+
+For detailed installation, configuration and usage instructions 
+please refer to the corresponding plugin's wiki pages on Google Code:
+
+[Wiki Documentation](http://code.google.com/p/mediafairy-for-meedios/w/list)
 
