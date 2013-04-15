@@ -1,15 +1,15 @@
-MediaFairy for MeediOS
+MeediFier for MeediOS
 ======================
 
 **Copyright (C) 2008-2013 Skamagkis Stavros**
 
-### MediaFairy - An intelligent Media Importing System for MeediOS.
+### MeediFier - An intelligent Media Importing System for MeediOS.
 
 
 
 ### Summary
 
-MediaFairy is a multi-purpose entertainment media importer and updater plugin
+MeediFier is a multi-purpose entertainment media importer and updater plugin
 which aims to provide a complete solution for Meedio and MeediOS users
 to easily import and acquire meta-information for their media collections.
 
@@ -60,7 +60,7 @@ as well as provide advanced media organizing and searching capabilities.
   Additionally, extraction of this structure requires the definition
   of special text filters such as Tag Masks and Regural Expressions.
 
-  This is where MediaFairy comes in to rectify these problems
+  This is where MeediFier comes in to rectify these problems
   by seamlessly integrating the following capabilities: 
 
 
@@ -71,7 +71,7 @@ as well as provide advanced media organizing and searching capabilities.
 #### Intelligent & adaptive media files importer:
 
 Compared to traditional file importing plugins (tag mask importers),
-MediaFairy's built-in media files importer:
+MeediFier's built-in media files importer:
 
 * Needs very minimal initial configuration (only needs to know the location of user's media collection on disk).
 
