@@ -22,20 +22,20 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using MeediFier.ImportingEngine;
+
 
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy;
-using MediaFairy.ImportingEngine;
+using MeediFier.ToolBox.Utils;
 using MeediOS;
 #endif
 
-namespace MediaFairy
+namespace MeediFier
 {
     public class ImpAwards
     {
@@ -72,7 +72,7 @@ namespace MediaFairy
                 break;
             }
 
-            if (StringFunctions.containsRomanNumerals(PosterName) )
+            if (StringProcessors.ContainsRomanNumerals(PosterName) )
             {
                 String[] rNumbers = {" i ", " ii ", " iii ", " iv ", " v ", " vi ", " vii ", " viii ", " ix ", " x ",
                                " xi ", " xii ", " xiii ", " xiv ", " xv ", " xvi ", " xvii ", " xviii ", " xix ", " xx "};
@@ -113,11 +113,11 @@ namespace MediaFairy
                 }
 
                 //SEARCH #2 - REPEAT SEARCH IF EMPTY - Alternative search for titles with individual numbers
-                if (StringFunctions.HasNumbers(n) == true && urlList.Count == 0)
+                if (StringProcessors.HasNumbers(n) == true && urlList.Count == 0)
                 {
                     Debugger.LogMessageToFile("[ImpAwards] - Running Search #2");
                     C3 = CleanUpName(n.ToLower().Trim());
-                    string P2 = StringFunctions.IndividualNumToText(C3).Trim();
+                    string P2 = StringProcessors.IndividualNumToText(C3).Trim();
                     PosterName2 = P2.Replace(" ", "_");
                     Debugger.LogMessageToFile("[ImpAwards] - Search name: " + PosterName2);
                     Search2Term = PosterName2;
@@ -130,7 +130,7 @@ namespace MediaFairy
                 }
 
                 //SEARCH #3 - REPEAT SEARCH IF EMPTY - Alternative search for titles with years
-                if (StringFunctions.HasNumbers(n) == true && urlList.Count == 0)
+                if (StringProcessors.HasNumbers(n) == true && urlList.Count == 0)
                 {
                     Debugger.LogMessageToFile("[ImpAwards] - Running Search #3: Years to Text");
                     C3 = CleanUpName(n.ToLower().Trim());
@@ -146,7 +146,7 @@ namespace MediaFairy
                 }
 
                 //SEARCH #4 - REPEAT SEARCH IF EMPTY - Alternative search for nTh Numbers
-                if (StringFunctions.HasNumbers(n) == true && urlList.Count == 0)
+                if (StringProcessors.HasNumbers(n) == true && urlList.Count == 0)
                 {
                     Debugger.LogMessageToFile("[ImpAwards] - Running Search #4: nTh Numbers to Text");
                     C3 = CleanUpName(n.ToLower().Trim());
@@ -162,12 +162,17 @@ namespace MediaFairy
                 }
 
                 //SEARCH #5 - Alternative Search for roman numerals
-                if (!StringFunctions.containsRomanNumerals(n) || urlList.Count != 0) continue;
+                if (!StringProcessors.ContainsRomanNumerals(n) || urlList.Count != 0) 
+                    continue;
 
                 Debugger.LogMessageToFile("[ImpAwards] - Running Search #5: Roman Numbers to Text");
+                
                 C3 = CleanUpName(n.ToLower().Trim());
-                PosterName2 = StringFunctions.RomanNumberToText(C3);
+                
+                PosterName2 = StringProcessors.RomanNumberToText(C3);
+                
                 Debugger.LogMessageToFile("[ImpAwards] - Search name: " + PosterName2);
+                
                 Search5Term = PosterName2;
 
                 if (Search5Term != Search4Term && Search5Term != Search3Term && Search5Term != Search2Term && Search5Term != Search1Term)
@@ -194,6 +199,7 @@ namespace MediaFairy
             }
             return urlList;
         }
+
 
         //REPLACE AND FORMAT TEXT
         private static string CleanUpName(string MovieName)
@@ -269,13 +275,18 @@ namespace MediaFairy
             return CleanedName;
         }
 
+
         //REPLACE NUMBERS WITH TEXT
         private static string NameNum2Text(string NameWithNumbers, string stringFunctions)
         {
+
             //Replace numbers with text
             String PosterName2 = NameWithNumbers.ToLower().Trim();
+            
             string[] split = PosterName2.Split(new Char[] { ' ' });
+            
             List<string> newString = new List<string>();
+            
             foreach (string s in split)
             {
                 try
@@ -284,10 +295,10 @@ namespace MediaFairy
                     string nString = "";
                     if (stringFunctions == "YearToText")
                     {
-                        if (StringFunctions.HasNumbers(s))
+                        if (StringProcessors.HasNumbers(s))
                         {
                             n = Convert.ToInt16(s);
-                            nString = StringFunctions.YearToText(n);
+                            nString = StringProcessors.YearToText(n);
                             newString.Add(nString);
                         }
                         else
@@ -297,10 +308,10 @@ namespace MediaFairy
                     }
                     if (stringFunctions == "NumberToText")
                     {
-                        if (StringFunctions.HasNumbers(s))
+                        if (StringProcessors.HasNumbers(s))
                         {
                             n = Convert.ToInt16(s);
-                            nString = StringFunctions.NumberToText(n);
+                            nString = StringProcessors.NumberToText(n);
                             newString.Add(nString);
                         }
                         else
@@ -308,23 +319,23 @@ namespace MediaFairy
                             newString.Add(s);
                         }
                     }
-                    if (stringFunctions == "NthNumberToText")
+
+                    if (stringFunctions != "NthNumberToText") continue;
+                    
+                    if (StringProcessors.HasNumbers(s))
                     {
-                        if (StringFunctions.HasNumbers(s))
+                        int n2 = 0;
+                        if (s.EndsWith("st") || s.EndsWith("nd") || s.EndsWith("rd") || s.EndsWith("th"))
                         {
-                            int n2 = 0;
-                            if (s.EndsWith("st") || s.EndsWith("nd") || s.EndsWith("rd") || s.EndsWith("th"))
-                            {
-                                string textNum = s.Remove(s.Length - 2);
-                                n2 = Convert.ToInt16(textNum);
-                            }
-                            nString = StringFunctions.NthNumberToText(n2);
-                            newString.Add(nString);
+                            string textNum = s.Remove(s.Length - 2);
+                            n2 = Convert.ToInt16(textNum);
                         }
-                        else
-                        {
-                            newString.Add(s);
-                        }
+                        nString = StringProcessors.NthNumberToText(n2);
+                        newString.Add(nString);
+                    }
+                    else
+                    {
+                        newString.Add(s);
                     }
                 }
                 catch

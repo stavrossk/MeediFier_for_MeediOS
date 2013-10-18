@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
 using MediaInfoLib;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
     internal class DirectoryScanner
     {

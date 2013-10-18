@@ -24,15 +24,17 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
+using MeediFier.Properties;
+
 
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy.Properties;
+
 using MeediOS;
 #endif
 
-namespace MediaFairy
+namespace MeediFier
 {
     class UI
     {
@@ -42,28 +44,22 @@ namespace MediaFairy
 
         public static void ShowControls()
         {
-
-            if (StatusForm.statusForm.Width != 640)
+            if (StatusForm.statusForm.Width == 640) return;
+            for (int i = 560; i <= 860; i = i + 10)
             {
+                StatusForm.statusForm.Width = i;
+                StatusForm.statusForm.pictureBox1.Refresh();
+                StatusForm.statusForm.ItemImageBox.Refresh();
+                StatusForm.statusForm.backdropSelectorGroupbox.Refresh();
+                StatusForm.statusForm.OperationControlsGroup.Refresh();
+                StatusForm.statusForm.ConfirmImagePanel.Refresh();
+                StatusForm.statusForm.ConfirmImageCheckBox.Refresh();
 
-                for (int i = 560; i <= 860; i = i + 10)
-                {
-                    StatusForm.statusForm.Width = i;
-                    StatusForm.statusForm.pictureBox1.Refresh();
-                    StatusForm.statusForm.ItemImageBox.Refresh();
-                    StatusForm.statusForm.backdropSelectorGroupbox.Refresh();
-                    StatusForm.statusForm.OperationControlsGroup.Refresh();
-                    StatusForm.statusForm.ConfirmImagePanel.Refresh();
-                    StatusForm.statusForm.ConfirmImageCheckBox.Refresh();
+                //Thread.Sleep(5);
 
-                    //Thread.Sleep(5);
-
-                }
-
-                StatusForm.statusForm.ShowHideButton.Image = Resources.hide;
             }
 
-
+            StatusForm.statusForm.ShowHideButton.Image = Resources.hide;
         }
 
         public static void HideControls()
@@ -239,7 +235,8 @@ namespace MediaFairy
                         if (SelectedBackdrop < (banners.Count - 1))
                         {
                             SelectedBackdrop++;
-                            StatusForm.statusForm.backdropSelectorLabe.Text = Resources.ImageSelectionEngine_UserSelectsImage_displaying_ + BannerType + " " + (SelectedBackdrop + 1) + Resources.ImageSelectionEngine_UserSelectsImage__of_ + banners.Count + "";
+                            StatusForm.statusForm.backdropSelectorLabe.Text = "Displaying" + BannerType + " " + (SelectedBackdrop + 1) + "of" + banners.Count + "";
+
                             UI.PreviewImage(banners[SelectedBackdrop].Path, true);
                             StatusForm.statusForm.SelectBackropDialogResult = DialogResult.Cancel;
                         }

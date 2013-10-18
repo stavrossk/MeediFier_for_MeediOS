@@ -1,4 +1,4 @@
-﻿namespace MediaFairy.Forms
+﻿namespace MeediFier.Forms
 {
     partial class Settings
     {

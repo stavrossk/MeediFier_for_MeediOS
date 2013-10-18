@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
 using MediaInfoLib;
+using MeediFier.ImportingEngine;
 
-namespace MediaFairy.MediaSnapshotEngine.MediaAnalyzer
+namespace MeediFier.MediaSnapshotEngine.MediaAnalyzer
 {
 
 

@@ -1,6 +1,6 @@
 ﻿
 
-namespace MediaFairy.Code.Settings
+namespace MeediFier.Code.Settings
 {
 
 

@@ -22,9 +22,9 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MediaFairy.IMDb;
-using MediaFairy.ImportingEngine;
-using MediaFairy.MediaSectionUpdaters;
+using MeediFier.IMDb;
+using MeediFier.ImportingEngine;
+using MeediFier.MediaSectionUpdaters;
 using MeediOS;
 
 
@@ -37,7 +37,7 @@ using Meedio;
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
 

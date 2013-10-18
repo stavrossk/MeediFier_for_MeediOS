@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.ImporterPropertiesGroups;
-using MediaFairy.MediaAnalyzer;
-using MediaFairy.MediaImporters;
+using MeediFier.ImporterPropertiesGroups;
+using MeediFier.MediaAnalyzer;
+using MeediFier.MediaImporters;
 using MeediOS;
 
 
 
-namespace MediaFairy.MediaFileImporters.SingleMediaFileImporter
+namespace MeediFier.MediaFileImporters.SingleMediaFileImporter
 {
 
 

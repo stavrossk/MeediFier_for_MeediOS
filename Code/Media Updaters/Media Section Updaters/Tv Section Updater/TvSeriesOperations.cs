@@ -24,7 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using TVDBLibrary;
 using System.Threading;
 
@@ -35,7 +35,7 @@ using MeediOS;
 #endif
 
 
-namespace MediaFairy
+namespace MeediFier
 {
     class TvSeriesOperations
     {

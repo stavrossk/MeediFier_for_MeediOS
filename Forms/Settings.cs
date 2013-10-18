@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace MediaFairy.Forms
+namespace MeediFier.Forms
 {
     public partial class Settings : Form
     {

@@ -22,10 +22,12 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Threading;
-using MediaFairy.Code.Settings;
-using MediaFairy.MediaSnapshotEngine;
+using MeediFier.Code.Settings;
+using MeediFier.MediaSnapshotEngine;
 
-#if USE_MEEDIO 
+#if USE_MEEDIO
+using MeediFier.Code.Settings;
+using MeediFier.MediaSnapshotEngine;
 using Meedio; 
 #elif USE_MEEDIOS
 
@@ -33,7 +35,7 @@ using Meedio;
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
     class MediaImportingEngine
     {

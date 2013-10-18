@@ -4,13 +4,13 @@ using System.IO;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
-using MediaFairy.Properties;
+using MeediFier.Properties;
+using MeediFier.ImportingEngine;
 using MeediOS;
 using MetaDataFolders;
 using TVDBLibrary;
 
-namespace MediaFairy.TVDb
+namespace MeediFier.TVDb
 {
 
     class TVdbTvEpisodeDetailsDownloaderHelpers

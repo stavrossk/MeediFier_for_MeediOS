@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CustomProperties.PropertyData;
 using MeediOS.Cache;
 
-namespace MediaFairy.Code.Importer_Properties
+namespace MeediFier.Code.Importer_Properties
 {
 
 
@@ -32,7 +32,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.GroupName = "FilmDetails";
                 //set the tool tip
                 prop.HelpText = "Would you like to use IMDb (International Movie Database) to download details for your films?";
-                prop.DefaultValue = MediaFairy.Settings.FilmIMDbDetailsDownloaderIsEnabled;
+                prop.DefaultValue = MeediFier.Settings.FilmIMDbDetailsDownloaderIsEnabled;
                 prop.DataType = "bool";
                 return true;
             }
@@ -48,7 +48,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.HelpText = "Would you like to use OSdb (opensubtitles.org) as one of the film details online sources?" +
                                 Environment.NewLine +
                                 "MediaFairy will download film details from OSdb only if IMDb is offline or unreachable";
-                prop.DefaultValue = MediaFairy.Settings.FilmOSDbDetailsDownloaderIsEnabled;
+                prop.DefaultValue = MeediFier.Settings.FilmOSDbDetailsDownloaderIsEnabled;
                 prop.DataType = "bool";
                 return true;
             }
@@ -64,7 +64,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.HelpText = " Would you like additional film details to be downloaded from TMDb (www.themoviedb.org)?" +
                                 Environment.NewLine +
                                 "(TMDb Rating, Media Type, Budget, Revenue, film HomePage, Production Countries, Trailer)";
-                prop.DefaultValue = MediaFairy.Settings.TMDbFilmDetailsEnabled;
+                prop.DefaultValue = MeediFier.Settings.TMDbFilmDetailsEnabled;
                 prop.DataType = "bool";
                 return true;
             }
@@ -125,7 +125,7 @@ namespace MediaFairy.Code.Importer_Properties
                     "This procedure offers greatly increased updating performance if/when the film needs to be imported again," +
                     Environment.NewLine +
                     "because if a film descriptor is found, the plugin will use this file to obtain the film's details, thus skipping the video identifying phase. ";
-                prop.DefaultValue = MediaFairy.Settings.FilmDescriptorsAreEnabled;
+                prop.DefaultValue = MeediFier.Settings.FilmDescriptorsAreEnabled;
                 prop.DataType = "bool";
                 return true;
             }
@@ -143,7 +143,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.HelpText = "Which naming convention would you like to use for your film descriptors?" + Environment.NewLine +
                                 "MediaFairy is compatible with XBMC's .nfo files." + Environment.NewLine +
                                 "MediaFairy's film descriptors are named <VideoHash>.xml while XBMC's are named <MovieName>.nfo";
-                prop.DefaultValue = MediaFairy.Settings.FilmDescriptorConvention;
+                prop.DefaultValue = MeediFier.Settings.FilmDescriptorConvention;
                 prop.DataType = "string";
                 prop.CanTypeChoices = false;
                 twochoices[0] = "MediaFairy";

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using MediaFairy.Code;
-using MediaFairy.Code.Metadata_Scrapers.Cover_Art;
-using MediaFairy.ImportingEngine;
+using MeediFier.Code.Metadata_Scrapers.Cover_Art;
+using MeediFier.Code;
+using MeediFier.ImportingEngine;
 using MeediOS;
 using TagLib;
 using File = System.IO.File;
 
-namespace MediaFairy.SingleItemUpdaters
+namespace MeediFier.SingleItemUpdaters
 {
 
 
@@ -124,7 +124,7 @@ namespace MediaFairy.SingleItemUpdaters
                 }
                 else
                 {
-                    StringProcessors.NormalizePath(tagvalue);
+                    ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(tagvalue);
                     directoryToMove += tagvalue + @"\";
 
                     if (!Directory.Exists(directoryToMove))
@@ -225,7 +225,7 @@ namespace MediaFairy.SingleItemUpdaters
 
             fileTitle = artist + " - " + album + " - " + track + " - " + title;
    
-            fileTitle = StringProcessors.NormalizePath(fileTitle);
+            fileTitle = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(fileTitle);
             
             return false;
         

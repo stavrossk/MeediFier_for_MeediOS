@@ -6,7 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using MeediOS;
 
-namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
+namespace MeediFier.Code.Metadata_Scrapers.Cover_Art
 {
 
 
@@ -35,7 +35,7 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
 
 
-                byte[] htmlData = Downloaders.TrytoDownloadData
+                byte[] htmlData = MeediFier.Downloaders.TrytoDownloadData
                     (imdbUrl, "Movies", "IMDb", item);
 
 
@@ -58,7 +58,7 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
 
                 WebResponse response
-                    = Downloaders
+                    = MeediFier.Downloaders
                     .TryDatabaseRequest
                     (coverImageLink, "Movies", 
                     "IMDb", item);

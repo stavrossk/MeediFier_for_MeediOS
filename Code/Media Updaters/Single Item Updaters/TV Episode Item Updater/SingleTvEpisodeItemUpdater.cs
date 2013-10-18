@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using MediaFairy.Code;
-using MediaFairy.ImportingEngine;
-using MediaFairy.SingleItem_Updaters;
+using MeediFier.Code;
+using MeediFier.ImportingEngine;
+using MeediFier.SingleItem_Updaters;
 using MeediOS;
 using TVDBLibrary;
 
-namespace MediaFairy.SingleItemUpdaters
+namespace MeediFier.SingleItemUpdaters
 {
 
 

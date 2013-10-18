@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
-namespace MediaFairy.VideoFingerprintIdentifier
+namespace MeediFier.VideoFingerprintIdentifier
 {
     class OSDbVideoFingeprintIdentifier
     {

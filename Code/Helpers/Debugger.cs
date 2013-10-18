@@ -24,7 +24,7 @@ using Microsoft.Win32;
 //using System.Linq;
 
 // ReSharper disable CheckNamespace
-namespace MediaFairy
+namespace MeediFier
 // ReSharper restore CheckNamespace
 {
     public class Debugger

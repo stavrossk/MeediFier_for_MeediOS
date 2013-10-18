@@ -2,7 +2,7 @@
 using CustomProperties.PropertyData;
 using MeediOS.Cache;
 
-namespace MediaFairy.ImporterPropertiesGroups
+namespace MeediFier.ImporterPropertiesGroups
 {
     internal class MediaSections
     {

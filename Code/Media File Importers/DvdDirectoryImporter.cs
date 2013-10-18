@@ -1,12 +1,12 @@
 ﻿using System.IO;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.Code.Settings;
-using MediaFairy.ImportingEngine;
-using MediaFairy.MediaSnapshotEngine;
+using MeediFier.Code.Settings;
+using MeediFier.ImportingEngine;
+using MeediFier.MediaSnapshotEngine;
 using MeediOS;
 
-namespace MediaFairy.MediaImporters
+namespace MeediFier.MediaImporters
 {
 
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using CustomProperties.PropertyData;
-using MediaFairy.Code.Settings;
+using MeediFier.Code.Settings;
 using MeediOS.Cache;
 
 
-namespace MediaFairy.ImporterPropertiesGroups
+namespace MeediFier.ImporterPropertiesGroups
 {
 
 

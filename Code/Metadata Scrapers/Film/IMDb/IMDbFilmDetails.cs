@@ -23,9 +23,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using MediaFairy.Code.Settings;
+using MeediFier.Code.Downloaders;
+using MeediFier.Code.Settings;
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
     class IMDbFilmDetails
     {

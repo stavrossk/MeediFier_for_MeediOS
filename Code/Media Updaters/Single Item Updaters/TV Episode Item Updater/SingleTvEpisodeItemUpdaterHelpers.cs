@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
-using MediaFairy.TVDb;
+using MeediFier.ImportingEngine;
+using MeediFier.TVDb;
 using MeediOS;
 using TVDBLibrary;
 
 
 
  
-namespace MediaFairy.SingleItem_Updaters
+namespace MeediFier.SingleItem_Updaters
 {
 
 

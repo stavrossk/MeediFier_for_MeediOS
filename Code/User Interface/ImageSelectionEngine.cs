@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.Properties;
+using MeediFier.Properties;
 using MeediOS;
 
 
 
-namespace MediaFairy.Code.User_Interface
+namespace MeediFier.Code.User_Interface
 {
 
 
@@ -37,7 +37,7 @@ namespace MediaFairy.Code.User_Interface
 
 
             #region ask user to select desired image
-            if (imageUrls.Count > 1 && MediaFairy.Settings.AlwaysPromptForImages)
+            if (imageUrls.Count > 1 && MeediFier.Settings.AlwaysPromptForImages)
             {
                 Helpers.UpdateProgress("Updating Films Section", "Waiting for " + imageType +  " selection...", item);
                 StatusForm.statusForm.ConfirmImageCheckBox.Visible = false;

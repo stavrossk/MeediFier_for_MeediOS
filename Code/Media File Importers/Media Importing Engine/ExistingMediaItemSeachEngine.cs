@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using MeediOS;
 
-namespace MediaFairy.MediaFileImportingEngine
+namespace MeediFier.MediaFileImportingEngine
 {
 
 

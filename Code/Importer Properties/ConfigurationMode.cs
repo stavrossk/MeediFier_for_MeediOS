@@ -5,7 +5,7 @@ using MeediOS.Cache;
 
 
 
-namespace MediaFairy.ImporterPropertiesGroups
+namespace MeediFier.ImporterPropertiesGroups
 {
 
     class ConfigurationMode

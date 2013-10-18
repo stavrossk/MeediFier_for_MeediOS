@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace MediaFairy.Code.RegEx_Matchers
+namespace MeediFier.Code.RegEx_Matchers
 {
     class RegExMatchers
     {

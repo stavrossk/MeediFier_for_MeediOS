@@ -26,7 +26,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace MediaFairy
+namespace MeediFier
 {
     internal static class VideoFilenameCleaner
     {

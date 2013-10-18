@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.Code.User_Interface;
+using MeediFier.Code.User_Interface;
 using MeediOS;
 using MetaDataFolders;
 
@@ -10,7 +10,7 @@ using MetaDataFolders;
 
 
 
-namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
+namespace MeediFier.Code.Metadata_Scrapers.Cover_Art
 {
 
 
@@ -40,11 +40,11 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
 
 
-                if (MediaFairy.Settings.WantToDisableSources
-                    && !MediaFairy.Settings.TMDbIsOnline)
+                if (MeediFier.Settings.WantToDisableSources
+                    && !MeediFier.Settings.TMDbIsOnline)
                     return false;
 
-                if (!MediaFairy.Settings.FilmBackdropArtDownloaderIsEnabled)
+                if (!MeediFier.Settings.FilmBackdropArtDownloaderIsEnabled)
                     return false;
 
                 if (isUNC && !fileServerIsOnline)
@@ -146,10 +146,16 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
                     = TheMovieDb.GetFilmBackdropsFromTMDb
                     (item, ref previewImages);
 
+
                 if (imageUrls.Count == 0 || previewImages.Count == 0)
                 {
-                    Debugger.LogMessageToFile("The image URLs list is empty. No online backdrops were found for this film.");
+
+                    Debugger.LogMessageToFile
+                        ("The image URLs list is empty. " +
+                         "No online backdrops were found for this film.");
+                
                     return false;
+                
                 }
 
                 string posterUrl
@@ -170,7 +176,7 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
 
                 byte[] imageData
-                    = Downloaders
+                    = MeediFier.Downloaders
                     .TrytoDownloadData
                     (posterUrl, "Movies",
                     "TheMovieDatabase", item);
@@ -194,7 +200,7 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
                     return false;
 
 
-                if (MediaFairy.Settings
+                if (MeediFier.Settings
                     .ResizeFilmBackdrops)
                 {
 
@@ -206,8 +212,8 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
                     ImageResizer.ResizeImage
                         (imageFile, imageFile, 
-                         MediaFairy.Settings.FilmBackdropWidth,
-                         MediaFairy.Settings.FilmBackdropHeight, false);
+                         MeediFier.Settings.FilmBackdropWidth,
+                         MeediFier.Settings.FilmBackdropHeight, false);
 
 
                 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using TVDBLibrary;
 
-namespace MediaFairy.MediaSectionUpdaters
+namespace MeediFier.MediaSectionUpdaters
 {
 
 

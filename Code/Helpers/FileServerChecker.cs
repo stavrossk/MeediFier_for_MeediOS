@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-namespace MediaFairy.Code
+namespace MeediFier.Code
 {
     class FileServerChecker
     {
@@ -26,13 +26,13 @@ namespace MediaFairy.Code
                     if ( !FileServerChecked)
                     {
                         Debugger.LogMessageToFile("Checking file server availability..");
-                        MediaFairy.Helpers.UpdateProgress("Performing Diagnostic operations", "Checking file server availability...", null);
+                        Helpers.UpdateProgress("Performing Diagnostic operations", "Checking file server availability...", null);
                         //Progress.Progress(Importer.CurrentProgress, "Checking file server availability...");
                         
                         if (!Directory.Exists(root))
                         {
                             Debugger.LogMessageToFile("Your file server is offline. MediaFairy will skip all video files which do not reside locally.");
-                            MediaFairy.Helpers.UpdateProgress("Performing Diagnostic operations", "Your file server is offline. MediaFairy will skip all video files which do not reside locally.", null);
+                            Helpers.UpdateProgress("Performing Diagnostic operations", "Your file server is offline. MediaFairy will skip all video files which do not reside locally.", null);
                             //Progress.Progress(Importer.CurrentProgress, "Your media server is offline. MediaFairy will skip all video files which do not reside locally.");
                             //StatusForm.statusForm.TrayIcon.ShowBalloonTip(3000, "Media server is offline", "Your media server is offline. MediaFairy will skip file operations for all media files which do not reside locally.", ToolTipIcon.Warning);
                             Thread.Sleep(2000);

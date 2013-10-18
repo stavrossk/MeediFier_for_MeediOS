@@ -2,7 +2,7 @@
 using MeediOS;
 
 // ReSharper disable CheckNamespace
-namespace MediaFairy
+namespace MeediFier
 // ReSharper restore CheckNamespace
 {
 

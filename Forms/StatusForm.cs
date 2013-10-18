@@ -149,7 +149,7 @@ public struct HashUploadParams
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public partial class StatusForm : Form

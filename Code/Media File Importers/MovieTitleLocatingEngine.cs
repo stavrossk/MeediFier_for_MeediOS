@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
 
     class MovieTitleLocatingEngine

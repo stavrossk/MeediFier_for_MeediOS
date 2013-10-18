@@ -6,7 +6,7 @@ using System.Text;
 
 
 
-namespace MediaFairy.Code.Media_File_Importers.Media_Analyzer
+namespace MeediFier.Code.Media_File_Importers.Media_Analyzer
 {
 
 

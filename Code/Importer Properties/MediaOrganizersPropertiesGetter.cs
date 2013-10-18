@@ -6,7 +6,7 @@ using MeediOS.Cache;
 
 
 
-namespace MediaFairy.Code.Importer_Properties
+namespace MeediFier.Code.Importer_Properties
 {
 
 
@@ -68,7 +68,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 Environment.NewLine +
                                 "which it has identified, accroding to your specifications below." + Environment.NewLine +
                                 "This feature will ensure a default and well organized structure for your movie files and their related data. ";
-                prop.DefaultValue = MediaFairy.Settings.WantSortingFilms;
+                prop.DefaultValue = MeediFier.Settings.WantSortingFilms;
                 prop.DataType = "bool";
                 prop.Dependencies = "False:HIDE SortingDestinationFilmsProp" +
                                     ";True:SHOW SortingDestinationFilmsProp" +
@@ -89,7 +89,7 @@ namespace MediaFairy.Code.Importer_Properties
                     Environment.NewLine +
                     "it has already identified, accroding to your specifications below." + Environment.NewLine +
                     "This feature will ensure a default and well organized structure for your TV series and their related files. ";
-                prop.DefaultValue = MediaFairy.Settings.WantSortingTvShows;
+                prop.DefaultValue = MeediFier.Settings.WantSortingTvShows;
                 prop.DataType = "bool";
                 prop.Dependencies = "False:HIDE SortingDestinationTvShowsProp" +
                                     ";True:SHOW SortingDestinationTvShowsProp" +
@@ -109,7 +109,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 Environment.NewLine +
                                 "it has already identified, accroding to your specifications below." + Environment.NewLine +
                                 "This feature will ensure a default and well organized structure for your audio files and their related data. ";
-                prop.DefaultValue = MediaFairy.Settings.WantSortingMusic;
+                prop.DefaultValue = MeediFier.Settings.WantSortingMusic;
                 prop.DataType = "bool";
                 prop.Dependencies = "False:HIDE SortingDestinationMusicProp" +
                                     ";True:SHOW SortingDestinationMusicProp" +
@@ -128,7 +128,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.HelpText = "If you enable this option, MediaFairy will ask for your approval before performing" +
                                 Environment.NewLine +
                                 "any renaming or moving operation on media files. This option exists mainly for debugging purposes. ";
-                prop.DefaultValue = MediaFairy.Settings.PromptBeforeMoving;
+                prop.DefaultValue = MeediFier.Settings.PromptBeforeMoving;
                 prop.DataType = "bool";
                 return true;
             }
@@ -150,7 +150,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 Environment.NewLine +
                                 "and their related files to be moved by MediaFairy." + Environment.NewLine +
                                 "Tip: specify the folder where your films are already contained and a blank folder mask for a simple renaming.";
-                prop.DefaultValue = MediaFairy.Settings.SortingDestinationFilms;
+                prop.DefaultValue = MeediFier.Settings.SortingDestinationFilms;
                 prop.DataType = "folder";
                 return true;
             }
@@ -167,7 +167,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 Environment.NewLine +
                                 "and their related files to be moved by MediaFairy." + Environment.NewLine +
                                 "Tip: specify the folder where your TV episodes are already contained and blank folder mask for a simple renaming.";
-                prop.DefaultValue = MediaFairy.Settings.SortingDestinationTvShows;
+                prop.DefaultValue = MeediFier.Settings.SortingDestinationTvShows;
                 prop.DataType = "folder";
                 return true;
             }
@@ -184,7 +184,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 Environment.NewLine +
                                 "and their related files to be moved by MediaFairy." + Environment.NewLine +
                                 "Tip: specify the folder where your audio tracks are already contained and blank folder mask for a simple renaming.";
-                prop.DefaultValue = MediaFairy.Settings.SortingDestinationMusic;
+                prop.DefaultValue = MeediFier.Settings.SortingDestinationMusic;
                 prop.DataType = "folder";
                 return true;
             }
@@ -212,7 +212,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 "while 'Advanced' lets you specify your own directory structure for each media type using a tag mask." +
                                 Environment.NewLine +
                                 "Please refer to the plugin's Wiki web page for more information on directory structures. ";
-                prop.DefaultValue = MediaFairy.Settings.DirectoryStructure;
+                prop.DefaultValue = MeediFier.Settings.DirectoryStructure;
                 prop.DataType = "string";
 
                 twochoices[0] = "Simple- Default directory structures";
@@ -244,7 +244,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 "and below this level each movie to reside in it's own folder named after the film's name," +
                                 Environment.NewLine +
                                 @"you would use this tag mask: <Genre>\<Title> . ";
-                prop.DefaultValue = MediaFairy.Settings.DirectoryTagMaskFilms;
+                prop.DefaultValue = MeediFier.Settings.DirectoryTagMaskFilms;
                 prop.DataType = "string";
                 return true;
             }
@@ -259,7 +259,7 @@ namespace MediaFairy.Code.Importer_Properties
                 //set the tool tip
                 prop.HelpText =
                     @" Please type your desired folder structure in the form of a tag mask. For each additional directory level you want to be created based on the value of an item's specific tag, include this folder name in < and > brackets. For example, if you wanted your directory structure to include a folder for Film Genres and below this level each movie to reside in it's own folder named after the film's name, you would use this tag mask: <Genre>\<Title> . ";
-                prop.DefaultValue = MediaFairy.Settings.DirectoryTagMaskTvShows;
+                prop.DefaultValue = MeediFier.Settings.DirectoryTagMaskTvShows;
                 prop.DataType = "string";
                 return true;
             }
@@ -274,7 +274,7 @@ namespace MediaFairy.Code.Importer_Properties
                 //set the tool tip
                 prop.HelpText =
                     @" Please type your desired folder structure in the form of a tag mask. For each additional directory level you want to be created based on the value of an item's specific tag, include this folder name in < and > brackets. For example, if you wanted your directory structure to include a folder for Film Genres and below this level each movie to reside in it's own folder named after the film's name, you would use this tag mask: <Genre>\<Title> . ";
-                prop.DefaultValue = MediaFairy.Settings.DirectoryTagMaskMusic;
+                prop.DefaultValue = MeediFier.Settings.DirectoryTagMaskMusic;
                 prop.DataType = "string";
                 return true;
             }

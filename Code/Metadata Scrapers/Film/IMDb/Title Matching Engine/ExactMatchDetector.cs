@@ -24,10 +24,11 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using JCUtils;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
+using MeediFier.ToolBox.Utils;
 
-namespace MediaFairy.IMDb.Title_Matching_Engine
+
+namespace MeediFier.IMDb.Title_Matching_Engine
 {
 
 
@@ -40,80 +41,109 @@ namespace MediaFairy.IMDb.Title_Matching_Engine
             (int max, string title, string year, 
             IList<IIMDbSearchResult> list, string fileDuration)
         {
+
             try
             {
+
                 for (var i = 0; i < max; i++)
                 {
-                    if (i >= list.Count) continue;
+
+                    if (i >= list.Count) 
+                        continue;
 
 
                     if (!String.IsNullOrEmpty(year))
                     {
+
                         #region match using year
 
                         #region Match exactly same strings
 
-                        if (Utils.StringsMatchNormalized(list[i].Title, title) &&
-                            Utils.StringsMatchNormalized(list[i].Year, year))
+                        if (ToolBox.Utils.StringProcessors.StringsMatchNormalized(list[i].Title, title) &&
+                            ToolBox.Utils.StringProcessors.StringsMatchNormalized(list[i].Year, year))
                             return list[i];
 
                         #endregion
 
                         #region Match AND, Ending THE and Colon
 
-                        if (Utils.MatchAND(title, list[i].Title) &&
-                            Utils.StringsMatchNormalized(list[i].Year, year))
+                        if (StringProcessors.MatchAND(title, list[i].Title) &&
+                            StringProcessors.StringsMatchNormalized(list[i].Year, year))
                             return list[i];
 
-                        if (Utils.MatchEndingTHE(title, list[i].Title) &&
-                            Utils.StringsMatchNormalized(list[i].Year, year))
+                        if (StringProcessors.MatchEndingTHE(title, list[i].Title) &&
+                            StringProcessors.StringsMatchNormalized(list[i].Year, year))
                             return list[i];
 
-                        if (Utils.MatchColon(title, list[i].Title) &&
-                            Utils.StringsMatchNormalized(list[i].Year, year))
+                        if (StringProcessors.MatchColon(title, list[i].Title) &&
+                            StringProcessors.StringsMatchNormalized(list[i].Year, year))
                             return list[i];
 
                         #endregion
 
                         #endregion
+                    
                     }
                     else
                     {
+
                         if (list.Count == 1)
                             return list[i];
 
                         #region match without year
 
-                        if (Utils.StringsMatchNormalized(list[i].Title, title))
+                        if (StringProcessors.StringsMatchNormalized(list[i].Title, title))
                             return list[i];
 
-                        if (Utils.MatchAND(title, list[i].Title))
+                        if (StringProcessors.MatchAND(title, list[i].Title))
                             return list[i];
 
-                        if (Utils.MatchEndingTHE(title, list[i].Title))
+                        if (StringProcessors.MatchEndingTHE(title, list[i].Title))
                             return list[i];
 
-                        if (Utils.MatchColon(title, list[i].Title))
+                        if (StringProcessors.MatchColon(title, list[i].Title))
                             return list[i];
 
-                        if (DetectExactMatchUsingVideoDuration(fileDuration, list[i].IMDb_ID))
+                        if (DetectExactMatchUsingVideoDuration
+                            (fileDuration, list[i].IMDb_ID))
                             return list[i];
 
                         #endregion
+                    
                     }
+
+
                 }
+
             }
             catch (Exception ex)
             {
-                Debugger.LogMessageToFile(
-                    "An unexpected error occured trying to find an exact film match from IMDb. The error was: " + ex);
-                StatusForm.statusForm.TrayIcon.ShowBalloonTip(5000, "Error searching for an exact film match",
-                                                              "MediaFairy encountered an error trying to find an exact film match from IMDb. Please see Debug.log for details.",
-                                                              ToolTipIcon.Error);
-                MainImportingEngine.GeneralStatus = "Updating Movies section...";
-                MainImportingEngine.SpecialStatus = "An error occured trying to find an exact film match from IMDb.";
-                Helpers.UpdateProgress(MainImportingEngine.GeneralStatus, MainImportingEngine.SpecialStatus, null);
+
+                Debugger.LogMessageToFile
+                    ("An unexpected error occured trying" +
+                     " to find an exact film match from IMDb. " +
+                     "The error was: " + ex);
+                
+                StatusForm.statusForm.TrayIcon.ShowBalloonTip
+                    (5000, "Error searching for an exact film match",
+                     "MediaFairy encountered an error trying" +
+                     " to find an exact film match from IMDb. " +
+                     "Please see Debug.log for details.",
+                     ToolTipIcon.Error);
+                
+                MainImportingEngine.GeneralStatus 
+                    = "Updating Movies section...";
+                
+                MainImportingEngine.SpecialStatus 
+                    = "An error occured trying " +
+                      "to find an exact film match from IMDb.";
+                
+                Helpers.UpdateProgress
+                    (MainImportingEngine.GeneralStatus, 
+                    MainImportingEngine.SpecialStatus, null);
+                
                 Thread.Sleep(5000);
+            
             }
 
             return null;

@@ -25,15 +25,15 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using CustomProperties;
 using CustomProperties.PropertyData;
-using MediaFairy.Code.Importer_Properties;
-using MediaFairy.Code.Settings;
-using MediaFairy.ImporterPropertiesGroups;
+using MeediFier.Code.Importer_Properties;
+using MeediFier.Code.Settings;
+using MeediFier.ImporterPropertiesGroups;
 using MeediOS;
 using MeediOS.Cache;
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
 

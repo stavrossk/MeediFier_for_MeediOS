@@ -36,17 +36,18 @@ using System.Xml;
 //using System.Windows.Forms.Design;
 using System.Windows.Forms;
 using CookComputing.XmlRpc;
-using MediaFairy;
+using MeediFier;
+
 
 #if USE_MEEDIO 
 using Meedio; 
 #elif USE_MEEDIOS
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 #endif
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public class OSoperations

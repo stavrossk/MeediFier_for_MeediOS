@@ -1,4 +1,4 @@
-namespace MediaFairy
+namespace MeediFier
 {
     partial class FrmSelect
     {

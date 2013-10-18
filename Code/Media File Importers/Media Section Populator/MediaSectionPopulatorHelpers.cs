@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.Code.Settings;
+using MeediFier.Code.Settings;
 using MeediOS;
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
 
     internal class MediaSectionPopulatorHelpers

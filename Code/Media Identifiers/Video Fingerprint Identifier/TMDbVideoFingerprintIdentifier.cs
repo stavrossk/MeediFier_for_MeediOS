@@ -4,14 +4,14 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
 
 
 
-namespace MediaFairy.VideoFingerprintIdentifier
+namespace MeediFier.VideoFingerprintIdentifier
 {
 
 

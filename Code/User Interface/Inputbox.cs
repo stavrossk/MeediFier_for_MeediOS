@@ -8,7 +8,7 @@
 
 using System.Drawing;
 
-namespace MediaFairy
+namespace MeediFier
 {
 	/// <summary>
 	/// Displays a prompt in a dialog box, waits for the user to input text or click a button, and then returns a string containing the contents of the text box.

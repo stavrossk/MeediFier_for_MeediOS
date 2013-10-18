@@ -28,13 +28,13 @@ using System.Windows.Forms;
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy.Code;
-using MediaFairy.ImportingEngine;
+using MeediFier.Code;
+using MeediFier.ImportingEngine;
 using MeediOS;
 #endif
 
 
-namespace MediaFairy
+namespace MeediFier
 {
     class MediaOrganizers
     {
@@ -65,9 +65,9 @@ namespace MediaFairy
             #region local varibales
             bool assignedLocationtoFirstItem = false;
             string fileTitle = ItemTitle;
-            fileTitle = StringProcessors.NormalizePath(fileTitle);
+            fileTitle = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(fileTitle);
             string filmTitle = ItemTitle;
-            filmTitle = StringProcessors.NormalizePath(filmTitle);
+            filmTitle = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(filmTitle);
             string multipaTlocation = "";
             bool CancelMoving = false;
             #endregion
@@ -116,7 +116,7 @@ namespace MediaFairy
                                 CancelMoving = true;
 
                             string seriesNameNorm = Helpers.GetTagValueFromItem(Item, "SeriesName");
-                            seriesNameNorm = StringProcessors.NormalizePath(seriesNameNorm);
+                            seriesNameNorm = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(seriesNameNorm);
 
                             folderToMove = SortingDestination + seriesNameNorm + @"\" + "Season " + Helpers.GetTagValueFromItem(Item, "SeasonNumber") + @"\";
 
@@ -158,7 +158,7 @@ namespace MediaFairy
                             }
                             else
                             {
-                                tagvalue = StringProcessors.NormalizePath(tagvalue);
+                                tagvalue = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(tagvalue);
                                 folderToMove += tagvalue + @"\";
 
                                 //FolderToMove = Helpers.NormalizePath(FolderToMove);
@@ -192,7 +192,7 @@ namespace MediaFairy
                             CancelMoving = true;
 
                         string canonicalTitle = Helpers.GetTagValueFromItem(Item, "Title");
-                        canonicalTitle = StringProcessors.NormalizePath(canonicalTitle);
+                        canonicalTitle = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(canonicalTitle);
 
                         fileTitle = Helpers.GetTagValueFromItem(Item, "ImdbID") + " - " + canonicalTitle + "(" + Helpers.GetTagValueFromItem(Item, "Year") + ")";
 
@@ -210,10 +210,10 @@ namespace MediaFairy
 
 
                         string seriesNameNorm = Helpers.GetTagValueFromItem(Item, "SeriesName");
-                        seriesNameNorm = StringProcessors.NormalizePath(seriesNameNorm);
+                        seriesNameNorm = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(seriesNameNorm);
 
                         string EpisodeNameNorm = Helpers.GetTagValueFromItem(Item, "EpisodeName");
-                        EpisodeNameNorm = StringProcessors.NormalizePath(EpisodeNameNorm);
+                        EpisodeNameNorm = ToolBox.Utils.StringProcessors.StringBuilderProcessing.NormalizePath(EpisodeNameNorm);
 
                         string SeasonNumberNorm = Helpers.GetTagValueFromItem(Item, "SeasonNumber");
                         if (SeasonNumberNorm.Length == 1)

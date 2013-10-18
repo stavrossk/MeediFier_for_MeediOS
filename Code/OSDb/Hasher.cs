@@ -29,11 +29,10 @@ using System.IO;
 #if USE_MEEDIO 
 using Meedio; 
 #elif USE_MEEDIOS
-using MediaFairy;
 using MeediOS;
 #endif
 
-namespace MediaFairy
+namespace MeediFier
 {
     public class Hasher
     {

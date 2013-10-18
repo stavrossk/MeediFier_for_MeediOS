@@ -24,15 +24,17 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
-namespace MediaFairy
+namespace MeediFier
 {
     public static class LibraryCleaners
     {
 
-        internal static void CleanupSection(bool cleanEmptyFields, bool cleanSelectedFields, string selectedFieldsToClean, IMLSection section)
+        internal static void CleanupSection
+            (bool cleanEmptyFields, bool cleanSelectedFields, 
+            string selectedFieldsToClean, IMLSection section)
         {
 
 
@@ -56,10 +58,14 @@ namespace MediaFairy
 
         private static void CleanEmptyFields(bool cleanEmptyFields, IMLSection section)
         {
-            if (!cleanEmptyFields) return;
+
+            if (!cleanEmptyFields) 
+                return;
 
             //Importer.CurrentProgress++;
-            MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Cleaning empty library fields...");
+            MainImportingEngine.ThisProgress.Progress
+                (MainImportingEngine.CurrentProgress, 
+                "Cleaning empty library fields...");
             //Thread.Sleep(800);
 
             string[] tagNames = section.GetTagNames();
@@ -97,11 +103,15 @@ namespace MediaFairy
             section.BeginUpdate();
 
             //Importer.CurrentProgress++;
-            MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Removing items marked for deletion...");
+            MainImportingEngine.ThisProgress.Progress
+                (MainImportingEngine.CurrentProgress, 
+                "Removing items marked for deletion...");
+            
             Thread.Sleep(800);
 
-            IMLItemList ItemsToDelete = section.SearchByTag("ToDelete", "true");
-            foreach (IMLItem t in ItemsToDelete)
+            IMLItemList itemsToDelete = section.SearchByTag("ToDelete", "true");
+            
+            foreach (IMLItem t in itemsToDelete)
                 section.DeleteItem(t);
 
             section.EndUpdate();
@@ -110,12 +120,18 @@ namespace MediaFairy
 
 
 
-        private static void CleanUserFields(IMLSection section, bool cleanSelectedFields, string selectedFieldsToClean)
+        private static void CleanUserFields
+            (IMLSection section, bool cleanSelectedFields, string selectedFieldsToClean)
         {
-            if (!cleanSelectedFields) return;
+
+            if (!cleanSelectedFields) 
+                return;
 
             //Importer.CurrentProgress++;
-            MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Cleaning user-specified library fields...");
+            MainImportingEngine.ThisProgress.Progress
+                (MainImportingEngine.CurrentProgress, 
+                "Cleaning user-specified library fields...");
+            
             Thread.Sleep(800);
 
 

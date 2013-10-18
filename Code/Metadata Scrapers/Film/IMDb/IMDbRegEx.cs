@@ -24,7 +24,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
     class IMDbRegEx
     {
@@ -319,14 +319,14 @@ namespace MediaFairy.IMDb
             if (!cleanUpHtml)
                 return value;
 
-
-            value = JCUtils.WebUtils.CleanUpHTML(value, true);
+            //TODO: Replace this HTML Cleaner with RegEx, xPath or external HtmlAgilityPack cleaner.
+            value = ToolBox.Utils.WebUtils.CleanUpHTML(value, true);
 
             value = System.Web.HttpUtility.HtmlDecode(value);
 
             try
             {
-                value = JCUtils.WebUtils.FixString(value);
+                value = ToolBox.Utils.WebUtils.FixString(value);
             }
             catch (Exception e)
             {

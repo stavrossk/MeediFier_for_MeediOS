@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using MediaFairy.Code.Media_File_Importers.Media_Importing_Engine;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MediaInfoLib;
+using MeediFier.Code.Media_File_Importers.Media_Importing_Engine;
 using MeediOS;
 
 
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
 
 

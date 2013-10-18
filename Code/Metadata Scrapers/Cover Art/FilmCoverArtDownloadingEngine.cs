@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.Code.User_Interface;
+using MeediFier.Code.User_Interface;
 using MeediOS;
 using MetaDataFolders;
 
 
-namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
+namespace MeediFier.Code.Metadata_Scrapers.Cover_Art
 {
 
 
@@ -54,11 +54,11 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
 
 
-            if (MediaFairy.Settings.PosterPrimarySource == "TheMovieDatabase")
+            if (MeediFier.Settings.PosterPrimarySource == "TheMovieDatabase")
             {
-                if (MediaFairy.Settings.TMDbPostersEnabled)
+                if (MeediFier.Settings.TMDbPostersEnabled)
                 {
-                    if (imageUrls.Count == 0 || MediaFairy.Settings.AlwaysPromptForImages)
+                    if (imageUrls.Count == 0 || MeediFier.Settings.AlwaysPromptForImages)
                     {
                         imageUrls.AddRange(TheMovieDb.GetFilmPostersFromTMDb(item, ref previewImages));
                         //tmp = "";
@@ -68,9 +68,9 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
                     }
                 }
 
-                if (MediaFairy.Settings.ImpAwardsPostersEnabled)
+                if (MeediFier.Settings.ImpAwardsPostersEnabled)
                 {
-                    if (imageUrls.Count == 0 || MediaFairy.Settings.AlwaysPromptForImages)
+                    if (imageUrls.Count == 0 || MeediFier.Settings.AlwaysPromptForImages)
                     {
                         List<string> tmpList = ImpAwards.GetPoster(item, movieName, releaseYear, "Both");
                         imageUrls.AddRange(tmpList);
@@ -83,9 +83,9 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
             {
 
 
-                if (MediaFairy.Settings.ImpAwardsPostersEnabled)
+                if (MeediFier.Settings.ImpAwardsPostersEnabled)
                 {
-                    if (imageUrls.Count == 0 || MediaFairy.Settings.AlwaysPromptForImages)
+                    if (imageUrls.Count == 0 || MeediFier.Settings.AlwaysPromptForImages)
                     {
                         List<string> tmpList = ImpAwards.GetPoster(item, movieName, releaseYear, "Both");
                         imageUrls.AddRange(tmpList);
@@ -93,9 +93,9 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
                     }
                 }
 
-                if (MediaFairy.Settings.TMDbPostersEnabled)
+                if (MeediFier.Settings.TMDbPostersEnabled)
                 {
-                    if (imageUrls.Count == 0 || MediaFairy.Settings.AlwaysPromptForImages)
+                    if (imageUrls.Count == 0 || MeediFier.Settings.AlwaysPromptForImages)
                     {
                         imageUrls.AddRange(TheMovieDb.GetFilmPostersFromTMDb(item, ref previewImages));
                         //tmp = "";
@@ -107,9 +107,9 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
             }
 
-            if (MediaFairy.Settings.IMDbPostersEnabled)
+            if (MeediFier.Settings.IMDbPostersEnabled)
             {
-                if (imageUrls.Count == 0 || MediaFairy.Settings.AlwaysPromptForImages)
+                if (imageUrls.Count == 0 || MeediFier.Settings.AlwaysPromptForImages)
                 {
                     string tmp = IMDbCoverArtScraper.GetFilmPosterFromIMDb
                         (item);
@@ -152,7 +152,7 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
                 + title + "...", item);
 
 
-            byte[] imageData = Downloaders
+            byte[] imageData = MeediFier.Downloaders
                 .TrytoDownloadData(posterUrl, "Movies", "", item);
 
 
@@ -168,10 +168,10 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
             //if (SaveImage(imageData, Item, Importer.PosterNamingMethod, Importer.WhereToSavePoster, Importer.PosterFolder, true, VideoFilename, filepath, "", "") != "")
             if (ImageFileConstructor.SaveImage(imageData, item,true,"",imageFile) != "")
             {
-                if (MediaFairy.Settings.ResizeFilmPosters)
+                if (MeediFier.Settings.ResizeFilmPosters)
                 {
                     Helpers.UpdateProgress("Updating Movies Section", "Resizing image...", item);
-                    ImageResizer.ResizeImage(imageFile, imageFile, MediaFairy.Settings.FilmPosterWidth, MediaFairy.Settings.FilmPosterHeight, false);
+                    ImageResizer.ResizeImage(imageFile, imageFile, MeediFier.Settings.FilmPosterWidth, MeediFier.Settings.FilmPosterHeight, false);
                 }
 
                 item.SaveTags();
@@ -198,7 +198,7 @@ namespace MediaFairy.Code.Metadata_Scrapers.Cover_Art
 
             Application.DoEvents();
 
-            if (!MediaFairy.Settings.FilmCoverArtDownloaderIsEnabled)
+            if (!MeediFier.Settings.FilmCoverArtDownloaderIsEnabled)
                 return false;
 
             if (isUNC && !fileServerIsOnline)

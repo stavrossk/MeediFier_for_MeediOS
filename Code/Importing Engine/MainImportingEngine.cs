@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MediaFairy.MediaSnapshotEngine;
-using MediaFairy.RssImporter;
+using MeediFier.MediaSnapshotEngine;
+using MeediFier.RssImporter;
 using MeediOS;
 
 
-namespace MediaFairy.ImportingEngine
+namespace MeediFier.ImportingEngine
 {
 
     internal class MainImportingEngine

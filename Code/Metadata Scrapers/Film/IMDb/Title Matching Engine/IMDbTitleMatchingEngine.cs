@@ -22,16 +22,16 @@
 
 using System;
 using System.Windows.Forms;
-using MediaFairy.IMDb;
+
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy.IMDb.Title_Matching_Engine;
+using MeediFier.IMDb.Title_Matching_Engine;
 using MeediOS;
 #endif
 
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
     static class IMDbTitleMatchingEngine
     {

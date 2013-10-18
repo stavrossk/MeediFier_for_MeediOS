@@ -28,16 +28,18 @@ using System.IO;
 using System.Web.Script.Serialization;
 using System.Xml;
 using System.Windows.Forms;
+
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy.ImportingEngine;
+using MeediFier.Code.Downloaders;
+using MeediFier.ImportingEngine;
 using MeediOS;
 #endif
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
     class TheMovieDb
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 using TVDBLibrary;
 
 // ReSharper disable CheckNamespace
-namespace MediaFairy.TVDb
+namespace MeediFier.TVDb
 // ReSharper restore CheckNamespace
 {
     class TVDbTvEpisodeDetailsDownloader

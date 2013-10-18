@@ -5,15 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using MeediFier.IMDb;
 
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy.IMDb;
 using MeediOS;
 #endif
 
-namespace MediaFairy
+
+namespace MeediFier
 {
     public partial class frmDetails : Form
     {

@@ -1,12 +1,153 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
-namespace ToolBox
+namespace MeediFier.ToolBox.Utils
 {
-    public class StringFunctions
+    public class StringProcessors
     {
-        public static bool containsIllegalCharacters(string searchText)
+
+
+
+        public static string NormalizeName(string name)
+        {
+
+            string input = name.ToLower().Replace("&", "and").Replace("+", "and");
+            
+            if (input.StartsWith("the "))
+                input = input.Substring(4);
+            
+            if (input.StartsWith("an "))
+                input = input.Substring(3);
+            
+            if (input.StartsWith("a "))
+                input = input.Substring(2);
+            
+            if (input.EndsWith(", the"))
+                input.Substring(0, input.Length - 5);
+            
+            if (input.EndsWith(", an"))
+                input.Substring(0, input.Length - 4);
+            
+            if (input.EndsWith(", a"))
+                input.Substring(0, input.Length - 3);
+            
+            return new Regex("[^0-9a-zA-Z]",
+                RegexOptions.IgnoreCase).Replace(input, "");
+        
+        }
+
+
+
+        public static bool StringsMatchNormalized(string string1, string string2)
+        {
+
+            return System.String.Compare
+                (NormalizeName(string1), 
+                 NormalizeName(string2), 
+                 StringComparison.OrdinalIgnoreCase) == 0;
+       
+        }
+
+
+        public static bool MatchAND(string string1, string string2)
+        {
+            string str1 = string1.ToLower().Trim();
+            string str2 = string2.ToLower().Trim();
+            try
+            {
+                if (str1.IndexOf("&") > -1)
+                {
+                    if (str1.IndexOf(" & ") > -1)
+                    {
+                        string str3 = str1.Replace("&", "and");
+                        if (str2.ToLower().Trim() == str3.ToLower().Trim())
+                            return true;
+                    }
+                    else
+                    {
+                        string str3 = str1.Replace("&", " and ");
+                        if (str2.ToLower().Trim() == str3.ToLower().Trim())
+                            return true;
+                    }
+                }
+                else if (str1.ToLower().IndexOf(" and ") > -1)
+                {
+                    string str3 = str1.Replace(" and ", " & ");
+                    if (str2.ToLower().Trim() == str3.ToLower().Trim())
+                        return true;
+                }
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static bool MatchEndingTHE(string string1, string string2)
+        {
+            string str = string1.ToLower().Trim();
+            string string2_1 = string2.ToLower().Trim();
+            try
+            {
+                if (str.ToLower().EndsWith(", the"))
+                {
+
+                    string string1_1 = str.Substring(0, str.ToLower().LastIndexOf(", the"));
+                    
+                    string1_1.Insert(0, "The ");
+                    
+                    if (string2_1.ToLower().Trim() == string1_1.ToLower().Trim() 
+                        || MatchAND(string1_1, string2_1))
+                        return true;
+                
+                }
+                return false;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public static bool MatchColon(string string1, string string2)
+        {
+
+            string str = string1.ToLower().Trim();
+            
+            string string2_1 = string2.ToLower().Trim();
+            
+            try
+            {
+
+                if (str.ToLower().IndexOf(" - ", System.StringComparison.Ordinal) > -1)
+                {
+
+                    string string1_1 = str.ToLower().Trim().Replace(" - ", ": ");
+                    
+                    if (string2_1.ToLower().Trim() == string1_1.ToLower().Trim() 
+                        || MatchAND(string1_1, string2_1) 
+                        || MatchEndingTHE(string1_1, string2_1))
+                        return true;
+                
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
+
+        public static bool ContainsIllegalCharacters(string searchText)
         {
             if (searchText.Contains("/") || searchText.Contains("\\") || searchText.Contains(":") || searchText.Contains("?") || searchText.Contains("\"") || searchText.Contains("<") || searchText.Contains(">") || searchText.Contains("|") || searchText.Contains("*"))
             {
@@ -15,7 +156,7 @@ namespace ToolBox
             return false;
         }
 
-        public static string replaceIllegalCharacters(string input, string replaceWith)
+        public static string ReplaceIllegalCharacters(string input, string replaceWith)
         {            
                 String T2 = input.Replace("\\", replaceWith);
                 T2 = input.Replace("/", replaceWith);
@@ -39,7 +180,7 @@ namespace ToolBox
                 return input;
         }
 
-        public static bool containsRomanNumerals(string searchText)
+        public static bool ContainsRomanNumerals(string searchText)
         {
             StringBuilder sb = new StringBuilder();
             String C3 = searchText.Trim();
@@ -50,11 +191,9 @@ namespace ToolBox
             bool rNumerals = false;
             foreach (string s in rNumbers)
             {
-                if (sText.Contains(s))
-                {
-                    rNumerals = true;
-                    break;
-                }
+                if (!sText.Contains(s)) continue;
+                rNumerals = true;
+                break;
             }
             return rNumerals;
         }
@@ -255,151 +394,12 @@ namespace ToolBox
                     return NthNumberToText(n / 1000000000) + "Billion " + NthNumberToText(n % 1000000000);    
         }
 
-        public class StringProcessing
-        {
-            ////Processing with strings
-            //Use for small to medium strings
 
-            //Swaps the cases in a string
-            //word -> WORD
-            //Word -> wORD
-            //WoRd -> wOrD
-            public static string SwapCases(string input)
-            {
-                string ret = "";
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (string.Compare(input.Substring(i, 1), input.Substring(i, 1).ToUpper(), false) == 0)
-                        ret += input.Substring(i, 1).ToLower();
-                    else
-                        ret += input.Substring(i, 1).ToUpper();
-                }
-                return ret;
-            }
-
-            //Alternates cases between letters of a string, letting the user pick if the first letter is capitalized
-            public static string AlternateCases(string input, bool firstIsUpper)
-            {
-                string ret = "";
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (firstIsUpper)
-                        ret += input.Substring(i, 1).ToUpper();
-                    else
-                        ret += input.Substring(i, 1).ToLower();
-
-                    firstIsUpper = !firstIsUpper;
-                }
-
-                return ret;
-            }
-
-            //Removes vowels from a word
-            //remove -> rmv
-            public static string RemoveVowels(string input)
-            {
-                string ret = "";
-                string currentLetter;
-                for (int i = 0; i < input.Length; i++)
-                {
-                    currentLetter = input.Substring(i, 1);
-
-                    if (string.Compare(currentLetter, "a", true) != 0 &&
-                        string.Compare(currentLetter, "e", true) != 0 &&
-                        string.Compare(currentLetter, "i", true) != 0 &&
-                        string.Compare(currentLetter, "o", true) != 0 &&
-                        string.Compare(currentLetter, "u", true) != 0)
-                    {
-                        //Not a vowel, add it
-                        ret += currentLetter;
-                    }
-                }
-                return ret;
-            }
-
-            //Removes consinents from a word
-            //remove -> eoe
-            public static string KeepVowels(string input)
-            {
-                string ret = "";
-                string currentLetter;
-                for (int i = 0; i < input.Length; i++)
-                {
-                    currentLetter = input.Substring(i, 1);
-
-                    if (string.Compare(currentLetter, "a", true) == 0 ||
-                        string.Compare(currentLetter, "e", true) == 0 ||
-                        string.Compare(currentLetter, "i", true) == 0 ||
-                        string.Compare(currentLetter, "o", true) == 0 ||
-                        string.Compare(currentLetter, "u", true) == 0)
-                    {
-                        //A vowel, add it
-                        ret += currentLetter;
-                    }
-                }
-                return ret;
-            }
-
-            //Returns an array converted into a string
-            public static string ArrayToString(Array input, string separator)
-            {
-                string ret = "";
-                for (int i = 0; i < input.Length; i++)
-                {
-                    ret += input.GetValue(i).ToString();
-                    if (i != input.Length - 1)
-                        ret += separator;
-                }
-                return ret;
-            }
-
-            //Inserts a separator after every letter
-            //hello, - -> h-e-l-l-o
-            public static string InsertSeparator(string input, string separator)
-            {
-                string ret = "";
-                for (int i = 0; i < input.Length; i++)
-                {
-                    ret += input.Substring(i, 1);
-                    if (i != input.Length - 1)
-                        ret += separator;
-                }
-                return ret;
-            }
-
-            //Inserts a separator after every Count letters
-            //hello, -, 2 -> he-ll-o
-            public static string InsertSeparatorEvery(string input, string separator, int count)
-            {
-                string ret = "";
-                for (int i = 0; i < input.Length; i++)
-                {
-                    if (i + count < input.Length)
-                        ret += input.Substring(i, count);
-                    else
-                        ret += input.Substring(i);
-
-                    if (i != input.Length - 1)
-                        ret += separator;
-                }
-                return ret;
-            }
-
-            //Reverses a string
-            //Hello -> olleH
-            public static string Reverse(string input)
-            {
-                string ret = "";
-                for (int i = input.Length - 1; i >= 0; i--)
-                {
-                    ret += input.Substring(i, 1);
-                }
-                return ret;
-            }
-        }
 
         public class StringBuilderProcessing
         {
+
+
             ////Processing with StringBuilder
             //Use for small to medium strings
 
@@ -412,7 +412,7 @@ namespace ToolBox
                 StringBuilder ret = new StringBuilder();
                 for (int i = 0; i < input.Length; i++)
                 {
-                    if (string.Compare(input.Substring(i, 1), input.Substring(i, 1).ToUpper(), false) == 0)
+                    if (String.CompareOrdinal(input.Substring(i, 1), input.Substring(i, 1).ToUpper()) == 0)
                         ret.Append(input.Substring(i, 1).ToLower());
                     else
                         ret.Append(input.Substring(i, 1).ToUpper());
@@ -447,11 +447,11 @@ namespace ToolBox
                 {
                     currentLetter = input.Substring(i, 1);
 
-                    if (string.Compare(currentLetter, "a", true) != 0 &&
-                        string.Compare(currentLetter, "e", true) != 0 &&
-                        string.Compare(currentLetter, "i", true) != 0 &&
-                        string.Compare(currentLetter, "o", true) != 0 &&
-                        string.Compare(currentLetter, "u", true) != 0)
+                    if (String.Compare(currentLetter, "a", true) != 0 &&
+                        String.Compare(currentLetter, "e", true) != 0 &&
+                        String.Compare(currentLetter, "i", true) != 0 &&
+                        String.Compare(currentLetter, "o", true) != 0 &&
+                        String.Compare(currentLetter, "u", true) != 0)
                     {
                         //Not a vowel, add it
                         ret.Append(currentLetter);
@@ -470,11 +470,11 @@ namespace ToolBox
                 {
                     currentLetter = input.Substring(i, 1);
 
-                    if (string.Compare(currentLetter, "a", true) == 0 ||
-                        string.Compare(currentLetter, "e", true) == 0 ||
-                        string.Compare(currentLetter, "i", true) == 0 ||
-                        string.Compare(currentLetter, "o", true) == 0 ||
-                        string.Compare(currentLetter, "u", true) == 0)
+                    if (String.Compare(currentLetter, "a", true) == 0 ||
+                        String.Compare(currentLetter, "e", true) == 0 ||
+                        String.Compare(currentLetter, "i", true) == 0 ||
+                        String.Compare(currentLetter, "o", true) == 0 ||
+                        String.Compare(currentLetter, "u", true) == 0)
                     {
                         //A vowel, add it
                         ret.Append(currentLetter);
@@ -482,6 +482,8 @@ namespace ToolBox
                 }
                 return ret.ToString();
             }
+
+
 
             //Returns an array converted into a string
             public static string ArrayToString(Array input, string separator)
@@ -539,6 +541,61 @@ namespace ToolBox
                 }
                 return ret.ToString();
             }
+
+            internal static string ConvertToUnicode(string asciiString)
+            {
+                //unicodeString = "This string contains the unicode character Pi(\u03a0)";
+
+                // Create two different encodings.
+                Encoding ascii = Encoding.ASCII;
+                Encoding unicode = Encoding.Unicode;
+
+                // Convert the string into a byte[].
+                byte[] asciiBytes = ascii.GetBytes(asciiString);
+
+                // Perform the conversion from one encoding to the other.
+                byte[] unicodeBytes = Encoding.Convert(ascii, unicode, asciiBytes);
+
+                // Convert the new byte[] into a char[] and then into a string.
+                // This is a slightly different approach to converting to illustrate
+                // the use of GetCharCount/GetChars.
+                char[] unicodeChars = new char[unicode.GetCharCount(unicodeBytes, 0, unicodeBytes.Length)];
+                unicode.GetChars(unicodeBytes, 0, unicodeBytes.Length, unicodeChars, 0);
+                string unicodeString = new string(unicodeChars);
+
+                // Display the strings created before and after the conversion.
+                Console.WriteLine(@"Original string: {0}", unicodeString);
+                Console.WriteLine(@"Ascii converted string: {0}", asciiString);
+
+                return unicodeString;
+            }
+
+            internal static string NormalizePath(string path)
+            {
+
+                try
+                {
+                    path = path.Replace(':', '-');
+                    path = path.Replace('/', '-');
+                    //Path = Path.Replace('\\', '-');
+                    path = path.Replace('*', '\'');
+                    path = path.Replace('?', ';');
+                    path = path.Replace('"', '\'');
+                    path = path.Replace('<', '[');
+                    path = path.Replace('>', ']');
+                    path = path.Replace('|', '-');
+                }
+                catch (Exception e)
+                {
+                    Debugger.LogMessageToFile("An unexpected error occurred in the String Normalizer. " +
+                                              "The error was: " + e );
+
+                }
+
+
+
+                return path;
+            }
         }
 
         //Capitalizes a word or sentence
@@ -560,7 +617,7 @@ namespace ToolBox
         public static bool IsCapitalized(string input)
         {
             if (input.Length == 0) return false;
-            return string.Compare(input.Substring(0, 1), input.Substring(0, 1).ToUpper(), false) == 0;
+            return String.CompareOrdinal(input.Substring(0, 1), input.Substring(0, 1).ToUpper()) == 0;
         }
 
         //Checks whether a string is in all lower case
@@ -570,7 +627,7 @@ namespace ToolBox
         {
             for (int i = 0; i < input.Length; i++)
             {
-                if (string.Compare(input.Substring(i, 1), input.Substring(i, 1).ToLower(), false) != 0)
+                if (String.Compare(input.Substring(i, 1), input.Substring(i, 1).ToLower(), false) != 0)
                     return false;
             }
             return true;
@@ -584,7 +641,7 @@ namespace ToolBox
         {
             for (int i = 0; i < input.Length; i++)
             {
-                if (string.Compare(input.Substring(i, 1), input.Substring(i, 1).ToUpper(), false) != 0)
+                if (String.Compare(input.Substring(i, 1), input.Substring(i, 1).ToUpper(), false) != 0)
                     return false;
             }
             return true;
@@ -597,7 +654,7 @@ namespace ToolBox
         {
             if (input.Length == 0) return "";
             if (input.Length == 1) return input; //Cannot automatically alternate
-            bool firstIsUpper = string.Compare(input.Substring(0, 1), input.Substring(0, 1).ToUpper(), false) != 0;
+            bool firstIsUpper = String.Compare(input.Substring(0, 1), input.Substring(0, 1).ToUpper(), false) != 0;
             string ret = input.Substring(0, 1);
             for (int i = 1; i < input.Length; i++)
             {
@@ -618,18 +675,18 @@ namespace ToolBox
         {
             if (input.Length <= 1) return false;
 
-            bool lastIsUpper = string.Compare(input.Substring(0, 1), input.Substring(0, 1).ToUpper(), false) == 0;
+            bool lastIsUpper = String.Compare(input.Substring(0, 1), input.Substring(0, 1).ToUpper(), false) == 0;
 
             for (int i = 1; i < input.Length; i++)
             {
                 if (lastIsUpper)
                 {
-                    if (string.Compare(input.Substring(i, 1), input.Substring(i, 1).ToLower(), false) != 0)
+                    if (String.Compare(input.Substring(i, 1), input.Substring(i, 1).ToLower(), false) != 0)
                         return false;
                 }
                 else
                 {
-                    if (string.Compare(input.Substring(i, 1), input.Substring(i, 1).ToUpper(), false) != 0)
+                    if (String.Compare(input.Substring(i, 1), input.Substring(i, 1).ToUpper(), false) != 0)
                         return false;
                 }
 
@@ -648,7 +705,7 @@ namespace ToolBox
             for (int i = 0; i < input.Length; i++)
             {
                 if (!(i + chars.Length > input.Length) &&
-                    string.Compare(input.Substring(i, chars.Length), chars, ignoreCases) == 0)
+                    String.Compare(input.Substring(i, chars.Length), chars, ignoreCases) == 0)
                 {
                     count++;
                 }
@@ -666,11 +723,11 @@ namespace ToolBox
             {
                 currentLetter = input.Substring(i, 1);
 
-                if (string.Compare(currentLetter, "a", true) == 0 ||
-                  string.Compare(currentLetter, "e", true) == 0 ||
-                  string.Compare(currentLetter, "i", true) == 0 ||
-                  string.Compare(currentLetter, "o", true) == 0 ||
-                  string.Compare(currentLetter, "u", true) == 0)
+                if (String.Compare(currentLetter, "a", true) == 0 ||
+                  String.Compare(currentLetter, "e", true) == 0 ||
+                  String.Compare(currentLetter, "i", true) == 0 ||
+                  String.Compare(currentLetter, "o", true) == 0 ||
+                  String.Compare(currentLetter, "u", true) == 0)
                 {
                     //A vowel found
                     return true;
@@ -718,7 +775,7 @@ namespace ToolBox
         //h3llo -> True
         public static bool HasNumbers(string input)
         {
-            return System.Text.RegularExpressions.Regex.IsMatch(input, "\\d+");
+            return Regex.IsMatch(input, "\\d+");
         }
 
         //Checks if string is numbers and letters
@@ -780,9 +837,9 @@ namespace ToolBox
             }
 
             if (includeSpace)
-                return string.Join(" ", words);
+                return String.Join(" ", words);
             else
-                return string.Join("", words);
+                return String.Join("", words);
         }
 
         //Capitalizes the first letter of every word
@@ -797,7 +854,7 @@ namespace ToolBox
                     words[i] = words[i].Substring(0, 1).ToUpper() + words[i].Substring(1);
             }
 
-            return string.Join(" ", words);
+            return String.Join(" ", words);
         }
 
         //Very much like the GetTitle function, capitalizes the first letter of every word
@@ -818,7 +875,7 @@ namespace ToolBox
                         words[i] = words[i].Substring(0, 3) + words[i].Substring(3, 1).ToUpper() + words[i].Substring(4);
                 }
             }
-            return string.Join(" ", words);
+            return String.Join(" ", words);
         }
 
         // Checks whether the first letter of each word is capitalized
@@ -831,7 +888,7 @@ namespace ToolBox
             for (int i = 0; i < words.Length; i++)
             {
                 if (words[i].Length > 0)
-                    if (string.Compare(words[i].Substring(0, 1).ToUpper(), words[i].Substring(0, 1), false) != 0)
+                    if (String.Compare(words[i].Substring(0, 1).ToUpper(), words[i].Substring(0, 1), false) != 0)
                         return false;
             }
             return true;
@@ -884,9 +941,9 @@ namespace ToolBox
             total = input.Length * 3;
 
             char currentLetter;
-            for (int i = 0; i < input.Length; i++)
+            foreach (char t in input)
             {
-                currentLetter = input[i];
+                currentLetter = t;
                 if (Convert.ToInt32(currentLetter) >= 65 && Convert.ToInt32(currentLetter) <= 92)
                     hasUpperCase = true;
 
@@ -896,22 +953,20 @@ namespace ToolBox
 
             if (hasUpperCase && hasLowerCase) total *= 1.2;
 
-            for (int i = 0; i < input.Length; i++)
+            foreach (char t in input)
             {
-                currentLetter = input[i];
+                currentLetter = t;
                 if (Convert.ToInt32(currentLetter) >= 48 && Convert.ToInt32(currentLetter) <= 57) //Numbers
                     if (hasUpperCase && hasLowerCase) total *= 1.4;
             }
 
-            for (int i = 0; i < input.Length; i++)
+            foreach (char t in input)
             {
-                currentLetter = input[i];
-                if ((Convert.ToInt32(currentLetter) <= 47 && Convert.ToInt32(currentLetter) >= 123) ||
-                    (Convert.ToInt32(currentLetter) >= 58 && Convert.ToInt32(currentLetter) <= 64)) //symbols
-                {
-                    total *= 1.5;
-                    break;
-                }
+                currentLetter = t;
+                if ((Convert.ToInt32(currentLetter) > 47 || Convert.ToInt32(currentLetter) < 123) &&
+                    (Convert.ToInt32(currentLetter) < 58 || Convert.ToInt32(currentLetter) > 64)) continue;
+                total *= 1.5;
+                break;
             }
 
             if (total > 100.0) total = 100.0;
@@ -940,8 +995,7 @@ namespace ToolBox
                 string str = input.Substring(startingIndex + countIndex, 1);
                 return str[0];
             }
-            else
-                return new char();
+            return new char();
         }
 
         //Function that works the same way as the default Substring, but
@@ -981,7 +1035,7 @@ namespace ToolBox
 
                 for (int i = 0; i < words.Length; i++)
                 {
-                    if (words[i].StartsWith('"'.ToString()))
+                    if (words[i].StartsWith('"'.ToString(CultureInfo.InvariantCulture)))
                     {
                         List<string> linked = new List<string>();
                         for (int y = i; y < words.Length; y++)
@@ -992,13 +1046,10 @@ namespace ToolBox
                                 i = y;
                                 break;
                             }
-                            else
-                            {
-                                if (words[y].StartsWith('"'.ToString()))
-                                    linked.Add(words[y].Substring(1));
-                            }
+                            if (words[y].StartsWith('"'.ToString()))
+                                linked.Add(words[y].Substring(1));
                         }
-                        newWords.Add(string.Join(separator, linked.ToArray()));
+                        newWords.Add(String.Join(separator, linked.ToArray()));
                         linked.Clear();
                     }
                     else
@@ -1007,5 +1058,128 @@ namespace ToolBox
                 return newWords.ToArray();
             }
         }
+
+        public static string SwapCases(string input)
+        {
+            string ret = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (String.CompareOrdinal(input.Substring(i, 1), input.Substring(i, 1).ToUpper()) == 0)
+                    ret += input.Substring(i, 1).ToLower();
+                else
+                    ret += input.Substring(i, 1).ToUpper();
+            }
+            return ret;
+        }
+
+        public static string AlternateCases(string input, bool firstIsUpper)
+        {
+            string ret = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (firstIsUpper)
+                    ret += input.Substring(i, 1).ToUpper();
+                else
+                    ret += input.Substring(i, 1).ToLower();
+
+                firstIsUpper = !firstIsUpper;
+            }
+
+            return ret;
+        }
+
+        public static string RemoveVowels(string input)
+        {
+            string ret = "";
+            string currentLetter;
+            for (int i = 0; i < input.Length; i++)
+            {
+                currentLetter = input.Substring(i, 1);
+
+                if (String.Compare(currentLetter, "a", true) != 0 &&
+                    String.Compare(currentLetter, "e", true) != 0 &&
+                    String.Compare(currentLetter, "i", true) != 0 &&
+                    String.Compare(currentLetter, "o", true) != 0 &&
+                    String.Compare(currentLetter, "u", true) != 0)
+                {
+                    //Not a vowel, add it
+                    ret += currentLetter;
+                }
+            }
+            return ret;
+        }
+
+        public static string KeepVowels(string input)
+        {
+            string ret = "";
+            string currentLetter;
+            for (int i = 0; i < input.Length; i++)
+            {
+                currentLetter = input.Substring(i, 1);
+
+                if (String.Compare(currentLetter, "a", true) == 0 ||
+                    String.Compare(currentLetter, "e", true) == 0 ||
+                    String.Compare(currentLetter, "i", true) == 0 ||
+                    String.Compare(currentLetter, "o", true) == 0 ||
+                    String.Compare(currentLetter, "u", true) == 0)
+                {
+                    //A vowel, add it
+                    ret += currentLetter;
+                }
+            }
+            return ret;
+        }
+
+        public static string ArrayToString(Array input, string separator)
+        {
+            string ret = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                ret += input.GetValue(i).ToString();
+                if (i != input.Length - 1)
+                    ret += separator;
+            }
+            return ret;
+        }
+
+        public static string InsertSeparator(string input, string separator)
+        {
+            string ret = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                ret += input.Substring(i, 1);
+                if (i != input.Length - 1)
+                    ret += separator;
+            }
+            return ret;
+        }
+
+        public static string InsertSeparatorEvery(string input, string separator, int count)
+        {
+            string ret = "";
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (i + count < input.Length)
+                    ret += input.Substring(i, count);
+                else
+                    ret += input.Substring(i);
+
+                if (i != input.Length - 1)
+                    ret += separator;
+            }
+            return ret;
+        }
+
+        public static string Reverse(string input)
+        {
+            string ret = "";
+            for (int i = input.Length - 1; i >= 0; i--)
+            {
+                ret += input.Substring(i, 1);
+            }
+            return ret;
+        }
+
+
     }
 }

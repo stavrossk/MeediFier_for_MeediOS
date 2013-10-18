@@ -1,4 +1,4 @@
-﻿namespace MediaFairy
+﻿namespace MeediFier
 {
     partial class StatusForm
     {
@@ -201,7 +201,7 @@
             // 
             // TrayIcon
             // 
-            this.TrayIcon.Icon = global::MediaFairy.Properties.Resources.TrayIcon;
+            this.TrayIcon.Icon = global::MeediFier.Properties.Resources.TrayIcon;
             this.TrayIcon.Text = "MediaFairy";
             this.TrayIcon.Visible = true;
             this.TrayIcon.DoubleClick += new System.EventHandler(this.TrayIcon_DoubleClick);
@@ -757,7 +757,7 @@
             // 
             // ShowHideButton
             // 
-            this.ShowHideButton.Image = global::MediaFairy.Properties.Resources.show;
+            this.ShowHideButton.Image = global::MeediFier.Properties.Resources.show;
             this.ShowHideButton.Location = new System.Drawing.Point(524, 64);
             this.ShowHideButton.Margin = new System.Windows.Forms.Padding(4);
             this.ShowHideButton.Name = "ShowHideButton";

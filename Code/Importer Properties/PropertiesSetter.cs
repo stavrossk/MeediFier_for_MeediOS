@@ -21,12 +21,12 @@
 
 using System;
 using System.Windows.Forms;
-using MediaFairy.Code.Settings;
+using MeediFier.Code.Settings;
 using MeediOS;
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
 

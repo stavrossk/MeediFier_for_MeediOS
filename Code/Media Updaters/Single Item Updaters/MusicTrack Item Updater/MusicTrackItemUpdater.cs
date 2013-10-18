@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
-namespace MediaFairy.SingleItemUpdaters
+namespace MeediFier.SingleItemUpdaters
 {
 
 

@@ -24,7 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MediaFairy
+namespace MeediFier
 {
     internal class IMDbMovieCollection : List<IIMDbMovie>, IIMDbMovieCollection
     {

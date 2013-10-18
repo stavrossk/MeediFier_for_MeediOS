@@ -3,11 +3,11 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 
 
 // ReSharper disable CheckNamespace
-namespace MediaFairy.Diagnostics
+namespace MeediFier.Diagnostics
 // ReSharper restore CheckNamespace
 {
 

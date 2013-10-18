@@ -6,12 +6,12 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MediaFairy for MeediOS")]
+[assembly: AssemblyTitle("MeediFier for MeediOS")]
 [assembly: AssemblyDescription("An automated media importer plugin for Meedio/MeediOS")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MediaFairy for Meedio/MeediOS")]
-[assembly: AssemblyCopyright("Copyright ©  2008-2012 Stavros Skamagkis")]
+[assembly: AssemblyProduct("MeediFier for Meedio/MeediOS")]
+[assembly: AssemblyCopyright("Copyright ©  2008-2013 Stavros Skamagkis")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,8 +33,8 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.7.4.0")]
-[assembly: AssemblyFileVersion("0.7.4.0")]
+[assembly: AssemblyVersion("0.7.5.0")]
+[assembly: AssemblyFileVersion("0.7.5.0")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("Unit Test Project")]

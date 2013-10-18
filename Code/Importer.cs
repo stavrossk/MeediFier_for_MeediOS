@@ -25,20 +25,19 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using CustomProperties;
-using MediaFairy.ImportingEngine;
 using MediaFolders;
-using MeediOS;
+using MeediFier.ImportingEngine;
 
 
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-
+using MeediOS;
 #endif
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
     public class Importer : IMLImportPlugin, IDisposable, IMeedioInitializablePlugin
     {

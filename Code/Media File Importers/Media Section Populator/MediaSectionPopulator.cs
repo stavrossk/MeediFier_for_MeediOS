@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.Code.Settings;
-using MediaFairy.ImportingEngine;
-using MediaFairy.MediaAnalyzer;
 using MediaInfoLib;
+using MeediFier.Code.Settings;
+using MeediFier.ImportingEngine;
+using MeediFier.MediaAnalyzer;
 using MeediOS;
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
 
 

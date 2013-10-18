@@ -21,13 +21,13 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.Code.Settings;
-using MediaFairy.ImportingEngine;
+using MeediFier.Code.Settings;
+using MeediFier.ImportingEngine;
 using MeediOS;
 //TODO: Add Meedio
 
 
-namespace MediaFairy
+namespace MeediFier
 {
     public static class MediaSectionsAllocator
     {

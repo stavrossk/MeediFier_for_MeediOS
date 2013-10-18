@@ -24,8 +24,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MeediFier.Code.Downloaders;
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
     class IMDbAdvancedFilmSearchEngine
     {

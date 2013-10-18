@@ -31,18 +31,18 @@ using System.Net;
 
 
 #if USE_MEEDIO
-using Meedio;
+
 #elif USE_MEEDIOS
-using MediaFairy.Code.RegEx_Matchers;
-using MediaFairy.Diagnostics;
-using MediaFairy.ImportingEngine;
-using MediaFairy.OSDb;
+using MeediFier.Code.RegEx_Matchers;
+using MeediFier.Diagnostics;
+using MeediFier.ImportingEngine;
+using MeediFier.OSDb;
 using MeediOS;
 
 #endif
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public static class Helpers

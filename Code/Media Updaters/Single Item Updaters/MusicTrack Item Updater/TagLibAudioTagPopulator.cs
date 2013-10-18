@@ -2,12 +2,21 @@
 using MeediOS;
 using TagLib;
 
-namespace MediaFairy.SingleItemUpdaters
+
+
+namespace MeediFier.SingleItemUpdaters
 {
+
+
     class TagLibAudioTagPopulator
     {
-        internal static void PopulateAudioTags(string album, string title, File audiofile, string artist, IMLItem item)
+
+
+
+        internal static void PopulateAudioTags
+            (string album, string title, File audiofile, string artist, IMLItem item)
         {
+
 
             if (String.IsNullOrEmpty(artist) || Settings.OverwriteExistingMusicTags)
                 item.Tags["Artist"] = audiofile.Tag.FirstAlbumArtist;

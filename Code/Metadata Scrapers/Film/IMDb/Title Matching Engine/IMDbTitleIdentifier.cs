@@ -23,6 +23,7 @@
 using System;
 using System.Threading;
 using System.Diagnostics;
+using MeediFier.Code.Metadata_Scrapers.Film.IMDb.Title_Matching_Engine;
 using MeediOS;
 #if USE_MEEDIO
 using Meedio;
@@ -30,7 +31,7 @@ using Meedio;
 
 #endif
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
     static class IMDbTitleIdentifier
     {
@@ -59,14 +60,14 @@ namespace MediaFairy.IMDb
                 Debugger.LogMessageToFile("[IMDb Film Title Matcher] Primary film Title matching engine was set to 'Internal'.");
 
                 imdbid = IdentifyVideoByIMDbInternal(item, imdbid, imdbOp, year, connectionresult);
-                imdbid = IdentifyVideoByIMDbExternal(item, imdbid, connectionresult);
+                imdbid = IMDbTitleIdentifierExternal.IdentifyVideoByIMDbExternal(item, imdbid, connectionresult);
 
             }
             else
             {
                 Debugger.LogMessageToFile("[IMDb Film Title Matcher] Primary film Title matching engine was set to 'External'.");
 
-                imdbid = IdentifyVideoByIMDbExternal(item, imdbid, connectionresult);
+                imdbid = IMDbTitleIdentifierExternal.IdentifyVideoByIMDbExternal(item, imdbid, connectionresult);
                 imdbid = IdentifyVideoByIMDbInternal(item, imdbid, imdbOp, year, connectionresult);
 
             }
@@ -209,104 +210,5 @@ namespace MediaFairy.IMDb
 
             return imdbid;
         }
-
-
-
-
-        private static string IdentifyVideoByIMDbExternal(IMLItem item, string imdbid, ConnectionResult connectionresult)
-        {
-
-            //TODO: Improve external IMDb film search engine, add a Title matching engine to it.
-
-
-            if (!connectionresult.InternetConnectionAvailable && Settings.ConnectionDiagnosticsEnabled)
-            {
-                Debugger.LogMessageToFile("[IMDb video identifier] Internet connection was not detected. Unable to identify this video by Title using the external (web-based) engine.");
-                return imdbid;
-            }
-
-            if (!String.IsNullOrEmpty(imdbid))
-            {
-                Debugger.LogMessageToFile("[IMDb video identifier] IMDbID is already availabe for this title. Will not need to use the video identifier by Title using the external (web-based) engine.");
-                return imdbid;
-            }
-
-
-            #region return if item is not listed
-            if (Helpers.GetTagValueFromItem(item, "NotListed") == "true")
-            {
-                Debugger.LogMessageToFile("[IMDb video identifier] This Item is not listed on IMDb. Returning...");
-                return imdbid;
-            }
-
-            #endregion
-
-
-            Debugger.LogMessageToFile("[IMDb video identifier] Continuing to identify by IMDb using external web API...");
-
-            #region Find imdbid using item's name or Title
-
-            #region ...extract the film's title or year from library fields
-
-            string year = Helpers.GetTagValueFromItem(item, "Year");
-            string title = Helpers.GetTagValueFromItem(item, "Title");
-
-            if (String.IsNullOrEmpty(title))
-                title = item.Name;
-
-            string titleNormalized = title.Replace(" ", "+");
-
-
-            Debugger.LogMessageToFile("[IMDb video identifier] Video's Title retrieved from item's tags: " + title);
-            Debugger.LogMessageToFile("[IMDb video identifier] Video's Year retrieved from item's tags: " + year);
-
-            #endregion
-
-            string searchString;
-
-            if (String.IsNullOrEmpty(year))
-                searchString = "http://www.deanclatworthy.com/imdb/?q=" + titleNormalized;
-            else searchString = "http://www.deanclatworthy.com/imdb/?q=" + titleNormalized + "&year=" + year;
-
-            Helpers.UpdateProgress("Updating Movies section...", "Trying to dentifying film by Title (using external web engine)... ", item);
-
-            Stopwatch watch = new Stopwatch();
-            watch.Start();
-            imdbid = Downloaders.MineWebDataReturnFirstMatch(searchString, @"""imdburl"":""http:\\/\\/www.imdb.com\\/title\\/(?<IMDbID>.*?)\\/""");
-
-            long millisecondsnow = watch.ElapsedMilliseconds;
-          
-            
-            //MessageBox.Show
-            //    (@"External search needed " 
-            //    + millisecondsnow 
-            //    + @" ms.");
-            
-
-            if (!String.IsNullOrEmpty(imdbid))
-            {
-                Debugger.LogMessageToFile("[IMDb video identifier] IMDb identification by Title (using external engine) was succesful!");
-                Helpers.UpdateProgress("Updating Movies section...", "IMDb identification by Title (external engine) was succesful!", item);
-                Thread.Sleep(2000);
-            }
-
-            #endregion
-
-            #region Save IMDbID to library
-            item.Tags["ImdbID"] = imdbid;
-            item.SaveTags();
-            Debugger.LogMessageToFile("[IMDb video identifier] IMDb ID after matching by Title: " + imdbid);
-            #endregion
-
-
-            return imdbid;
-        }
-
-
-
-
-
-
-
     }
 }

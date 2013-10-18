@@ -25,12 +25,12 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using System.Collections;
-using MediaFairy.Code.Settings;
-using MediaFairy.ImportingEngine;
 using MediaFolders;
+using MeediFier.Code.Settings;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
-namespace MediaFairy
+namespace MeediFier
 {
     public static class ImportingEngineHelpers
     {

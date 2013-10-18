@@ -1,10 +1,10 @@
 ﻿using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
 
-namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
+namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 {
 
     class FilmItemChainLinker
@@ -19,7 +19,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
              IMLItem Item)
         {
 
-            if (!MediaFairy.Settings
+            if (!MeediFier.Settings
                 .FilmItemChainLinkerIsEnabled)
                 return;
 

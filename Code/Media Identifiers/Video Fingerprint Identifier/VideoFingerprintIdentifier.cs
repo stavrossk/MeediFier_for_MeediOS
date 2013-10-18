@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-using MediaFairy.IMDb;
-using MediaFairy.ImportingEngine;
-using MediaFairy.MediaFileDescriptors;
+using MeediFier.IMDb;
+using MeediFier.ImportingEngine;
+using MeediFier.MediaFileDescriptors;
 using MeediOS;
 
-namespace MediaFairy.VideoFingerprintIdentifier
+namespace MeediFier.VideoFingerprintIdentifier
 {
 
 

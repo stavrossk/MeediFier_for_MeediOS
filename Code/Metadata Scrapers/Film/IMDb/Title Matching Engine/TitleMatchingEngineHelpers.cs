@@ -22,77 +22,133 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 
 
-namespace MediaFairy.IMDb.Title_Matching_Engine
+namespace MeediFier.IMDb.Title_Matching_Engine
 {
+
+
     internal static class TitleMatchingEngineHelpers
     {
-        internal static bool DuplicatesExist(string title, string year, IEnumerable<IIMDbSearchResult> list)
+
+
+        internal static bool DuplicatesExist
+            (string title, string year, IEnumerable<IIMDbSearchResult> list)
         {
+
+
             try
             {
+
+
                 var sbTitles = new StringBuilder();
+                
                 sbTitles.Append("---");
+                
+                
                 foreach (IIMDbSearchResult result in list)
                 {
-                    #region Continue to next result if result's title doesn't match with the current title
 
-                    if ((((!JCUtils.Utils.StringsMatchNormalized(result.Title, title)) &&
-                          (!JCUtils.Utils.MatchAND(title, result.Title))) &&
-                         (!JCUtils.Utils.MatchEndingTHE(title, result.Title))) &&
-                        (!JCUtils.Utils.MatchColon(title, result.Title))) continue;
+                    if (TitleAndResultDoNotMatch(title, result)) 
+                        continue;
 
-                    #endregion
 
                     if (year.Trim() != String.Empty
-                        && JCUtils.Utils.StringsMatchNormalized(result.Year, year))
+                        && ToolBox.Utils.StringProcessors.StringsMatchNormalized(result.Year, year))
                     {
-                        if (
-                            sbTitles.ToString().ToLower().IndexOf("--" + result.Title.ToLower().Trim() + "-" +
-                                                                  result.Year.Trim() + "--") > -1)
+
+                        if ( sbTitles.ToString().ToLower().IndexOf("--" + result.Title.ToLower().Trim() + "-" +
+                             result.Year.Trim() + "--", System.StringComparison.Ordinal) > -1)
                             return true;
 
                         sbTitles.Append(result.Title.ToLower().Trim());
                         sbTitles.Append("-");
                         sbTitles.Append(result.Year.Trim());
                         sbTitles.Append("---");
+                    
                     }
+
                     else if (year.Trim() == String.Empty)
                     {
-                        if (sbTitles.ToString().ToLower().IndexOf("--" + result.Title.ToLower().Trim() + "-noyear---") >
-                            -1)
+
+                        if (sbTitles.ToString().ToLower().IndexOf("--" + result.Title.ToLower().Trim() + 
+                            "-noyear---", System.StringComparison.Ordinal) > -1)
                             return true;
 
                         sbTitles.Append(result.Title.ToLower().Trim());
                         sbTitles.Append("-noyear---");
                     }
+
+
                 } //endof foreach
-            } //endof try
+
+
+            }
             catch (Exception ex)
             {
-                Debugger.LogMessageToFile(
-                    "An unexpected error occured trying to decide if a film duplicate exists on IMDb. The error was: " +
-                    ex);
-                StatusForm.statusForm.TrayIcon.ShowBalloonTip(5000, "Error trying to detect a film duplicate",
-                                                              "MediaFairy encountered an error trying to detect if duplicates exists for a film on IMDb. Please see Debug.log for details.",
-                                                              ToolTipIcon.Error);
-                MainImportingEngine.GeneralStatus = "Updating Movies section...";
-                MainImportingEngine.SpecialStatus = "An error occured trying to detect duplicates for a film.";
-                Helpers.UpdateProgress(MainImportingEngine.GeneralStatus, MainImportingEngine.SpecialStatus, null);
+
+                Debugger.LogMessageToFile
+                    ("An unexpected error occured trying to decide " +
+                     "if a film duplicate exists on IMDb. The error was: " +
+                     ex);
+
+                StatusForm.statusForm.TrayIcon.ShowBalloonTip
+                    (5000, "Error trying to detect a film duplicate",
+                     "MediaFairy encountered an error trying to detect " +
+                     "if duplicates exists for a film on IMDb." +
+                     " Please see Debug.log for details.", ToolTipIcon.Error);
+                
+                MainImportingEngine.GeneralStatus = 
+                    "Updating Movies section...";
+                
+                MainImportingEngine.SpecialStatus = 
+                    "An error occured trying to detect duplicates for a film.";
+                
+                Helpers.UpdateProgress
+                    (MainImportingEngine.GeneralStatus,
+                     MainImportingEngine.SpecialStatus, null);
+                
                 Thread.Sleep(5000);
+            
             }
 
             return false;
         }
 
 
-        internal static IIMDbSearchResult GetFirstMovie(IList<IIMDbSearchResult> results)
+
+
+        private static bool TitleAndResultDoNotMatch(string title, IIMDbSearchResult result)
+        {
+            #region Continue to next result if result's title doesn't match with the current title
+
+            return (
+                
+                        (
+                        
+                            (!ToolBox.Utils.StringProcessors.StringsMatchNormalized(result.Title, title) ) 
+                            && 
+                            (!ToolBox.Utils.StringProcessors.MatchAND(title, result.Title) )
+                            
+                        ) 
+                        &&
+                        (!ToolBox.Utils.StringProcessors.MatchEndingTHE(title, result.Title))
+                        
+                   ) 
+                   &&
+                   (!ToolBox.Utils.StringProcessors.MatchColon(title, result.Title));
+
+            #endregion
+        }
+
+
+        internal static IIMDbSearchResult GetFirstMovie
+            (IList<IIMDbSearchResult> results)
         {
             if (results != null
                 && results.Count > 0)
@@ -102,32 +158,57 @@ namespace MediaFairy.IMDb.Title_Matching_Engine
         }
 
 
-        internal static IIMDbSearchResult GetLatestMovie(IEnumerable<IIMDbSearchResult> results, string title)
+        internal static IIMDbSearchResult GetLatestMovie
+            (IEnumerable<IIMDbSearchResult> results, string title)
         {
+
+
             IIMDbSearchResult result = null;
+            
             var year = -1;
-            year.ToString();
+            
+            //year.ToString(CultureInfo.InvariantCulture);
 
             if (results == null)
-                return result;
+                return null;
 
             foreach (var t in results)
             {
-                if (((!JCUtils.Utils.StringsMatchNormalized(title, t.Title) &&
-                      !JCUtils.Utils.MatchAND(title, t.Title)) && !JCUtils.Utils.MatchEndingTHE(title, t.Title)) &&
-                    !JCUtils.Utils.MatchColon(title, t.Title)) continue;
 
-                if (t.Year.Length < 4) continue;
+                if (
+                    
+                    (
+                    
+                        (
+                            !ToolBox.Utils.StringProcessors.StringsMatchNormalized(title, t.Title) 
+                         && !ToolBox.Utils.StringProcessors.MatchAND(title, t.Title)
+                        )
+                         && !ToolBox.Utils.StringProcessors.MatchEndingTHE(title, t.Title)
+                         
+                    ) 
+                    && !ToolBox.Utils.StringProcessors.MatchColon(title, t.Title)
+                    
+                   )
+                   continue;
+
+                if (t.Year.Length < 4) 
+                    continue;
 
                 var newYear = t.Year.Substring(0, 4);
+                
                 int iNewYear;
 
-                if (!int.TryParse(newYear, out iNewYear)) continue;
+                if (!int.TryParse
+                    (newYear, out iNewYear)) 
+                    continue;
 
-                if (iNewYear <= year) continue;
+                if (iNewYear <= year) 
+                    continue;
 
                 year = iNewYear;
+                
                 result = t;
+            
             }
 
             return result;
@@ -143,7 +224,7 @@ namespace MediaFairy.IMDb.Title_Matching_Engine
                 
                 for (var i = list.Count - 1; i >= 0; i--)
                 {
-                    if (list[i].Year.ToLower().Trim().IndexOf("vg") > -1)
+                    if (list[i].Year.ToLower().Trim().IndexOf("vg", System.StringComparison.Ordinal) > -1)
                         list.RemoveAt(i);
                 }
 
@@ -158,6 +239,8 @@ namespace MediaFairy.IMDb.Title_Matching_Engine
             }
         }
 
-//endof function
+    //endof function
     }
+
+
 }

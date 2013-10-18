@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using MediaFairy.ImportingEngine;
-using MediaFairy.SingleItemUpdaters;
+using MeediFier.ImportingEngine;
+using MeediFier.SingleItemUpdaters;
 using MeediOS;
 using TVDBLibrary;
 
-namespace MediaFairy.MediaSectionUpdaters
+namespace MeediFier.MediaSectionUpdaters
 {
 
     class TvSectionUpdater

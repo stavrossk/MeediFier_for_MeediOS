@@ -22,9 +22,10 @@
 
 using System;
 using System.Net;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 
-#if USE_MEEDIO 
+#if USE_MEEDIO
+using MeediFier.ImportingEngine;
 using Meedio; 
 #elif USE_MEEDIOS
 
@@ -32,7 +33,7 @@ using Meedio;
 
 
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
 
 

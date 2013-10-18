@@ -34,7 +34,7 @@ using MeediOS;
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public class ImageFileConstructor

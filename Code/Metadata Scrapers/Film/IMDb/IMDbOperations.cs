@@ -25,16 +25,15 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Threading;
-using MediaFairy.IMDb;
 
 #if USE_MEEDIO
 using Meedio;
 #elif USE_MEEDIOS
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 #endif
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
 
     public class IMDbOperations

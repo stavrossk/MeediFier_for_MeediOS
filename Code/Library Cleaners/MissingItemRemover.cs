@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using MeediOS;
 
-namespace MediaFairy
+namespace MeediFier
 {
 
 

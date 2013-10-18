@@ -4,7 +4,7 @@ using MeediOS.Cache;
 
 
 
-namespace MediaFairy.Code.Importer_Properties
+namespace MeediFier.Code.Importer_Properties
 {
 
 
@@ -40,7 +40,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 "about media files from their filenames, and clean them by removing unessecarry information." +
                                 Environment.NewLine +
                                 "Warning: Disabling this option may compromise the performance and accuraccy of the automated film and tv series identifiers.";
-                prop.DefaultValue = MediaFairy.Settings.ExtractMetadataFromFilenames;
+                prop.DefaultValue = MeediFier.Settings.ExtractMetadataFromFilenames;
                 prop.DataType = "bool";
                 return true;
             }
@@ -56,7 +56,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.HelpText = "If this setting is enabled, the films section updater will scan and link together" +
                                 Environment.NewLine +
                                 "multiple video files of the same film, using the film's unique id.";
-                prop.DefaultValue = MediaFairy.Settings.FilmItemChainLinkerIsEnabled;
+                prop.DefaultValue = MeediFier.Settings.FilmItemChainLinkerIsEnabled;
                 prop.DataType = "bool";
                 return true;
             }
@@ -74,7 +74,7 @@ namespace MediaFairy.Code.Importer_Properties
                     "This feature will automatically delete library items which refer to non-existent (deleted) files." +
                     Environment.NewLine +
                     "The media server diagnostic will ensure that the items located in your file server will not be accidentaly deleted if the server is offline. ";
-                prop.DefaultValue = MediaFairy.Settings.DeleteMissing;
+                prop.DefaultValue = MeediFier.Settings.DeleteMissing;
                 prop.DataType = "bool";
                 prop.Dependencies =
                     "False:HIDE DeleteCoverImageOfMissingMediaFilesProp,DeleteFanartImageOfMissingMediaFilesProp" +
@@ -92,7 +92,7 @@ namespace MediaFairy.Code.Importer_Properties
                 //set the tool tip
                 prop.HelpText = "Enable this setting for the plugin to automatically delete" + Environment.NewLine +
                                 "any left-over cover images of media files which were deleted. (but their entries are still present in library)";
-                prop.DefaultValue = MediaFairy.Settings.DeleteCoverImageOfMissingMediaFiles;
+                prop.DefaultValue = MeediFier.Settings.DeleteCoverImageOfMissingMediaFiles;
                 prop.DataType = "bool";
                 return true;
             }
@@ -107,7 +107,7 @@ namespace MediaFairy.Code.Importer_Properties
                 //set the tool tip
                 prop.HelpText = "Enable this setting for the plugin to automatically delete" + Environment.NewLine +
                                 "any left-over fanart images of media files which were deleted. (but their entry is still present in library)";
-                prop.DefaultValue = MediaFairy.Settings.DeleteFanartImageOfMissingMediaFiles;
+                prop.DefaultValue = MeediFier.Settings.DeleteFanartImageOfMissingMediaFiles;
                 prop.DataType = "bool";
                 return true;
             }
@@ -126,7 +126,7 @@ namespace MediaFairy.Code.Importer_Properties
                                 Environment.NewLine +
                                 "Only the tags that have all their values empty will be removed." + Environment.NewLine +
                                 "Enabling this option will ensure a cleaner library and faster library accessing operations. ";
-                prop.DefaultValue = MediaFairy.Settings.CleanEmptyFields;
+                prop.DefaultValue = MeediFier.Settings.CleanEmptyFields;
                 prop.DataType = "bool";
                 return true;
             }
@@ -144,7 +144,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.HelpText = "If you enable this option, MediaFairy will remove the library fields you specify below." +
                                 Environment.NewLine +
                                 "You can use this option to delete uneeded/unwanted library tags which other importers may have created.";
-                prop.DefaultValue = MediaFairy.Settings.CleanSelectedFields;
+                prop.DefaultValue = MeediFier.Settings.CleanSelectedFields;
                 prop.DataType = "bool";
                 prop.Dependencies = "False:HIDE SelectedFieldsToCleanProp" +
                                     ";True:SHOW SelectedFieldsToCleanProp";
@@ -162,7 +162,7 @@ namespace MediaFairy.Code.Importer_Properties
                 prop.Caption = TranslationProvider.Translate(prop.Caption, importerProperties);
                 //set the tool tip
                 prop.HelpText = " Please specify here the names of the tags to remove, seperating with a comma (,) ";
-                prop.DefaultValue = MediaFairy.Settings.SelectedFieldsToClean;
+                prop.DefaultValue = MeediFier.Settings.SelectedFieldsToClean;
                 prop.DataType = "string";
                 return true;
             }
@@ -196,7 +196,7 @@ namespace MediaFairy.Code.Importer_Properties
                 //set the tool tip
                 prop.HelpText = "Enable this setting if you are a user of MeePopupProvider for MeediOS." + Environment.NewLine +
                                 "A 'meePopupProvider' field will be added to all media sections containing each item's ID number.";
-                prop.DefaultValue = MediaFairy.Settings.MeePopupProviderCompatibility;
+                prop.DefaultValue = MeediFier.Settings.MeePopupProviderCompatibility;
                 prop.DataType = "bool";
                 return true;
             }

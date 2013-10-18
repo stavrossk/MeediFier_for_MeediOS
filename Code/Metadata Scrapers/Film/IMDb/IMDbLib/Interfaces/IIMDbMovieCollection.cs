@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MediaFairy
+namespace MeediFier
 {
     public interface IIMDbMovieCollection : IList<IIMDbMovie>
     {

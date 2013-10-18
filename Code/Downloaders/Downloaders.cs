@@ -28,7 +28,8 @@ using System.IO.Compression;
 using System.Text.RegularExpressions;
 
 
-#if USE_MEEDIO 
+#if USE_MEEDIO
+using MeediOS;
 using Meedio; 
 #elif USE_MEEDIOS
 using MeediOS;
@@ -42,7 +43,7 @@ using System.Windows.Forms;
 
 
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public class Downloaders
@@ -54,40 +55,63 @@ namespace MediaFairy
 
         public static string GetUrl(string Url, string PostData, bool GZip)
         {
-            HttpWebRequest Http = (HttpWebRequest)WebRequest.Create(Url);
+
+
+            var http = (HttpWebRequest)WebRequest.Create(Url);
 
             if (GZip)
-                Http.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+                http.Headers.Add
+                    (HttpRequestHeader.AcceptEncoding, "gzip,deflate");
+
 
             if (!string.IsNullOrEmpty(PostData))
             {
-                Http.Method = "POST";
+                http.Method = "POST";
                 byte[] lbPostBuffer = Encoding.Default.GetBytes(PostData);
 
-                Http.ContentLength = lbPostBuffer.Length;
+                http.ContentLength = lbPostBuffer.Length;
 
-                Stream PostStream = Http.GetRequestStream();
+                
+                Stream PostStream = http.GetRequestStream();
+                
                 PostStream.Write(lbPostBuffer, 0, lbPostBuffer.Length);
+            
                 PostStream.Close();
+            
             }
 
-            HttpWebResponse WebResponse = (HttpWebResponse)Http.GetResponse();
 
-            Stream responseStream = responseStream = WebResponse.GetResponseStream();
-            if (WebResponse.ContentEncoding.ToLower().Contains("gzip"))
-                responseStream = new GZipStream(responseStream, CompressionMode.Decompress);
-            else if (WebResponse.ContentEncoding.ToLower().Contains("deflate"))
-                responseStream = new DeflateStream(responseStream, CompressionMode.Decompress);
+            var webResponse = (HttpWebResponse)http.GetResponse();
 
-            StreamReader Reader = new StreamReader(responseStream, Encoding.Default);
+            Stream responseStream = responseStream = webResponse.GetResponseStream();
 
-            string Html = Reader.ReadToEnd();
+            if (webResponse.ContentEncoding.ToLower().Contains("gzip"))
+            {
 
-            WebResponse.Close();
-            responseStream.Close();
+                responseStream = new GZipStream
+                    (responseStream, CompressionMode.Decompress);
+            
+            }
+            else if (webResponse.ContentEncoding.ToLower().Contains("deflate"))
+            {
+
+                responseStream = new DeflateStream
+                    (responseStream, CompressionMode.Decompress);
+
+            }
+
+            StreamReader streamReader = new StreamReader
+                (responseStream, Encoding.Default);
+
+            string Html = streamReader.ReadToEnd();
+
+            webResponse.Close();
+
+            if (responseStream != null) responseStream.Close();
 
             return Html;
         }
+
 
 
 
@@ -211,75 +235,23 @@ namespace MediaFairy
 
         public static int TestConnectionSpeed(string url)
         {
+
             WebClient wc = new WebClient();
+            
             DateTime dt1 = DateTime.Now;
+            
             byte[] data = wc.DownloadData(url);
+            
             DateTime dt2 = DateTime.Now;
+            
             int Kbytes = data.Length / 1024;
+            
             int KbytesPerSec = Convert.ToInt32(Kbytes / (dt2 - dt1).TotalSeconds);
+            
             return KbytesPerSec;
+        
         }
-
-
-
-
-        public static string MineWebDataReturnFirstMatch(string url, string regexPattern)
-        {
-            var client = new WebClient();
-            var utf8 = new UTF8Encoding();
-            //UnicodeEncoding unicode = new UnicodeEncoding();
-            byte[] responseBytes;
-            Regex regex = new Regex(regexPattern);
-            var uri = new Uri(url, true);
-
-            //MessageBox.Show("URL: " + URL);
-
-            #region dload Url Data
-            try
-            {
-                responseBytes = client.DownloadData(uri);
-            }
-            catch
-            {
-                try
-                {
-                    responseBytes = client.DownloadData(uri);
-                }
-                catch
-                {
-                    try
-                    {
-                        responseBytes = client.DownloadData(uri);
-                    }
-                    catch
-                    {
-                        return String.Empty;
-                    }
-                }
-            }
-            #endregion
-
-            string htmlText = utf8.GetString(responseBytes);
-            //htmlText = unicode.GetString(responseBytes);
-
-            MatchCollection matches = regex.Matches(htmlText);
-
-            if (matches.Count == 0)
-                return String.Empty;
-
-   
-
-            string result = matches[0].Groups[1].Captures[0].Value;
-
-            return result;
-        }
-
-
-
-
-
-
-
+    
     }
 
 

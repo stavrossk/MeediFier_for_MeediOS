@@ -24,10 +24,10 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MediaFairy.IMDb;
+using MeediFier.IMDb;
 using MeediOS;
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public static class MovieFileMetadataExtractor

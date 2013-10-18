@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.IMDb;
-using MediaFairy.ImportingEngine;
-using MediaFairy.SingleItemUpdaters;
+using MeediFier.IMDb;
+using MeediFier.ImportingEngine;
+using MeediFier.SingleItemUpdaters;
 using MeediOS;
 
 
 
 
-namespace MediaFairy.MediaSectionUpdaters
+namespace MeediFier.MediaSectionUpdaters
 {
 
 

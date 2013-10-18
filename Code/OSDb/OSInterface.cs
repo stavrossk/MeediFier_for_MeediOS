@@ -29,7 +29,7 @@ using System.Linq;
 using System.Text;
 using CookComputing.XmlRpc;
 
-namespace MediaFairy
+namespace MeediFier
 {
 
     public interface IOpenSubtitlesRemoteFunctions : IXmlRpcProxy

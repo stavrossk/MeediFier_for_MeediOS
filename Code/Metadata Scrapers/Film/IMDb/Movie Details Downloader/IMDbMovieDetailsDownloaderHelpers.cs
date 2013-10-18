@@ -3,10 +3,9 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using JCUtils;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 
-namespace MediaFairy.IMDb
+namespace MeediFier.IMDb
 {
     internal class IMDbMovieDetailsDownloaderHelpers
     {
@@ -129,8 +128,9 @@ namespace MediaFairy.IMDb
 
             try
             {
-                html = WebUtils.GET(movieUrl);
-                //html = webClient.DownloadString(movieUrl);
+                
+                html = webClient.DownloadString(movieUrl);
+            
             }
             catch
             {
@@ -139,27 +139,33 @@ namespace MediaFairy.IMDb
 
                 try
                 {
-                    html = WebUtils.GET(movieUrl);
-                    //html = webClient.DownloadString(movieUrl);
+                   
+                    html = webClient.DownloadString(movieUrl);
 
                 }
                 catch
                 {
-                    Debugger.LogMessageToFile("A connection error occured while attempting to download" +
-                                              " IMDb's film web page. Giving up for this item.");
 
-                    Helpers.UpdateProgress("Updating Movies Section...", "Unable to connect to IMDb." +
-                                                                         "Details for this film will not be downloaded.",
-                                           null);
+                    Debugger.LogMessageToFile
+                        ("A connection error occured while attempting to download" +
+                         " IMDb's film web page. Giving up for this item.");
 
-                    StatusForm.statusForm.TrayIcon.ShowBalloonTip(5000, "Communication with IMDb failed",
-                                                                  "MediaFairy was unable to connect to IMDb in order to download details for a film. " +
-                                                                  "Please check your internet connection availability," +
-                                                                  " otherwise the online database may be temporarily offline or unreachable.",
-                                                                  ToolTipIcon.Warning);
+                    Helpers.UpdateProgress
+                        ("Updating Movies Section...", 
+                        "Unable to connect to IMDb." +
+                        "Details for this film will not be downloaded.", null);
+
+                    StatusForm.statusForm.TrayIcon.ShowBalloonTip
+                        (5000, "Communication with IMDb failed",
+                         "MediaFairy was unable to connect to IMDb in order to download details for a film. " +
+                         "Please check your internet connection availability," +
+                         " otherwise the online database may be temporarily offline or unreachable.",
+                         ToolTipIcon.Warning);
 
                     return null;
+                
                 }
+
             }
 
 
@@ -325,12 +331,12 @@ namespace MediaFairy.IMDb
             {
                 var runtime = value.Trim();
 
-                if (runtime.IndexOf(":") > -1
-                    && runtime.IndexOf(":") < runtime.Length -1)
-                    runtime = runtime.Substring(runtime.IndexOf(":") + 1).Trim();
-                if (runtime.IndexOf("\\") > -1)
+                if (runtime.IndexOf(":", System.StringComparison.Ordinal) > -1
+                    && runtime.IndexOf(":", System.StringComparison.Ordinal) < runtime.Length -1)
+                    runtime = runtime.Substring(runtime.IndexOf(":", System.StringComparison.Ordinal) + 1).Trim();
+                if (runtime.IndexOf("\\", System.StringComparison.Ordinal) > -1)
                     runtime = runtime.Substring(0, runtime.IndexOf("\\")).Trim();
-                if (runtime.IndexOf("/") > -1)
+                if (runtime.IndexOf("/", System.StringComparison.Ordinal) > -1)
                     runtime = runtime.Substring(0, runtime.IndexOf("/")).Trim();
                 if (runtime.IndexOf(" ") > -1)
                     runtime = runtime.Substring(0, runtime.IndexOf(" ")).Trim();

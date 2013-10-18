@@ -1,10 +1,10 @@
 ﻿using System.Globalization;
 using System.Threading;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 // ReSharper disable CheckNamespace
-namespace MediaFairy
+namespace MeediFier
 // ReSharper restore CheckNamespace
 {
 

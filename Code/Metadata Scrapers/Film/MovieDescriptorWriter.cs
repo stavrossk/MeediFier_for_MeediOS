@@ -3,10 +3,10 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
-namespace MediaFairy.MediaFileDescriptors
+namespace MeediFier.MediaFileDescriptors
 {
 
 

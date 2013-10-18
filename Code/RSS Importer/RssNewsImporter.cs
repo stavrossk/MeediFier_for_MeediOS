@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Net;
 using System.Windows.Forms;
-using MediaFairy.Code.RegEx_Matchers;
-using MediaFairy.ImportingEngine;
+using MeediFier.Code.RegEx_Matchers;
+using MeediFier.ImportingEngine;
 using MeediOS;
 using Sloppycode.net;
 
 
-namespace MediaFairy.RssImporter
+namespace MeediFier.RssImporter
 {
 
 

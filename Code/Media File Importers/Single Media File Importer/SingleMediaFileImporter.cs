@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.Code.Media_File_Importers.Media_Analyzer;
-using MediaFairy.ImportingEngine;
-using MediaFairy.MediaAnalyzer;
-using MediaFairy.MediaFileImporters.SingleMediaFileImporter;
-using MediaFairy.MediaFileImportingEngine;
 using MediaInfoLib;
+using MeediFier.Code.Media_File_Importers.Media_Analyzer;
+using MeediFier.ImportingEngine;
+using MeediFier.MediaAnalyzer;
+using MeediFier.MediaFileImporters.SingleMediaFileImporter;
+using MeediFier.MediaFileImportingEngine;
 using MeediOS;
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
 
 

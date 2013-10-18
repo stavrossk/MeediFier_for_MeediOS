@@ -1,10 +1,10 @@
 ﻿using System.Linq;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
 
-namespace MediaFairy.Code.Media_File_Importers.Media_Importing_Engine
+namespace MeediFier.Code.Media_File_Importers.Media_Importing_Engine
 {
 
 

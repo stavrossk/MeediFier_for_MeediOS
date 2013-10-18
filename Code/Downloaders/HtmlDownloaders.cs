@@ -19,12 +19,11 @@
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
-
 using System;
 using System.Text;
 using System.Net;
 
-namespace MediaFairy
+namespace MeediFier.Code.Downloaders
 {
     class HtmlDownloaders
     {

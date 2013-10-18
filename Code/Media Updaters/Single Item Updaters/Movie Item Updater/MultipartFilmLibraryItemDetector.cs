@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
+namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 {
 
 

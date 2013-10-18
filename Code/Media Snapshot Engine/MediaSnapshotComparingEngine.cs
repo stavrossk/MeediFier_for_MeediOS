@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
 using MediaInfoLib;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
-namespace MediaFairy.MediaSnapshotEngine
+namespace MeediFier.MediaSnapshotEngine
 {
 
 

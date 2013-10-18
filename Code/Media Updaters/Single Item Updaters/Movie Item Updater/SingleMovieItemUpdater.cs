@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater;
-using MediaFairy.Code.Metadata_Scrapers.Cover_Art;
-using MediaFairy.IMDb;
-using MediaFairy.ImportingEngine;
-using MediaFairy.MediaFileDescriptors;
+using MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater;
+using MeediFier.Code.Metadata_Scrapers.Cover_Art;
+using MeediFier.IMDb;
+using MeediFier.ImportingEngine;
+using MeediFier.MediaFileDescriptors;
 using MeediOS;
 
 
 
 
-namespace MediaFairy.SingleItemUpdaters
+namespace MeediFier.SingleItemUpdaters
 {
 
     class SingleMovieItemUpdater

@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using MediaFairy.Code.Media_File_Importers.Media_Analyzer;
-using MediaFairy.Code.Settings;
-using MediaFairy.MediaSnapshotEngine.MediaAnalyzer;
 using MediaInfoLib;
+using MeediFier.Code.Media_File_Importers.Media_Analyzer;
+using MeediFier.Code.Settings;
+using MeediFier.MediaSnapshotEngine.MediaAnalyzer;
 
-namespace MediaFairy.MediaAnalyzer
+namespace MeediFier.MediaAnalyzer
 {
     class MediaTypeDetector
     {

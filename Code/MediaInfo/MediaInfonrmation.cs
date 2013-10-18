@@ -24,7 +24,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MediaFairy;
+using MeediFier;
 using MediaInfoLib;
 using System.Windows.Forms;
 
@@ -34,7 +34,7 @@ using Meedio;
 using MeediOS;
 #endif
 
-namespace MediaFairy
+namespace MeediFier
 {
     class MediaInformation
     {

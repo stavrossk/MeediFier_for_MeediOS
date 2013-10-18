@@ -1,8 +1,9 @@
-﻿using MediaFairy.ImportingEngine;
+﻿
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
-namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
+namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 {
 
 
@@ -16,7 +17,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
              IMLItemList allFilmItems, IMLItem item)
         {
 
-            if (Helpers.UserCancels
+            if (MeediFier.Helpers.UserCancels
                 (MainImportingEngine
                 .SpecialStatus, item))
                 return false;
@@ -36,7 +37,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
             //    Settings.ArchiveLocation);
 
 
-            if (Helpers.UserCancels
+            if (MeediFier.Helpers.UserCancels
                 (MainImportingEngine
                 .SpecialStatus, item))
                 return false;
@@ -48,7 +49,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
                  allFilmItems, item);
 
 
-            if (Helpers.UserCancels
+            if (MeediFier.Helpers.UserCancels
                 (MainImportingEngine
                 .SpecialStatus, item))
                 return false;

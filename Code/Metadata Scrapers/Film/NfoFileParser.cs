@@ -24,10 +24,10 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using MediaFairy.Code.Settings;
+using MeediFier.Code.Settings;
 using MeediOS;
 
-namespace MediaFairy
+namespace MeediFier
 {
     public static class NfoFileParser
     {

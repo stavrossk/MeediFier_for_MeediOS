@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using MediaFairy.ImportingEngine;
+using MeediFier.ImportingEngine;
 
-namespace MediaFairy.OSDb
+namespace MeediFier.OSDb
 {
 
     internal static class OsDbConnector

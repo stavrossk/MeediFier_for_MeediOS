@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using MediaFairy.IMDb;
-using MediaFairy.ImportingEngine;
+using MeediFier.IMDb;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
 
-namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
+namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 {
 
 
@@ -76,7 +76,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
         {
 
 
-            if (!MediaFairy.Settings.FilmIMDbDetailsDownloaderIsEnabled)
+            if (!MeediFier.Settings.FilmIMDbDetailsDownloaderIsEnabled)
                 return imdbid;
 
             Debugger.LogMessageToFile
@@ -138,7 +138,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 
 
             FileServerChecker.CheckFileServer
-                (MediaFairy.Settings.WantFileserverDiagnostics,
+                (MeediFier.Settings.WantFileserverDiagnostics,
                  location, ref isUNC, ref fileServerChecked,
                  root.FullName, ref fileServerIsOnline);
 
@@ -152,7 +152,7 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 
 
             if (MissingItemRemover.DeleteMissingItem
-                (MediaFairy.Settings.DeleteMissing, isUNC,
+                (MeediFier.Settings.DeleteMissing, isUNC,
                  fileServerIsOnline, location,
                  moviesSection, item))
             {
@@ -217,13 +217,13 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
              string location, bool isMultipart, IMLItem item)
         {
 
-            if (!MediaFairy.Settings.WantSortingFilms) 
+            if (!MeediFier.Settings.WantSortingFilms) 
                 return location;
 
             #region update runtime paramaters
 
             itemUpdateParams updateParams;
-            updateParams.FileInUse = MediaFairy.Settings.FileInUse;
+            updateParams.FileInUse = MeediFier.Settings.FileInUse;
             updateParams.IsMultipart = isMultipart;
             updateParams.CanWorkOnline = connectionresult.InternetConnectionAvailable;
             updateParams.CompletedItems = currentItem;
@@ -236,8 +236,8 @@ namespace MediaFairy.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
             MediaOrganizers.OrganizeMediaFiles
                 (item, itemTitle,
                  multipart, ref location,
-                 MediaFairy.Settings.SortingDestinationFilms,
-                 MediaFairy.Settings.DirectoryTagMaskFilms,
+                 MeediFier.Settings.SortingDestinationFilms,
+                 MeediFier.Settings.DirectoryTagMaskFilms,
                  updateParams, "Film");
 
 

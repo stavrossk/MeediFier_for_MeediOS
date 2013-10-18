@@ -24,10 +24,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using MediaFairy.Code.RegEx_Matchers;
+using MeediFier.Code.RegEx_Matchers;
 using MeediOS;
 
-namespace MediaFairy
+namespace MeediFier
 {
     internal static class EpisodeFileMetadataExtractor
     {
