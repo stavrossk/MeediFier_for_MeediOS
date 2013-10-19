@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
@@ -16,12 +15,14 @@ namespace MeediFier.MediaSnapshotEngine
     class MediaSectionPopulator
     {
 
-        internal static bool PopulateMediaSection(FileInfo file,
-                                                 IMLSection moviesSection, IMLSection tvSection, IMLSection musicSection, 
-                                                 IEnumerable<string> videoexts, int audioDuration, string filesize,
-                                                 MediaInfo mi, DirectoryInfo parent, string filecodec, 
-                                                 bool isVideo, bool isAudio, int videoDuration,
-                                                 string fileName, string parentName, IEnumerable<string> combinedSceneTags)
+        internal static bool PopulateMediaSection
+            (FileInfo file, IMLSection moviesSection, 
+             IMLSection tvSection, IMLSection musicSection, 
+             IEnumerable<string> videoexts, int audioDuration, 
+             string filesize, MediaInfo mi, DirectoryInfo parent,
+             string filecodec, bool isVideo, bool isAudio,
+             int videoDuration, string fileName, string parentName,
+             IEnumerable<string> combinedSceneTags)
         {
 
 
@@ -245,12 +246,13 @@ namespace MeediFier.MediaSnapshotEngine
         }
 
 
-        internal static bool AnalyzeFileAndAddToMediaSection(FileInfo file, IMLSection moviesSection, IMLSection tvSection,
-                                                            IMLSection musicSection, IList extensionsToIgnore,
-                                                            IEnumerable<string> videoExtensions, IEnumerable<string> combinedSceneTags,
-                                                            string fileExtension, bool isAudio, bool isVideo,
-                                                            DirectoryInfo parent, string parentName, string fileName,
-                                                            string pluginPath, MediaInfo mediaInfo)
+        internal static bool AnalyzeFileAndAddToMediaSection
+            (FileInfo file, IMLSection moviesSection, IMLSection tvSection,
+             IMLSection musicSection, IList<string> extensionsToIgnore,
+             IEnumerable<string> videoExtensions, IEnumerable<string> combinedSceneTags,
+             string fileExtension, bool isAudio, bool isVideo,
+             DirectoryInfo parent, string parentName, string fileName,
+             string pluginPath, MediaInfo mediaInfo)
         {
             int videoDuration;
             string filecodec;
@@ -259,22 +261,29 @@ namespace MeediFier.MediaSnapshotEngine
             string filesize;
             int audioDuration;
 
-            MediaTypeDetector.AnalyzeFileDetectMediaType(file, fileName, mediaInfo, pluginPath, fileExtension,
-                                                         ref isAudio, ref isVideo, out videoDuration, out filecodec,
-                                                         out audioCodec, out videoCodec, out filesize, out audioDuration);
+
+            MediaTypeDetector.AnalyzeFileDetectMediaType
+                (file, fileName, mediaInfo, pluginPath, 
+                 fileExtension, ref isAudio, ref isVideo, 
+                 out videoDuration, out filecodec,
+                 out audioCodec, out videoCodec,
+                 out filesize, out audioDuration);
 
             Application.DoEvents();
 
-            MediaTypeDetector.AddFileToIgnoredExtensions(file, extensionsToIgnore, audioCodec, fileName, isAudio, isVideo,
-                                                         videoCodec, fileExtension);
+            MediaTypeDetector.AddFileToIgnoredExtensions
+                (file, extensionsToIgnore, audioCodec,
+                 fileName, isAudio, isVideo, videoCodec, fileExtension);
 
             Application.DoEvents();
 
-            if (!PopulateMediaSection(file, moviesSection, tvSection, musicSection,
-                                                            videoExtensions, audioDuration, filesize, mediaInfo, parent,
-                                                            filecodec,
-                                                            isVideo, isAudio, videoDuration, fileName, parentName,
-                                                            combinedSceneTags))
+
+            if (!PopulateMediaSection
+                (file, moviesSection, tvSection,
+                 musicSection, videoExtensions, audioDuration, 
+                 filesize, mediaInfo, parent, filecodec,
+                 isVideo, isAudio, videoDuration, fileName,
+                 parentName, combinedSceneTags))
                 return false;
 
 

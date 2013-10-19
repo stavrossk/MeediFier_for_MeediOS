@@ -23,8 +23,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using MeediFier.Code.Downloaders;
 using MeediFier.Code.Settings;
+using MeediOS;
 
 namespace MeediFier.IMDb
 {
@@ -34,7 +36,7 @@ namespace MeediFier.IMDb
         private readonly IMDbRegEx _imDbRegex = new IMDbRegEx();
 
 
-        public void GetDirectors(ref IMDbMovie movie, string html)
+        internal void MineDirectorUsingRegex(ref IMDbMovie movie, string html)
         {
 
 
@@ -58,6 +60,7 @@ namespace MeediFier.IMDb
             {
 
                 Match match = _imDbRegex.GetRegExMatch(directorHtml, _imDbRegex.PersonPattern);
+                
                 while (match != null && match.Length > 0)
                 {
                     string personID = _imDbRegex.GetMatchValue(match, "PersonURL", true);
@@ -79,6 +82,8 @@ namespace MeediFier.IMDb
 
                     match = match.NextMatch();
                 }
+
+
             }
 
             string directors = movie.People.GetDirectorString();
@@ -96,9 +101,101 @@ namespace MeediFier.IMDb
 
 
 
+        internal void MineDirectorUsingXpath(ref IMDbMovie movie, string html)
+        {
 
 
-        public void GetWriters(ref IMDbMovie movie, string html)
+            if (!ImdbFilmDetailsIndividualChoices
+                .GetIMDbMovieDirectors)
+                return;
+
+
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader]" +
+                 " Extracting Director...");
+
+            const string directorXpathExpression = @"//div[@itemprop='director']//span[@itemprop='name']";
+
+
+            string directorName = Code.Metadata_Scrapers.XPathDataMiners
+                .MatchXpathExpressionReturnFirstMatch(html, directorXpathExpression);
+
+            IIMDbPerson director = new IMDbPerson();
+
+            movie.People.Add(director);
+
+            director.URL = String.Empty;
+
+            director.Name = directorName;
+                    
+            director.IsDirector = true;
+                
+
+            Debugger.LogMessageToFile
+            ("[IMDb film details downloader] " +
+            " IMDb returned Directors: " + director);
+
+            //MessageBox.Show(@"IMDb returned Director: " + directorName);
+
+
+        }
+
+
+
+
+
+
+
+
+        public void MineWriterUsingXpath(ref IMDbMovie movie, string html)
+        {
+
+
+            if (!ImdbFilmDetailsIndividualChoices
+                .GetIMDbMovieWriters)
+                return;
+
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader] " +
+                 "Extracting Writers...");
+
+            const string writerXpathExpression = @"//div[@itemprop='creator']//span[@itemprop='name']";
+
+            string writerName = Code.Metadata_Scrapers.XPathDataMiners
+                .MatchXpathExpressionReturnFirstMatch
+                (html, writerXpathExpression);
+
+            IIMDbPerson writer = new IMDbPerson();
+            
+            movie.People.Add(writer);
+
+            writer.URL = String.Empty;
+
+            writer.Name = writerName;
+                    
+            writer.IsWriter = true;
+
+            
+
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader]  " +
+                 "IMDb returned Writers: " + writerName);
+            
+            //MessageBox.Show(@"IMDb returned Writers: " + writerName);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        public void MineWriterUsingRegex(ref IMDbMovie movie, string html)
         {
 
 
@@ -581,8 +678,49 @@ namespace MeediFier.IMDb
 
 
 
-        internal static void GetProductionYear
-            (IIMDbMovie movie, string trimmedHTML, IMDbRegEx imDbRegEx)
+
+        internal static void MineProductionYearUsingXpath
+            (IIMDbMovie movie, string trimmedHTML)
+        {
+
+
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader]" +
+                 " Extracting Year...");
+
+
+            const string yearXpathExpression = @"//div[@id='ratingWidget']/p[1]";
+
+            string filmProductionYear = Code.Metadata_Scrapers.XPathDataMiners
+                .MatchXpathExpressionReturnFirstMatch
+                (trimmedHTML, yearXpathExpression);
+
+            
+
+            MessageBox.Show("fim prod: " + filmProductionYear);
+
+            filmProductionYear =
+                Code.RegEx_Matchers.RegExMatchers
+                    .MatchRegexExpressionReturnFirstMatchFirstGroup
+                    (filmProductionYear, @"</strong>\s*\((?<Title>.*)\)");
+
+
+
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader]" +
+                 " IMDb returned Year: " + filmProductionYear);
+            
+            MessageBox.Show("IMDb returned Year: " + filmProductionYear);
+
+        }
+
+
+
+
+
+
+        internal static void MineProductionYearUsingRegex
+            (IIMDbMovie movie, string trimmedHtml, IMDbRegEx imDbRegEx)
         {
 
 
@@ -590,15 +728,19 @@ namespace MeediFier.IMDb
                                       " Extracting Year...");
 
             Match match = imDbRegEx.GetRegExMatch
-                (trimmedHTML, imDbRegEx.YearPattern);
+                (trimmedHtml, imDbRegEx.YearPattern);
 
             movie.Year = imDbRegEx.GetMatchValue
                 (match, "Year", true);
             
             movie.Year = movie.Year.TrimEnd('/');
 
-            Debugger.LogMessageToFile("[IMDb film details downloader] IMDb returned Year: " + movie.Year);
-            //MessageBox.Show("IMDb returned Year: " + movie.Year);
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader] " +
+                 "IMDb returned Year: " + movie.Year);
+            
+            //MessageBox.Show
+            //    ("IMDb returned Year: " + movie.Year);
         
         }
 

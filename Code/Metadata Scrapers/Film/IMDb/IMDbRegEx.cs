@@ -23,6 +23,7 @@
 using System;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using MeediFier.ToolBox.Utils;
 
 namespace MeediFier.IMDb
 {
@@ -116,7 +117,7 @@ namespace MeediFier.IMDb
 
 
 
-            
+           
 
            
 
@@ -139,7 +140,8 @@ namespace MeediFier.IMDb
 
 
             //_yearPattern = @"/years/(?<Year>.*?)"">"; /Old Year pattern
-            YearPattern = @"<a\shref=""/year/.*?/"">(?<Year>.*?)</a>";
+            //YearPattern =  @"<a\shref=""/year/.*?/"">(?<Year>.*?)</a>";
+            YearPattern =    @"<div id=""ratingWidget"">.*?Title:.*?\((?<Title>.*?)\).*?</p>";
 
 
             ReleaseDatePattern = @"Release Date:</h\d>\s(?<ReleaseDate>.*?)\s\(.*?\)";
@@ -320,7 +322,7 @@ namespace MeediFier.IMDb
                 return value;
 
             //TODO: Replace this HTML Cleaner with RegEx, xPath or external HtmlAgilityPack cleaner.
-            value = ToolBox.Utils.WebUtils.CleanUpHTML(value, true);
+            value = HtmlCleaners.HtmlCleanerConventional(value, true);
 
             value = System.Web.HttpUtility.HtmlDecode(value);
 

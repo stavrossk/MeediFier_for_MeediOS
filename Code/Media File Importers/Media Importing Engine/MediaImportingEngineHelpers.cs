@@ -209,7 +209,7 @@ namespace MeediFier.MediaSnapshotEngine
             (
             IList<FileInfo> datfiles, string pluginpath,
             out string[] filmLocations, out string[] musicLocations,
-            out string[] tvShowsLocations, out string[] extensionsToIgnore,
+            out string[] tvShowsLocations, out IList<string>extensionsToIgnore,
             out string[] videoExtensions, out string[] audioExtensions,
             out string[] videoExtensionsCommon
             )
@@ -228,7 +228,7 @@ namespace MeediFier.MediaSnapshotEngine
 
             extensionsToIgnore = CacheMediaExtensionsTables
                 (pluginpath, out audioExtensions,
-                out videoExtensions, out videoExtensionsCommon);
+                out videoExtensions, out videoExtensionsCommon).ToList();
 
 
 
@@ -279,12 +279,12 @@ namespace MeediFier.MediaSnapshotEngine
 
 
         internal static void WriteNonMediaExtensionsToFile
-            (string[] extensionsToIgnore, string pluginpath)
+            (ref IList<string> extensionsToIgnore, string pluginpath)
         {
             File.WriteAllLines(pluginpath
                 + @"Media file extensions\"
                 + "non-media_extensions.txt",
-                extensionsToIgnore);
+                extensionsToIgnore.ToArray());
         }
 
 
@@ -292,7 +292,7 @@ namespace MeediFier.MediaSnapshotEngine
             (IMLSection moviesSection,
              IMLSection tvSection,
              IMLSection musicSection,
-             ref string[] extensionsToIgnore,
+             ref IList<string> extensionsToIgnore,
              ref string[] filmLocations,
              ref string[] tvShowsLocations,
              ref string[] musicLocations, 

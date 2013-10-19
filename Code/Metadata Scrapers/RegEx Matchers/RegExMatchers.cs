@@ -8,10 +8,15 @@ namespace MeediFier.Code.RegEx_Matchers
     {
 
 
-        internal static string MatchExpressionReturnFirstMatchFirstGroup(string textData, string RegexPattern)
+        internal static string MatchRegexExpressionReturnFirstMatchFirstGroup(
+            string textData, string regexPattern)
         {
-            Regex regex = new Regex(RegexPattern);
+
+
+            Regex regex = new Regex(regexPattern);
+            
             string result = String.Empty;
+            
             MatchCollection matches = regex.Matches(textData);
 
             if (matches.Count == 0)

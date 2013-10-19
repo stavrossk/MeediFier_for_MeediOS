@@ -38,7 +38,7 @@ namespace MeediFier.Code.Media_File_Importers.Media_Analyzer
         }
 
         internal static bool FileTypeBelongsToIgnoredExtensions
-            (FileSystemInfo file, string[] extensionsToIgnore)
+            (FileSystemInfo file, IList<string> extensionsToIgnore)
         {
            
 

@@ -219,7 +219,7 @@ namespace MeediFier.RssImporter
 
         private static bool GetImageUrl(string description, out string image)
         {
-            image = RegExMatchers.MatchExpressionReturnFirstMatchFirstGroup(description, "<img src=\"(?<Image>.*?)\"");
+            image = RegExMatchers.MatchRegexExpressionReturnFirstMatchFirstGroup(description, "<img src=\"(?<Image>.*?)\"");
 
             return !String.IsNullOrEmpty(image);
         }
@@ -236,7 +236,7 @@ namespace MeediFier.RssImporter
 
         private static string ConstructImageName(string image)
         {
-            string imageName = RegExMatchers.MatchExpressionReturnFirstMatchFirstGroup(image, ".*/(?<Image>.*?).jpg");
+            string imageName = RegExMatchers.MatchRegexExpressionReturnFirstMatchFirstGroup(image, ".*/(?<Image>.*?).jpg");
             imageName = imageName + ".jpg";
             return imageName;
         }

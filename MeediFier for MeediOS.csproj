@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeediFier</RootNamespace>
-    <AssemblyName>MediaFairy</AssemblyName>
+    <AssemblyName>MeediFier</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -70,28 +70,39 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CustomProperties, Version=0.6.4.0, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\..\..\..\Assemblies\CustomProperties.dll</HintPath>
+      <HintPath>M:\Program Files (x86)\MeediOS Berlin 7826\assemblies\CustomProperties.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MediaFoldersAPI">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MediaFoldersAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MediaLibrary">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MediaLibrary.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MeediOS.Cache">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MeediOS.Cache.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MeediOS.Configuration">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MeediOS.Configuration.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MeediOSInterfaces">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MeediOSInterfaces.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="MetaDataFoldersAPI">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MetaDataFoldersAPI.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -111,6 +122,7 @@
     </Reference>
     <Reference Include="taglib-sharp">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\taglib-sharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="TVDBLibrary">
       <HintPath>..\..\..\..\Assemblies\TVDBLibrary.dll</HintPath>
@@ -192,9 +204,10 @@
     <Compile Include="Code\Library Cleaners\MissingItemRemover.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\NfoFileParser.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\MovieDescriptorWriter.cs" />
+    <Compile Include="Code\Metadata Scrapers\XPathDataMiners.cs" />
     <Compile Include="Code\OSDb\OsDbConnector.cs" />
     <Compile Include="Code\OSDb\OSInterface.cs" />
-    <Compile Include="Code\RegEx Matchers\RegExMatchers.cs" />
+    <Compile Include="Code\Metadata Scrapers\RegEx Matchers\RegExMatchers.cs" />
     <Compile Include="Code\RSS Importer\RssNewsImporter.cs" />
     <Compile Include="Code\RSS Importer\RssReader.cs" />
     <Compile Include="Code\Settings\ImdbFilmDetailsIndividualChoices.cs" />
@@ -274,6 +287,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ToolBox\Utils\HtmlCleaners.cs" />
     <Compile Include="ToolBox\Utils\JSONparser.cs" />
     <Compile Include="ToolBox\Utils\StringProcessing.cs" />
     <Compile Include="ToolBox\Utils\TimeDateUtils.cs" />
@@ -368,6 +382,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -396,6 +411,6 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>xcopy /y "$(TargetDir)*.*" "M:\Program Files (x86)\MeediOS\Plugins\import\MediaFairy"
-</PostBuildEvent>
+xcopy /y "$(TargetDir)*.*" "M:\Program Files (x86)\MeediOS Berlin 7826\Plugins\import\MediaFairy"</PostBuildEvent>
   </PropertyGroup>
 </Project>

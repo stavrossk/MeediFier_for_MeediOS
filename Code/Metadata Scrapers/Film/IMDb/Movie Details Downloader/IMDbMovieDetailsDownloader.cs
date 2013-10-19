@@ -23,6 +23,7 @@
 using System;
 using System.Net;
 using MeediFier.ImportingEngine;
+using MeediOS;
 
 #if USE_MEEDIO
 using MeediFier.ImportingEngine;
@@ -85,6 +86,10 @@ namespace MeediFier.IMDb
 
                 string trimmedHtml = html;
 
+                //Debugger.LogMessageToFile("Base Title html: " + trimmedHtml);
+
+
+
 
                 movie.Title
                     = IMDbMovieDetailsDownloaderHelpers
@@ -93,7 +98,7 @@ namespace MeediFier.IMDb
                  
 
 
-                movie = ExtractDetails
+                movie = MineFilmDetails
                     (showProgress, trimmedHtml,
                     movieUrl, movie, filmDetails);
 
@@ -111,7 +116,7 @@ namespace MeediFier.IMDb
 
 
 
-        private static IMDbMovie ExtractDetails
+        private static IMDbMovie MineFilmDetails
             (bool showProgress,
             string trimmedHtml,
             string movieUrl,
@@ -157,14 +162,16 @@ namespace MeediFier.IMDb
 
         private static IMDbMovie ExtractDetailsFromMainPage
             (IMDbFilmDetails filmDetails,
-             string trimmedHtml, IMDbMovie movie)
+             string trimmedHtml, IMDbMovie movie )
         {
 
             IMDbRegEx imDbRegEx = new IMDbRegEx();
             imDbRegEx.SetRegExPatterns();
 
 
-            IMDbFilmDetails.GetProductionYear(movie, trimmedHtml, imDbRegEx);
+            IMDbFilmDetails.MineProductionYearUsingRegex(movie, trimmedHtml, imDbRegEx);
+            //IMDbFilmDetails.MineProductionYearUsingXpath(movie, trimmedHtml);
+
 
 
             IMDbFilmDetails.GetReleaseDate(movie, trimmedHtml, imDbRegEx);
@@ -191,11 +198,12 @@ namespace MeediFier.IMDb
             IMDbFilmDetails.GetOverview(movie, trimmedHtml, imDbRegEx);
 
 
-            filmDetails.GetDirectors(ref movie, trimmedHtml);
+            //filmDetails.MineDirectorUsingRegex(ref movie, trimmedHtml);
+            filmDetails.MineDirectorUsingXpath(ref movie, trimmedHtml);
 
 
-            filmDetails.GetWriters(ref movie, trimmedHtml);
-
+            //filmDetails.MineWriterUsingRegex(ref movie, trimmedHtml);
+            filmDetails.MineWriterUsingXpath(ref movie, trimmedHtml);
 
             filmDetails.GetGenres(ref movie, trimmedHtml);
 

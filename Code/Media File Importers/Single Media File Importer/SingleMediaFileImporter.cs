@@ -21,7 +21,7 @@ namespace MeediFier.MediaSnapshotEngine
         internal static bool ImportMediaFile(FileInfo file,
             IMLSection moviesSection, IMLSection tvSection,
             IMLSection musicSection,
-            ref string[] extensionsToIgnore,
+            ref IList<string> extensionsToIgnore,
             ref string[] filmLocations,
             ref string[] tvshowsLocations,
             ref string[] musicLocations,

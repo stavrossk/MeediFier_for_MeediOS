@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using MediaInfoLib;
 using MeediFier.Code.Media_File_Importers.Media_Analyzer;
@@ -16,10 +14,9 @@ namespace MeediFier.MediaAnalyzer
 
 
         internal static void AddFileToIgnoredExtensions
-            (FileSystemInfo file, IList extensionsToIgnore,
-            string audioCodec,
-                                                       string fileName, bool isAudio, bool isVideo, string videoCodec,
-                                                       string ext)
+            (FileSystemInfo file, IList<string> extensionsToIgnore,
+            string audioCodec, string fileName, bool isAudio,
+            bool isVideo, string videoCodec, string ext)
         {
 
             if (isVideo || isAudio)
@@ -33,9 +30,11 @@ namespace MeediFier.MediaAnalyzer
                 return;
 
 
-            Debugger.LogMessageToFile("The MediaInfo process detected that the file " + fileName +
+            Debugger.LogMessageToFile("Thhe MediaInfo process detected that the file " + fileName +
                                       " does not contain video nor audio. The file's extension " + ext +
                                       " will be added to the ignored extensions list.");
+
+            
 
             extensionsToIgnore.Add(file.Extension);
 
@@ -217,6 +216,7 @@ namespace MeediFier.MediaAnalyzer
                 sw.WriteLine(ext);
                 sw.Close();
             }
+
 
             Debugger.LogMessageToFile(String.Format("The MediaInfo process detected that the file {0} is a music track.", fileName));
         }

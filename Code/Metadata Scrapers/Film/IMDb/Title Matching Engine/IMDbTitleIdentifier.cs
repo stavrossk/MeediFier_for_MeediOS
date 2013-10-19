@@ -22,7 +22,6 @@
 
 using System;
 using System.Threading;
-using System.Diagnostics;
 using MeediFier.Code.Metadata_Scrapers.Film.IMDb.Title_Matching_Engine;
 using MeediOS;
 #if USE_MEEDIO
@@ -36,7 +35,9 @@ namespace MeediFier.IMDb
     static class IMDbTitleIdentifier
     {
 
-        public static string IdentifyVideoByTitle(IMLItem item, string imdbid, IMDbOperations imdbOp, string year, ConnectionResult connectionresult)
+        public static string IdentifyVideoByTitle
+            (IMLItem item, string imdbid, IMDbOperations imdbOp, 
+             string year, ConnectionResult connectionresult)
         {
 
             #region Return Cases
@@ -57,18 +58,34 @@ namespace MeediFier.IMDb
 
             if (Settings.PrimaryFilmTitleMatchingEngine == "Internal")
             {
-                Debugger.LogMessageToFile("[IMDb Film Title Matcher] Primary film Title matching engine was set to 'Internal'.");
 
-                imdbid = IdentifyVideoByIMDbInternal(item, imdbid, imdbOp, year, connectionresult);
-                imdbid = IMDbTitleIdentifierExternal.IdentifyVideoByIMDbExternal(item, imdbid, connectionresult);
+               
+
+                Debugger.LogMessageToFile
+                    ("[IMDb Film Title Matcher] " +
+                     "Primary film Title matching engine was set to 'Internal'.");
+
+                imdbid = IdentifyVideoByIMDbInternal
+                    (item, imdbid, imdbOp, connectionresult);
+                
+                imdbid = IMDbTitleIdentifierExternal
+                    .IdentifyVideoByIMDbExternal
+                    (item, imdbid, connectionresult);
 
             }
             else
             {
-                Debugger.LogMessageToFile("[IMDb Film Title Matcher] Primary film Title matching engine was set to 'External'.");
 
-                imdbid = IMDbTitleIdentifierExternal.IdentifyVideoByIMDbExternal(item, imdbid, connectionresult);
-                imdbid = IdentifyVideoByIMDbInternal(item, imdbid, imdbOp, year, connectionresult);
+                Debugger.LogMessageToFile
+                    ("[IMDb Film Title Matcher] " +
+                     "Primary film Title matching engine was set to 'External'.");
+
+                imdbid = IMDbTitleIdentifierExternal
+                    .IdentifyVideoByIMDbExternal
+                    (item, imdbid, connectionresult);
+                
+                imdbid = IdentifyVideoByIMDbInternal
+                    (item, imdbid, imdbOp, connectionresult);
 
             }
             #endregion
@@ -78,9 +95,11 @@ namespace MeediFier.IMDb
 
 
 
-        private static string IdentifyVideoByIMDbInternal(IMLItem item, string imdbid, IMDbOperations imdbOp, string year, ConnectionResult connectionresult)
+        private static string IdentifyVideoByIMDbInternal
+            (IMLItem item, string imdbid, IMDbOperations imdbOp, ConnectionResult connectionresult)
         {
-            if (year == null) throw new ArgumentNullException("year");
+
+
 
             #region Return cases
 
@@ -133,7 +152,7 @@ namespace MeediFier.IMDb
 
             #region ...extract the film's title or year from library fields
 
-            year = Helpers.GetTagValueFromItem(item, "Year");
+            string year = Helpers.GetTagValueFromItem(item, "Year");
             imdbOp.Title = Helpers.GetTagValueFromItem(item, "Title");
 
             if (String.IsNullOrEmpty(imdbOp.Title))

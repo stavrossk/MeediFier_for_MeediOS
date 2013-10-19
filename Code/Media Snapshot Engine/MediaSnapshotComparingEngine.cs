@@ -135,7 +135,7 @@ namespace MeediFier.MediaSnapshotEngine
                      IMLSection moviesSection,
                      IMLSection tvSection,
                      IMLSection musicSection,
-                     ref string[] extensionsToIgnore, 
+                     ref IList<string> extensionsToIgnore, 
                      string[] filmLocations,
                      string[] tvShowsLocations, string[] musicLocations,
                      string[] videoExtensions, string[] audioExtensions,
@@ -169,7 +169,7 @@ namespace MeediFier.MediaSnapshotEngine
                      IMLSection moviesSection,
                      IMLSection tvSection,
                      IMLSection musicSection,
-                     ref string[] extensionsToIgnore,
+                     ref IList<string> extensionsToIgnore,
                      string[] filmLocations,
                      string[] tvShowsLocations,
                      string[] musicLocations,
@@ -178,7 +178,7 @@ namespace MeediFier.MediaSnapshotEngine
                      IEnumerable<string> combinedSceneTags,
                      MediaInfo mediaInfo, string pluginPath,
                      string mediaSnapshotLocation, 
-            IEnumerable<string> videoExtensionsCommon)
+                     IEnumerable<string> videoExtensionsCommon)
         {
 
             if (Settings.EnableMediaSnapshots)

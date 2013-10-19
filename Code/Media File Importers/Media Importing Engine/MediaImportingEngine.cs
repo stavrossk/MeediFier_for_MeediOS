@@ -85,7 +85,8 @@ namespace MeediFier
             string[] filmLocations;
             string[] musicLocations;
             string[] tvShowsLocations;
-            string[] extensionsToIgnore;
+            
+            IList<string> extensionsToIgnore;
             string[] videoExtensions;
             string[] videoExtensionsCommon;
             string[] audioExtensions;
@@ -102,7 +103,7 @@ namespace MeediFier
 
             ImportMoviesSeriesMusic(combinedSceneTags, videoExtensions, 
                 audioExtensions, pluginpath, filmLocations,
-                extensionsToIgnore, musicLocations, tvShowsLocations,
+                ref extensionsToIgnore, musicLocations, tvShowsLocations,
                 videoExtensionsCommon, importer);
        
         
@@ -114,7 +115,7 @@ namespace MeediFier
         private static void ImportMoviesSeriesMusic
             (IEnumerable<string> combinedSceneTags, string[] videoExtensions,
             string[] audioExtensions, string pluginpath, string[] filmLocations,
-            string[] extensionsToIgnore, string[] musicLocations,
+            ref IList<string> extensionsToIgnore, string[] musicLocations,
             string[] tvShowsLocations, IEnumerable<string> videoExtensionsCommon, Importer importer)
         {
             ImportingEngineHelpers.BeginUpdatingSections();
@@ -172,7 +173,7 @@ namespace MeediFier
 
             MediaImportingEngineHelpers
                 .WriteNonMediaExtensionsToFile
-                (extensionsToIgnore, pluginpath);
+                (ref extensionsToIgnore, pluginpath);
 
 
             ImportingEngineHelpers.FinishUpdatingSections();

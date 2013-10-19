@@ -17,7 +17,7 @@ namespace MeediFier.MediaSnapshotEngine
         internal static bool ScanMediaDirectories
             (
             string[] mediaFolders, 
-            ref string[] extensionsToIgnore, 
+            ref IList<string> extensionsToIgnore, 
             string[] filmLocations, string[] tvShowsLocations,string[] musicLocations,
             string[] videoExtensions, string[] audioExtensions,
             IEnumerable<string> combinedSceneTags,
@@ -53,7 +53,7 @@ namespace MeediFier.MediaSnapshotEngine
             (IMLSection moviesSection, 
             IMLSection tvSection,
             IMLSection musicSection,
-            ref string[] extensionsToIgnore,
+            ref IList<string> extensionsToIgnore,
             string[] filmLocations, 
             string[] tvShowsLocations,
             string[] musicLocations,
@@ -268,7 +268,7 @@ namespace MeediFier.MediaSnapshotEngine
             IMLSection moviesSection,
             IMLSection tvSection,
             IMLSection musicSection,
-            ref string[] extensionsToIgnore, 
+            ref IList<string> extensionsToIgnore, 
             ref string[] filmLocations, 
             ref string[] tvShowsLocations, 
             ref string[] musicLocations,
