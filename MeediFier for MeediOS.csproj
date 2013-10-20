@@ -72,10 +72,6 @@
     <Reference Include="CustomProperties, Version=0.6.4.0, Culture=neutral, processorArchitecture=x86">
       <HintPath>M:\Program Files (x86)\MeediOS Berlin 7826\assemblies\CustomProperties.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\HtmlAgilityPack.1.4.6\lib\Net20\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>False</Private>
@@ -124,14 +120,10 @@
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\taglib-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="TVDBLibrary">
-      <HintPath>..\..\..\..\Assemblies\TVDBLibrary.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Compatibility\Compatibility.cs" />
     <Compile Include="Code\Diagnostics\InternetConnectionDiagnostic.cs" />
-    <Compile Include="Code\Downloaders\WebDataMiner.cs" />
     <Compile Include="Code\Helpers\FileServerChecker.cs" />
     <Compile Include="Code\Helpers\ImageResizer.cs" />
     <Compile Include="Code\Compatibility\meePopupProvider.cs" />
@@ -204,10 +196,23 @@
     <Compile Include="Code\Library Cleaners\MissingItemRemover.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\NfoFileParser.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\MovieDescriptorWriter.cs" />
-    <Compile Include="Code\Metadata Scrapers\XPathDataMiners.cs" />
+    <Compile Include="Code\Downloaders\Web Data Miners\XPathDataMiners.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBBanner.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBEpisode.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBLanguage.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBSeries.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBUpdate.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBBanner.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBDatabase.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBEpisode.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBLanguage.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBLib.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBSeries.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\TVDBUpdate.cs" />
+    <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\Utils.cs" />
     <Compile Include="Code\OSDb\OsDbConnector.cs" />
     <Compile Include="Code\OSDb\OSInterface.cs" />
-    <Compile Include="Code\Metadata Scrapers\RegEx Matchers\RegExMatchers.cs" />
+    <Compile Include="Code\Downloaders\Web Data Miners\RegExDataMiners.cs" />
     <Compile Include="Code\RSS Importer\RssNewsImporter.cs" />
     <Compile Include="Code\RSS Importer\RssReader.cs" />
     <Compile Include="Code\Settings\ImdbFilmDetailsIndividualChoices.cs" />
@@ -287,6 +292,34 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="ToolBox\HtmlAgilityPack\crc32.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\EncodingFoundException.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlAttribute.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlAttributeCollection.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlCmdLine.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlCommentNode.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlConsoleListener.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlDocument.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlElementFlag.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlEntity.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlNameTable.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlNode.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlNodeCollection.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlNodeNavigator.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlNodeType.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlParseError.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlParseErrorCode.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlTextNode.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlWeb.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\HtmlWebException.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\IOLibrary.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\MixedCodeDocument.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\MixedCodeDocumentCodeFragment.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\MixedCodeDocumentFragment.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\MixedCodeDocumentFragmentList.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\MixedCodeDocumentFragmentType.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\MixedCodeDocumentTextFragment.cs" />
+    <Compile Include="ToolBox\HtmlAgilityPack\NameValuePairList.cs" />
     <Compile Include="ToolBox\Utils\HtmlCleaners.cs" />
     <Compile Include="ToolBox\Utils\JSONparser.cs" />
     <Compile Include="ToolBox\Utils\StringProcessing.cs" />
@@ -392,6 +425,7 @@
     <None Include="Resources\MediaFairy.ico" />
     <None Include="Resources\show.png" />
     <None Include="Resources\hide.png" />
+    <None Include="ToolBox\HtmlAgilityPack\HtmlAgilityPack.snk" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Notes\ChangeLog.txt" />

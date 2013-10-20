@@ -105,7 +105,7 @@ namespace MeediFier
             #endregion
 
             if (properties["WantMediaInfoProp"] != null)
-                Settings.WantMediaInfo = (bool) properties["WantMediaInfoProp"];
+                Settings.MediaInfoIsEnabled = (bool) properties["WantMediaInfoProp"];
 
             #region Film Details
 

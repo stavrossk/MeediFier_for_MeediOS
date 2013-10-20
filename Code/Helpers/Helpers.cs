@@ -204,7 +204,7 @@ namespace MeediFier
         public static string CleanHtml(string dirtyHtml)
         {
 
-            string[] dirtyText = RegExMatchers.MatchExpressionReturnAllMatchesFirstGroup(dirtyHtml, "<.*?>");
+            string[] dirtyText = RegExDataMiners.MatchExpressionReturnAllMatchesFirstGroup(dirtyHtml, "<.*?>");
             if (dirtyText != null)
             {
 

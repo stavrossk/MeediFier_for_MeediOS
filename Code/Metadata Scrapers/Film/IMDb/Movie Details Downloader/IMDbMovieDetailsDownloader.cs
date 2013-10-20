@@ -134,21 +134,14 @@ namespace MeediFier.IMDb
             }
 
 
-            movie = ExtractDetailsFromMainPage
+            movie = MineFilmDetailsFromMainPage
                 (filmDetails, trimmedHtml, movie);
 
 
-            string creditsUrl = movieUrl + "fullcredits";
-            string longOverviewUrl = movieUrl + "plotsummary";
-            string goofUrl = movieUrl + "goofs";
-            string triviaUrl = movieUrl + "trivia";
-            string quotesUrl = movieUrl + "quotes";
-
 
             movie = IMDbMovieDetailsDownloaderHelpers
-                .ExtractDetailsFromAdditionalPages
-                (showProgress, triviaUrl, goofUrl, quotesUrl,
-                 longOverviewUrl, filmDetails, movie, creditsUrl);
+                .MineFilmDetailsFromAdditionalPages
+                (showProgress, filmDetails, movie, movieUrl);
 
 
             return movie;
@@ -160,7 +153,7 @@ namespace MeediFier.IMDb
 
 
 
-        private static IMDbMovie ExtractDetailsFromMainPage
+        private static IMDbMovie MineFilmDetailsFromMainPage
             (IMDbFilmDetails filmDetails,
              string trimmedHtml, IMDbMovie movie )
         {
@@ -195,8 +188,8 @@ namespace MeediFier.IMDb
             IMDbFilmDetails.GetStudio(movie, trimmedHtml, imDbRegEx);
 
 
-            IMDbFilmDetails.GetOverview(movie, trimmedHtml, imDbRegEx);
-
+            //IMDbFilmDetails.MineOverviewUsingRegex(movie, trimmedHtml, imDbRegEx);
+            IMDbFilmDetails.MineOverviewUsingXpath(movie, trimmedHtml);
 
             //filmDetails.MineDirectorUsingRegex(ref movie, trimmedHtml);
             filmDetails.MineDirectorUsingXpath(ref movie, trimmedHtml);

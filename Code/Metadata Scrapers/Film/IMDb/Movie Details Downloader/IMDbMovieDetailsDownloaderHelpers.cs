@@ -1,26 +1,24 @@
 ﻿using System;
 using System.Net;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using System.Xml.XPath;
 using MeediFier.Code.Metadata_Scrapers;
-using MeediFier.Code.RegEx_Matchers;
 using MeediFier.ImportingEngine;
-using MeediFier.ToolBox.Utils;
-using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace MeediFier.IMDb
 {
 	internal class IMDbMovieDetailsDownloaderHelpers
 	{
+
+
 		internal static readonly string BaseTitleUrl = "http://www.imdb.com/title/";
 
-		internal static IMDbMovie ExtractDetailsFromAdditionalPages(bool showProgress, string triviaUrl, string goofUrl,
-																	string quotesUrl, string longOverviewUrl,
-																	IMDbFilmDetails filmDetails, IMDbMovie movie,
-																	string creditsUrl)
+
+
+		internal static IMDbMovie MineFilmDetailsFromAdditionalPages
+			(bool showProgress, IMDbFilmDetails filmDetails,
+             IMDbMovie movie, string movieUrl)
 		{
 
 
@@ -28,23 +26,42 @@ namespace MeediFier.IMDb
 				return movie;
 
 
-			MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Getting actors...");
-			filmDetails.GetActors(ref movie, creditsUrl);
 
-			MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Getting plot summary...");
-			filmDetails.GetLongOverview(ref movie, longOverviewUrl);
 
-			MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Getting trivia...");
+            string creditsUrl = movieUrl + "fullcredits";
+            string longOverviewUrl = movieUrl + "plotsummary";
+            string goofUrl = movieUrl + "goofs";
+            string triviaUrl = movieUrl + "trivia";
+            string quotesUrl = movieUrl + "quotes";
 
-			filmDetails.GetTrivia(ref movie, triviaUrl);
 
-			MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Getting goofs...");
+			MainImportingEngine.ThisProgress.Progress
+                (MainImportingEngine.CurrentProgress, "Getting actors...");
+			
+            filmDetails.GetActors(ref movie, creditsUrl);
 
-			filmDetails.GetGoofs(ref movie, goofUrl);
 
-			MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Getting quotes...");
+			MainImportingEngine.ThisProgress.Progress
+                (MainImportingEngine.CurrentProgress, "Getting plot summary...");
+			
+            filmDetails.GetLongOverview(ref movie, longOverviewUrl);
 
-			filmDetails.GetQuotes(ref movie, quotesUrl);
+
+
+			//MainImportingEngine.ThisProgress.Progress
+			//    (MainImportingEngine.CurrentProgress, "Getting trivia...");
+
+			//filmDetails.GetTrivia(ref movie, triviaUrl);
+
+			//MainImportingEngine.ThisProgress.Progress
+			//    (MainImportingEngine.CurrentProgress, "Getting goofs...");
+
+			//filmDetails.GetGoofs(ref movie, goofUrl);
+
+			//MainImportingEngine.ThisProgress.Progress
+			//    (MainImportingEngine.CurrentProgress, "Getting quotes...");
+
+			//filmDetails.GetQuotes(ref movie, quotesUrl);
 
 			//TODO: Get these additional IMDb film details
 
@@ -138,7 +155,7 @@ namespace MeediFier.IMDb
 				html = webClient.DownloadString(movieUrl);
 
 
-			    html = html.Normalize();
+				html = html.Normalize();
 
 			}
 			catch

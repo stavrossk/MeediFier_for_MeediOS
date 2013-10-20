@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using MediaInfoLib;
+using MeediFier.Code.MediaInfo;
 using MeediFier.Code.Settings;
 using MeediFier.ImportingEngine;
 using MeediFier.MediaAnalyzer;

@@ -306,7 +306,7 @@ namespace MeediFier.ImporterPropertiesGroups
                 //set the tool tip
                 prop.HelpText =
                     "Modern themes for Meedio frontend have the capability to graphically display digital media information for films or series,\r for example the video/audio format or quality.\r Would you like the plugin to automatically import this information?";
-                prop.DefaultValue = Settings.WantMediaInfo;
+                prop.DefaultValue = Settings.MediaInfoIsEnabled;
                 prop.DataType = "bool";
                 return true;
             }

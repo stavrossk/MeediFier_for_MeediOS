@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading;
 using MeediFier.Code.Downloaders;
+using MeediFier.Code.RegEx_Matchers;
 using MeediOS;
 
 namespace MeediFier.Code.Metadata_Scrapers.Film.IMDb.Title_Matching_Engine
@@ -143,7 +144,7 @@ namespace MeediFier.Code.Metadata_Scrapers.Film.IMDb.Title_Matching_Engine
             watch.Start();
 
 
-            string imdbid = WebDataMiner.MineWebDataReturnFirstMatch
+            string imdbid = RegExDataMiners.MineWebDataReturnFirstMatch
                 (searchString,
                  @"""imdburl"":""http:\\/\\/www.imdb.com\\/title\\/(?<IMDbID>.*?)\\/""");
 
@@ -177,7 +178,7 @@ namespace MeediFier.Code.Metadata_Scrapers.Film.IMDb.Title_Matching_Engine
                  "IMDb identification by Title " +
                  "(external engine) was succesful!", item);
 
-            Thread.Sleep(2000);
+            Thread.Sleep(500);
         }
 
 

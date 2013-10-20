@@ -95,7 +95,7 @@ namespace MeediFier
                 (?<EpisodeName>.*)\.
                 (?<FileType>...?)";
 
-            string[] results = RegExMatchers.MatchExpressionReturnFirstMatchAllGroups(itemName, regEx );
+            string[] results = RegExDataMiners.MatchExpressionReturnFirstMatchAllGroups(itemName, regEx );
 
             if (!String.IsNullOrEmpty(results[2]))
                 item.Tags["SeriesName"] = results[2];

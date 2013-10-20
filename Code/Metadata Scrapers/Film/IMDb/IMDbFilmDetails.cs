@@ -525,7 +525,54 @@ namespace MeediFier.IMDb
         }
 
 
-        internal static void GetOverview
+
+
+
+
+        internal static void MineOverviewUsingXpath
+            (IMDbMovie movie, string trimmedHTML)
+        {
+
+
+            if (!ImdbFilmDetailsIndividualChoices
+                .GetIMDbMovieShortOverview)
+                return;
+
+            Debugger.LogMessageToFile
+                ("[IMDb film details downloader]" +
+                 " Extracting Short Overview...");
+
+
+            const string filmOverviewXpathExpression
+                = @"//p[@itemprop='description']";
+
+            movie.OverviewShort = Code.Metadata_Scrapers.XPathDataMiners
+                .MatchXpathExpressionReturnFirstMatch
+                (trimmedHTML, filmOverviewXpathExpression).Trim();
+
+
+
+            Debugger.LogMessageToFile
+                ("IMDb returned Overview: " + movie.OverviewShort);
+
+            //MessageBox.Show(movie.OverviewShort);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        internal static void MineOverviewUsingRegex
             (IMDbMovie movie,
             string trimmedHTML,
             IMDbRegEx imDbRegEx )
@@ -700,7 +747,7 @@ namespace MeediFier.IMDb
             MessageBox.Show("fim prod: " + filmProductionYear);
 
             filmProductionYear =
-                Code.RegEx_Matchers.RegExMatchers
+                Code.RegEx_Matchers.RegExDataMiners
                     .MatchRegexExpressionReturnFirstMatchFirstGroup
                     (filmProductionYear, @"</strong>\s*\((?<Title>.*)\)");
 

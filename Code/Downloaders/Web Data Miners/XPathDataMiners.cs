@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using MeediFier.Code.RegEx_Matchers;
+﻿using MeediFier.Code.RegEx_Matchers;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 
@@ -56,7 +55,7 @@ namespace MeediFier.Code.Metadata_Scrapers
 
 			
 
-			originalTitle = RegExMatchers.MatchRegexExpressionReturnFirstMatchFirstGroup
+			originalTitle = RegExDataMiners.MatchRegexExpressionReturnFirstMatchFirstGroup
 				(originalTitle, "\"(?<Title>.*?)\"");
 
 

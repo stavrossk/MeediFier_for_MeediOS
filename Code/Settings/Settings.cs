@@ -59,7 +59,7 @@ namespace MeediFier
         public static bool EnableVideoHasher = true;
 
 
-        public static bool WantMediaInfo = true;
+        public static bool MediaInfoIsEnabled = true;
 
 
         public static bool FilmDescriptorsAreEnabled = true;
