@@ -67,7 +67,7 @@ namespace MeediFier.Code.Media_File_Importers.Media_Importing_Engine
         internal static string[] CacheMusicSection()
         {
 
-            int[] itemIDs = new int[] {};
+            var itemIDs = new int[] {};
 
             Helpers.UpdateProgress("Importing Media Files..", "Caching Music Section...",  null);
 

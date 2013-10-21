@@ -353,15 +353,27 @@ namespace MeediFier
             if (properties["EnableNfoParsingProp"] != null)
                 Settings.EnableNfoParsing = (bool) properties["EnableNfoParsingProp"];
             if (properties["WantMatchingProp"] != null)
-                Settings.EnableNameMatching = (bool) properties["WantMatchingProp"];
+                Settings.FilmTitleMatchingEnginesAreEnabled = (bool) properties["WantMatchingProp"];
 
 
 
             if (properties["PrimaryFilmIdentificationMethodProp"] != null)
                 Settings.PrimaryFilmIdentificationMethod =
                     (string) properties["PrimaryFilmIdentificationMethodProp"];
+
+
+
+
             if (properties["PrimaryFilmTitleMatchingEngineProp"] != null)
-                Settings.PrimaryFilmTitleMatchingEngine = (string) properties["PrimaryFilmTitleMatchingEngineProp"];
+                Settings.PrimaryFilmTitleMatchingEngine
+                    = (string)properties["PrimaryFilmTitleMatchingEngineProp"];
+
+
+
+
+            if (properties["PrimaryImdbFilmTitleMatchingEngineProp"] != null)
+                Settings.PrimaryIMDbFilmTitleMatchingEngine 
+                    = (string) properties["PrimaryImdbFilmTitleMatchingEngineProp"];
 
 
 

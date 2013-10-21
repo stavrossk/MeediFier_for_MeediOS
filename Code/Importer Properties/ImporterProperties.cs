@@ -228,27 +228,31 @@ namespace MeediFier
                 #region Video Identifier
 
 
-                #region Video identifying methods
+
+
                 if (index == counter++)
                 {
                     //set the internal name
-                    prop.Name = "WantHashingProp";
+                    prop.Name = "PrimaryFilmIdentificationMethodProp";
                     //set name shown to user
-                    prop.GroupCaption = "                      Video Identifier Settings";
-                    prop.GroupName = "VideoIdentifier";
-                    prop.Caption = "Enable video fingerprint identifier? ";
+                    prop.Caption = "Primary film identification method: ";
                     prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    prop.GroupName = "VideoIdentifier";
                     //set the tool tip
-                    prop.HelpText = "Video fingerprint identifying is the method MediaFairy mainly uses in order to identify your films." + Environment.NewLine +
-                                    "The Fingerprint Identifying mechanism computes a unique number (fingerprint) for each of your films" + Environment.NewLine + 
-                                    "and then uses the available databases to match this fingerprint with the film's unique id (IMDb ID)." + Environment.NewLine +
-                                    "When a match is not found using this fingerprint, by default MediaFairy will switch to the IMDb Title matching method below. ";
-                    prop.DefaultValue = Settings.EnableVideoHasher;
-                    prop.DataType = "bool";
-                    prop.Dependencies = "False:HIDE PrimaryVideoFingerprintMatchingSourceProp" +
-                                        ";True:SHOW PrimaryVideoFingerprintMatchingSourceProp";
+                    prop.HelpText = "Please choose the order of the film identification methods." + Environment.NewLine +
+                                    "When/if the primary method of identification fails, MediaFairy will resort to using the secondary method instead.";
+                    prop.DefaultValue = Settings.PrimaryFilmIdentificationMethod;
+                    prop.DataType = "string";
+
+                    twochoices[0] = "by video fingerprint";
+                    twochoices[1] = "by video title";
+                    prop.Choices = twochoices;
+                    prop.CanTypeChoices = false;
                     return true;
                 }
+
+
+
 
                 if (index == counter++)
                 {
@@ -271,6 +275,131 @@ namespace MeediFier
 
                     return true;
                 }
+
+
+
+
+
+
+                #region IMDb Title matching engines priority
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "PrimaryFilmTitleMatchingEngineProp";
+                    //set name shown to user
+                    prop.Caption = "Primary film title matching engine: ";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    prop.GroupName = "VideoIdentifier";
+                    //set the tool tip
+
+                    prop.HelpText = "Please choose the priority of film Title matching engines" +
+                                    " MeediFier should use when identifying your films by Title.";
+
+                    prop.DefaultValue = Settings.PrimaryFilmTitleMatchingEngine;
+
+                    prop.DataType = "string";
+
+                    twochoices[0] = "TMDb";
+
+                    twochoices[1] = "IMDb";
+
+                    prop.Choices = twochoices;
+
+                    prop.CanTypeChoices = false;
+
+                    return true;
+                }
+                #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+                #region IMDb Title matching engines priority
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "PrimaryImdbFilmTitleMatchingEngineProp";
+                    //set name shown to user
+                    prop.Caption = "Primary IMDb Title matching engine: ";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    prop.GroupName = "VideoIdentifier";
+                    //set the tool tip
+                    prop.HelpText = "Please choose the priority of IMDb Title matching engines MediaFairy should use when identifying your films by Title." + Environment.NewLine +
+                                    "While the internal engine allows you to choose from multiple IMDb results," + Environment.NewLine +
+                                    "the external (web-based) engine will always choose the best match automatically.";
+                    prop.DefaultValue = Settings.PrimaryIMDbFilmTitleMatchingEngine;
+                    prop.DataType = "string";
+
+                    twochoices[0] = "Internal";
+                    twochoices[1] = "External (web-based)";
+                    prop.Choices = twochoices;
+                    prop.CanTypeChoices = false;
+                    return true;
+                }
+                #endregion
+
+
+
+
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "AssistModeProp";
+                    //set name shown to user
+                    prop.Caption = "IMDb film title matching assistance: ";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    prop.GroupName = "VideoIdentifier";
+                    //set the tool tip
+                    prop.HelpText = "Please choose the Film Matching Assist mode." + Environment.NewLine +
+                                    "This setting defines in which case you 'll be asked to select the correct film from a list of possible IMDb matches." + Environment.NewLine +
+                                    "Leave this setting to it's default for unsupervised operation (but with a small probability for incorrect matches when identifying by fingerprint is not possible)  ?";
+                    prop.DefaultValue = Settings.AssistType;
+                    prop.DataType = "string";
+
+                    fourchoices[0] = "When no exact match found";
+                    fourchoices[1] = "Always";
+                    fourchoices[2] = "Never";
+                    fourchoices[3] = "Skip identifying unknown films";
+                    prop.Choices = fourchoices;
+                    prop.CanTypeChoices = false;
+                    return true;
+                }
+
+
+
+
+
+
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "WantHashingProp";
+                    //set name shown to user
+                    prop.GroupCaption = "                      Video Identifier Settings";
+                    prop.GroupName = "VideoIdentifier";
+                    prop.Caption = "Enable video fingerprint identifier? ";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    //set the tool tip
+                    prop.HelpText = "Video fingerprint identifying is the method MediaFairy mainly uses in order to identify your films." + Environment.NewLine +
+                                    "The Fingerprint Identifying mechanism computes a unique number (fingerprint) for each of your films" + Environment.NewLine + 
+                                    "and then uses the available databases to match this fingerprint with the film's unique id (IMDb ID)." + Environment.NewLine +
+                                    "When a match is not found using this fingerprint, by default MediaFairy will switch to the IMDb Title matching method below. ";
+                    prop.DefaultValue = Settings.EnableVideoHasher;
+                    prop.DataType = "bool";
+                    prop.Dependencies = "False:HIDE PrimaryVideoFingerprintMatchingSourceProp" +
+                                        ";True:SHOW PrimaryVideoFingerprintMatchingSourceProp";
+                    return true;
+                }
+
+
 
 
 
@@ -311,63 +440,20 @@ namespace MeediFier
                                     "The Title matching method will use the film information" + Environment.NewLine +
                                     "already provided in 'name', 'Title' and 'Year' library fields" + Environment.NewLine + 
                                     "to recognize a film and download it's related information. ";
-                    prop.DefaultValue = Settings.EnableNameMatching;
+                    prop.DefaultValue = Settings.FilmTitleMatchingEnginesAreEnabled;
                     prop.DataType = "bool";
-                    prop.Dependencies = "False:HIDE PrimaryFilmTitleMatchingEngineProp,AssistModeProp,DurationMatchingProp" +
-                                        ";True:SHOW PrimaryFilmTitleMatchingEngineProp,AssistModeProp,DurationMatchingProp";
+                    prop.Dependencies = "False:HIDE PrimaryImdbFilmTitleMatchingEngineProp,AssistModeProp,DurationMatchingProp" +
+                                        ";True:SHOW PrimaryImdbFilmTitleMatchingEngineProp,AssistModeProp,DurationMatchingProp";
 
                     return true;
                 }
 
 
-                #region IMDb Title matching engines priority
-                if (index == counter++)
-                {
-                    //set the internal name
-                    prop.Name = "PrimaryFilmTitleMatchingEngineProp";
-                    //set name shown to user
-                    prop.Caption = "Primary IMDb Title matching engine: ";
-                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
-                    prop.GroupName = "VideoIdentifier";
-                    //set the tool tip
-                    prop.HelpText = "Please choose the priority of IMDb Title matching engines MediaFairy should use when identifying your films by Title." + Environment.NewLine +
-                                    "While the internal engine allows you to choose from multiple IMDb results," + Environment.NewLine + 
-                                    "the external (web-based) engine will always choose the best match automatically.";
-                    prop.DefaultValue = Settings.PrimaryFilmTitleMatchingEngine;
-                    prop.DataType = "string";
-
-                    twochoices[0] = "Internal";
-                    twochoices[1] = "External (web-based)";
-                    prop.Choices = twochoices;
-                    prop.CanTypeChoices = false;
-                    return true;
-                }
-                #endregion
 
 
-                if (index == counter++)
-                {
-                    //set the internal name
-                    prop.Name = "AssistModeProp";
-                    //set name shown to user
-                    prop.Caption = "When to ask for video matching assistance? ";
-                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
-                    prop.GroupName = "VideoIdentifier";
-                    //set the tool tip
-                    prop.HelpText = "Please choose the Film Matching Assist mode." + Environment.NewLine + 
-                                    "This setting defines in which case you 'll be asked to select the correct film from a list of possible IMDb matches." + Environment.NewLine + 
-                                    "Leave this setting to it's default for unsupervised operation (but with a small probability for incorrect matches when identifying by fingerprint is not possible)  ?";
-                    prop.DefaultValue = Settings.AssistType;
-                    prop.DataType = "string";
 
-                    fourchoices[0] = "When no exact match found";
-                    fourchoices[1] = "Always";
-                    fourchoices[2] = "Never";
-                    fourchoices[3] = "Skip identifying unknown films";
-                    prop.Choices = fourchoices;
-                    prop.CanTypeChoices = false;
-                    return true;
-                }
+
+
 
                 if (index == counter++)
                 {
@@ -385,30 +471,6 @@ namespace MeediFier
                     return true;
                 }
                 #endregion
-
-
-                #endregion
-
-                if (index == counter++)
-                {
-                    //set the internal name
-                    prop.Name = "PrimaryFilmIdentificationMethodProp";
-                    //set name shown to user
-                    prop.Caption = "Primary film identification method: ";
-                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
-                    prop.GroupName = "VideoIdentifier";
-                    //set the tool tip
-                    prop.HelpText = "Please choose the order of the film identification methods." + Environment.NewLine +
-                                    "When/if the primary method of identification fails, MediaFairy will resort to using the secondary method instead.";
-                    prop.DefaultValue = Settings.PrimaryFilmIdentificationMethod;
-                    prop.DataType = "string";
-
-                    twochoices[0] = "by video fingerprint";
-                    twochoices[1] = "by video title";
-                    prop.Choices = twochoices;
-                    prop.CanTypeChoices = false;
-                    return true;
-                }
 
                 #endregion
 

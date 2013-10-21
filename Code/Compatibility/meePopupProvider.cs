@@ -72,8 +72,6 @@ namespace MeediFier
             #endregion
 
             section.EndUpdate();
-            return;
-
         } //endof function
 
     } //endof class

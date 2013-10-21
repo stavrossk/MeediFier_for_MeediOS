@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeediFier for MeediOS", "MeediFier for MeediOS.csproj", "{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "..\..\Home Theater\MeediOS\Current\TMDbLib\TestApplication\TestApplication.csproj", "{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMDbLib", "..\..\Home Theater\MeediOS\Current\TMDbLib\TMDbLib\TMDbLib.csproj", "{C0006F17-212A-474F-983E-7DA2F91E0233}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,30 @@ Global
 		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.MeediOS_Release|Any CPU.Build.0 = MeediOS_Release|Any CPU
 		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5675E0B-6EB1-4A5B-A563-8519B1BBA22B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Meedio_Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Meedio_Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Meedio_Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Meedio_Release|Any CPU.Build.0 = Release|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.MeediOS_Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.MeediOS_Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.MeediOS_Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.MeediOS_Release|Any CPU.Build.0 = Release|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2324DA0-C17D-42B1-BABF-7699E40DFEFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Meedio_Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Meedio_Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Meedio_Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Meedio_Release|Any CPU.Build.0 = Release|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.MeediOS_Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.MeediOS_Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.MeediOS_Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.MeediOS_Release|Any CPU.Build.0 = Release|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0006F17-212A-474F-983E-7DA2F91E0233}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

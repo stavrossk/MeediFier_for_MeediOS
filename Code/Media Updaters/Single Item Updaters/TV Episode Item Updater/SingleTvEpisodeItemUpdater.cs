@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using MeediFier.Code;
+using MeediFier.Code.Diagnostics;
 using MeediFier.ImportingEngine;
 using MeediFier.SingleItem_Updaters;
 using MeediOS;
@@ -65,7 +66,7 @@ namespace MeediFier.SingleItemUpdaters
 
 
 
-                FileServerChecker.CheckFileServer
+                FileServerDiagnostic.CheckFileServer
                     (Settings.WantFileserverDiagnostics,
                     location, ref isUNC, ref fileServerChecked,
                     root.FullName, ref fileServerIsOnline);

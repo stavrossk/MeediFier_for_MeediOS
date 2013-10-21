@@ -191,7 +191,7 @@ namespace MeediFier
         public static bool UseFirst;
         public static bool UseLatest;
         public static bool UseMostPopular = true;
-        public static bool EnableNameMatching = true;
+        public static bool FilmTitleMatchingEnginesAreEnabled = true;
 
         public static bool NotListed;
         public static bool DeleteItem;
@@ -285,7 +285,9 @@ namespace MeediFier
 
 
         public static bool TMDbPostersEnabled = true;
-        public static bool IMDbPostersEnabled = true;
+
+        public static bool IMDbPostersEnabled = false;
+        
         public static bool ImpAwardsPostersEnabled;
 
 
@@ -308,7 +310,9 @@ namespace MeediFier
         public static bool NetFlixAwardsEnabled = true;
         #endregion
 
-        public static string TMDbApiKey = "1fbf47739c264837f6b73b6431e92ae0";
+        //public static string TMDbApiKey = "1fbf47739c264837f6b73b6431e92ae0";
+
+        public static string TMDbApiKey = "c2c73ebd1e25cbc29cf61158c04ad78a";
 
         // ReSharper disable InconsistentNaming
         public static bool IMDbIsOnline = true;
@@ -391,8 +395,14 @@ namespace MeediFier
 
 
         public static string PrimaryFilmIdentificationMethod = "by video fingerprint";
-        public static string PrimaryFilmTitleMatchingEngine = "Internal";
-        public static string PrimaryVideoFingerprintMatchingSource = "TMDb";
+
+        public static string PrimaryFilmTitleMatchingEngine = "TMDb";
+
+        public static string PrimaryIMDbFilmTitleMatchingEngine = "Internal";
+        
+
+
+        public static string PrimaryVideoFingerprintMatchingSource = "OSDb";
         
         #endregion
 

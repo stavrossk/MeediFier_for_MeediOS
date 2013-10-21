@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using MeediFier.Code.Diagnostics;
+using MeediFier.Code.Metadata_Scrapers.Film.Details.TMDb;
 using MeediFier.IMDb;
 using MeediFier.ImportingEngine;
 using MeediOS;
@@ -137,7 +139,7 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
             }
 
 
-            FileServerChecker.CheckFileServer
+            FileServerDiagnostic.CheckFileServer
                 (MeediFier.Settings.WantFileserverDiagnostics,
                  location, ref isUNC, ref fileServerChecked,
                  root.FullName, ref fileServerIsOnline);
@@ -253,7 +255,7 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
             //if (Helpers.UserCancels(MainImportingEngine.SpecialStatus, Item))
             //    return false;
 
-            TheMovieDb.DownloadFilmDetailsFromTMDb(item);
+            TMDbFilmDetailsMiner.DownloadFilmDetailsFromTMDb(item);
 
             return !Helpers.UserCancels
                         (MainImportingEngine.SpecialStatus, item);

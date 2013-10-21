@@ -39,11 +39,25 @@ namespace MeediFier.Code.User_Interface
             #region ask user to select desired image
             if (imageUrls.Count > 1 && MeediFier.Settings.AlwaysPromptForImages)
             {
-                Helpers.UpdateProgress("Updating Films Section", "Waiting for " + imageType +  " selection...", item);
-                StatusForm.statusForm.ConfirmImageCheckBox.Visible = false;
-                StatusForm.statusForm.backdropSelectorGroupbox.Visible = true;
-                StatusForm.statusForm.SelectBackropDialogResult = DialogResult.Cancel;
-                StatusForm.statusForm.backdropSelectorLabe.Text = Resources.ImageSelectionEngine_UserSelectsImage_displaying_ + imageType + " 1 of " + Convert.ToString(imageUrls.Count) + "";
+
+                Helpers.UpdateProgress
+                    ("Updating Films Section", 
+                     "Waiting for " + imageType +  " selection...", item);
+                
+                StatusForm.statusForm
+                    .ConfirmImageCheckBox.Visible = false;
+                
+                StatusForm.statusForm
+                    .backdropSelectorGroupbox.Visible = true;
+                
+                StatusForm.statusForm
+                    .SelectBackropDialogResult = DialogResult.Cancel;
+                
+                StatusForm.statusForm
+                    .backdropSelectorLabe.Text 
+                    = Resources.ImageSelectionEngine_UserSelectsImage_displaying_ 
+                    + imageType + " 1 of " 
+                    + Convert.ToString(imageUrls.Count) + "";
 
 
                 #region Preview first image

@@ -1,4 +1,6 @@
-﻿using MeediFier.Code.RegEx_Matchers;
+﻿using System.Collections.Generic;
+using MeediFier.Code.RegEx_Matchers;
+using TMDbLib.Objects.Lists;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 
@@ -31,6 +33,37 @@ namespace MeediFier.Code.Metadata_Scrapers
 
 		}
 
+
+
+
+        internal static string[] MatchXpathExpressionReturnAllMatches
+            (string html, string xPathExpression)
+        {
+
+
+            var doc = new HtmlDocument();
+
+            doc.LoadHtml(html);
+
+            HtmlAgilityPack.HtmlNodeCollection htmlNodesCollection
+                = doc.DocumentNode.SelectNodes
+                    (xPathExpression);
+
+            var matches = new List<string>();
+
+            foreach (var htmlNode in htmlNodesCollection)
+            {
+                matches.Add(htmlNode.InnerText);
+
+            }
+
+
+
+
+
+            return matches.ToArray();
+
+        }
 
 
 

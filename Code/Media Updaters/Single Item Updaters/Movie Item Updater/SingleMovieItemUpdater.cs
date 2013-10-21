@@ -326,11 +326,11 @@ namespace MeediFier.SingleItemUpdaters
                             return false;
 
 
-                        MovieDescriptorWriter
-                            .WriteMovieDescriptor
-                            (item, itemTitle, imdbid, 
-                            parent.FullName,
-                            fileServerIsOnline, isUNC);
+                        //MovieDescriptorWriter
+                        //    .WriteMovieDescriptor
+                        //    (item, itemTitle, imdbid, 
+                        //    parent.FullName,
+                        //    fileServerIsOnline, isUNC);
 
 
 

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MeediFier</RootNamespace>
     <AssemblyName>MeediFier</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -100,6 +100,10 @@
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MetaDataFoldersAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=104.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\RestSharp.104.3.1-beta\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -120,11 +124,14 @@
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\taglib-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TMDbLib, Version=0.7.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\TMDbLib.0.7.6\lib\net40\TMDbLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\Compatibility\Compatibility.cs" />
+    <Compile Include="Code\Diagnostics\FileServerDiagnostic.cs" />
     <Compile Include="Code\Diagnostics\InternetConnectionDiagnostic.cs" />
-    <Compile Include="Code\Helpers\FileServerChecker.cs" />
     <Compile Include="Code\Helpers\ImageResizer.cs" />
     <Compile Include="Code\Compatibility\meePopupProvider.cs" />
     <Compile Include="Code\Helpers\ImageFileConstructor.cs" />
@@ -135,15 +142,17 @@
     <Compile Include="Code\Importer Properties\MediaOrganizersPropertiesGetter.cs" />
     <Compile Include="Code\Media File Importers\Media Analyzer\MediaExtensionDictionaryMatcher.cs" />
     <Compile Include="Code\Media File Importers\Media Importing Engine\MediaSectionCacher.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\TMDb\TMDbTitleMatchingEngine.cs" />
     <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemChainLinker.cs" />
     <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemProccessSigner.cs" />
     <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemSecondaryUpdater.cs" />
     <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\FilmItemUpdaterHelpers.cs" />
     <Compile Include="Code\Media Updaters\Single Item Updaters\Movie Item Updater\MultipartFilmLibraryItemDetector.cs" />
-    <Compile Include="Code\Metadata Scrapers\Cover Art\FilmCoverArtDownloadingEngine.cs" />
-    <Compile Include="Code\Metadata Scrapers\Cover Art\IMDbCoverArtScraper.cs" />
-    <Compile Include="Code\Metadata Scrapers\Backdrops\TheMovieDbFilmBackdropDownloader.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Movie Details Downloader\IMDbMovieDetailsDownloaderHelpers.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Cover Art\FilmCoverArtDownloadingEngine.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Cover Art\IMDbCoverArtScraper.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Backdrops\TMDb\TMDbFilmBackdropDownloader.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Cover Art\TMDbFilmCoverArtScraper.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbMovieDetailsDownloaderHelpers.cs" />
     <Compile Include="Code\Importing Engine\ImporterPropertiesAgents.cs" />
     <Compile Include="Code\Media File Importers\Media Importing Engine\ExistingMediaItemSeachEngine.cs" />
     <Compile Include="Code\Media Updaters\Media Section Updaters\Movie Section Updater\MoviesSectionUpdater.cs" />
@@ -160,17 +169,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Code\MediaInfo\MediaInfonrmation.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbOperations.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\TMDb\TMDbFilmDetailsMiner.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\IMDbOperations.cs" />
     <Compile Include="Code\Downloaders\Downloaders.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Searching engines\IMDB Conventional Film Search Engine\IMDbConventionalFilmSearchEngineHelpers.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\ExactMatchDetector.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\IMDbTitleIdentifierExternal.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\IMDbTitleMatchingEngine.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Searching engines\IMDB Conventional Film Search Engine\IMDbConventionalFilmSearchEngine.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\TitleMatchingEngineHelpers.cs" />
-    <Compile Include="Code\Metadata Scrapers\Cover Art\ImpAwardsSearch.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Searching engines\IMDb\IMDB Conventional Film Search Engine\IMDbConventionalFilmSearchEngineHelpers.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\ExactMatchDetector.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\External\IMDbTitleIdentifierExternal.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\IMDbTitleMatchingEngine.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Searching engines\IMDb\IMDB Conventional Film Search Engine\IMDbConventionalFilmSearchEngine.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\IMDbTitleMatchingEngineInternal.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\TitleMatchingEngineHelpers.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Cover Art\ImpAwardsFilmCoverArtDownloader.cs" />
     <Compile Include="Code\Importer Properties\ConfigurationMode.cs" />
     <Compile Include="Code\Importer Properties\MediaImporters.cs" />
     <Compile Include="Code\Importing Engine\MainImportingEngine.cs" />
@@ -194,8 +205,8 @@
     <Compile Include="Code\Media Updaters\MediaUpdaters.cs" />
     <Compile Include="Code\File Metadata Extractors\MovieFileMetadataExtractor.cs" />
     <Compile Include="Code\Library Cleaners\MissingItemRemover.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\NfoFileParser.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\MovieDescriptorWriter.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\NFO\NfoFileParser.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\Film Descriptors\MovieDescriptorWriter.cs" />
     <Compile Include="Code\Downloaders\Web Data Miners\XPathDataMiners.cs" />
     <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBBanner.cs" />
     <Compile Include="Code\Metadata Scrapers\TV\TVDbLibrary\ITVDBEpisode.cs" />
@@ -218,16 +229,16 @@
     <Compile Include="Code\Settings\ImdbFilmDetailsIndividualChoices.cs" />
     <Compile Include="Code\Settings\MediaImportersAndUpdatersCoreSettings.cs" />
     <Compile Include="Code\Settings\Settings.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\theMovieDb.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\theMovieDb.cs" />
     <Compile Include="Code\Metadata Scrapers\TV\TVDb\TVDbTvEpisodeDetailsDownloader.cs" />
     <Compile Include="Code\Metadata Scrapers\TV\TVDb\TVdbTvEpisodeDetailsDownloaderHelpers.cs" />
     <Compile Include="Code\Media Updaters\Media Section Updaters\Tv Section Updater\TvSeriesOperations.cs" />
     <Compile Include="Code\User Interface\ImageSelectionEngine.cs" />
     <Compile Include="Code\User Interface\UI.cs" />
     <Compile Include="Code\File Metadata Extractors\VideoFilenameCleaner.cs" />
-    <Compile Include="Code\Media Identifiers\Video Fingerprint Identifier\OSDbVideoFingeprintIdentifier.cs" />
-    <Compile Include="Code\Media Identifiers\Video Fingerprint Identifier\TMDbVideoFingerprintIdentifier.cs" />
-    <Compile Include="Code\Media Identifiers\Video Fingerprint Identifier\VideoFingerprintIdentifier.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Video Fingerprint Identifier\OSDbVideoFingeprintIdentifier.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Video Fingerprint Identifier\TMDbVideoFingerprintIdentifier.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Video Fingerprint Identifier\VideoFingerprintIdentifier.cs" />
     <Compile Include="Forms\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,21 +261,21 @@
     <Compile Include="Code\Helpers\Helpers.cs" />
     <Compile Include="Code\Helpers\Debugger.cs" />
     <Compile Include="Code\OSDb\OSOperations.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbMovie.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbMovieCollection.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbPerson.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbPersonCollection.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Interfaces\IIMDbSearchResult.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Searching engines\IMDb Advanced Film Search Engine\IMDbAdvancedFilmSearchEngine.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Movie Details Downloader\IMDbMovieDetailsDownloader.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbFilmDetails.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Movies\IMDbMovie.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Movies\IMDbMovieCollection.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\People\IMDbPeople.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\People\IMDbPerson.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbRegEx.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\IMDbLib\Movies\IMDbSearchResult.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\IMDb\Title Matching Engine\IMDbTitleIdentifier.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Interfaces\IIMDbMovie.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Interfaces\IIMDbMovieCollection.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Interfaces\IIMDbPerson.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Interfaces\IIMDbPersonCollection.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Interfaces\IIMDbSearchResult.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Searching engines\IMDb\IMDb Advanced Film Search Engine\IMDbAdvancedFilmSearchEngine.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbMovieDetailsDownloader.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbFilmDetails.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Movies\IMDbMovie.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Movies\IMDbMovieCollection.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\People\IMDbPeople.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\People\IMDbPerson.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\IMDbRegEx.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Movies\IMDbSearchResult.cs" />
+    <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\filmTitleMatchingEngine.cs" />
     <Compile Include="Code\Importer Properties\MediaSections.cs" />
     <Compile Include="Code\Importer.cs" />
     <Compile Include="Forms\InputBoxForm.cs">
@@ -274,7 +285,7 @@
     <Compile Include="Code\Importing Engine\MediaSectionsAllocator.cs" />
     <Compile Include="Code\Importer Properties\ImporterProperties.cs" />
     <Compile Include="Code\Importer Properties\PropertiesSetter.cs" />
-    <Compile Include="Code\Metadata Scrapers\Film\MovieDescriptorReader.cs" />
+    <Compile Include="Code\Metadata Scrapers\Film\Details\Film Descriptors\MovieDescriptorReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StatusForm.cs">
       <SubType>Form</SubType>
@@ -431,7 +442,6 @@
     <Content Include="Notes\ChangeLog.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Code\Metadata Scrapers\Film\IMDb\Details\" />
     <Folder Include="Code\Metadata Scrapers\Game\" />
     <Folder Include="Code\Metadata Scrapers\Music\" />
   </ItemGroup>
