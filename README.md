@@ -3,7 +3,7 @@ MeediFier for MeediOS
 
 **Copyright (C) 2008-2013 Skamagkis Stavros**
 
-### MeediFier - An intelligent Media Importing System for MeediOS.
+## MeediFier - An intelligent Media Importing System for MeediOS.
 
 
 
@@ -192,6 +192,7 @@ from [here](http://mediainfo.sourceforge.net/el/Download) the 64-bit version
 of MediaInfo.dll and copy it to the plugin's directory replacing it's original 32-bit version.
 
 
+###Documentation
 For detailed installation, configuration and usage instructions 
 please refer to the corresponding plugin's wiki pages on Google Code:
 
