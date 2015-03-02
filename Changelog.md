@@ -133,3 +133,37 @@
   Now the item processing decision will be made on the fly.
 
 + Improved and optimized code.
+
+
+###v0.7.5
++ The plugin's name is now changed to MeediFier for MeediOS.
+
++ Removed dependency to assembly JCUtils.dll.
+
++ Minor improvements and optimizations.
+
+
+
+###v0.7.6
++ Implemented new web data scraping engine. 
+Scraping of web metadata will now be much more accurate and far less sensitive to website changes.
+
+
+
+
+###v0.7.7
++ Removed dependency to assembly HtmlAgilityPack.dll
+
++ Removed dependency to assembly TVDbLibrary.dll
+
++ Minor improvements and optimizations.
+
+
+
+
+###v0.7.8
++ Implemented themoviedb.org film title matching engine. 
+This engine identifies a film by it's title using themoviedb.org.
+
++ You can now define the priority of the available
+film title matching engines and enable or disable them individually.
