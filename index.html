@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="MeediFier for MeediOS : Fully automated entertainment media importer and updater which aims to provide a complete solution for users of Meedio &amp; MeediOS home theater applications  to easily import and acquire metadata for their entertainment media collections. (c) 2008-2013 Skamagkis Stavros">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>MeediFier for MeediOS</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/stavrossk/MeediFier_for_MeediOS">View on GitHub</a>
+
+          <h1 id="project_title">MeediFier for MeediOS</h1>
+          <h2 id="project_tagline">Fully automated entertainment media importer and updater which aims to provide a complete solution for users of Meedio &amp; MeediOS home theater applications  to easily import and acquire metadata for their entertainment media collections. (c) 2008-2013 Skamagkis Stavros</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/stavrossk/MeediFier_for_MeediOS/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/stavrossk/MeediFier_for_MeediOS/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="meedifier---an-intelligent-media-importing-system-for-meedios" class="anchor" href="#meedifier---an-intelligent-media-importing-system-for-meedios" aria-hidden="true"><span class="octicon octicon-link"></span></a>MeediFier - An intelligent Media Importing System for MeediOS.</h3>
+
+<h3>
+<a id="summary" class="anchor" href="#summary" aria-hidden="true"><span class="octicon octicon-link"></span></a>Summary</h3>
+
+<p>MeediFier is a multi-purpose entertainment media importer and updater plugin
+which aims to provide a complete solution for Meedio and MeediOS users
+to easily import and acquire meta-information for their media collections.</p>
+
+<p>The plugin currently supports importing media files and downloading media information for:</p>
+
+<ul>
+<li>Movies</li>
+<li>tv series/tv shows</li>
+<li>Music</li>
+<li>RSS Feeds</li>
+</ul>
+
+<h3>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h3>
+
+<pre><code>Note: Information about basic concepts of media identification follows.
+Experienced users of home theater applications may safely skip this chapter.
+</code></pre>
+
+<p>An important feature of modern Home Theater applications is to be able
+to not only playback the  user's entertainment (video or music),
+but also present to the user key information about the media material in question
+and it's associated art in an attractive graphical interface,
+as well as provide advanced media organizing and searching capabilities.</p>
+
+<p>Depending on it's design, the frontend application and/or it's plugins
+  may acquire this information and art by looking up and downloding information
+  about the media product in question from online databases
+  like TheMovieDb.org, TvDb.com, and/or OpenSubtitles.org.</p>
+
+<p>Successfull execution of this task however highly depends on accurate
+  (and in some cases exact) naming of the user's media files.</p>
+
+<p>In most cases, adittional key information about the media product
+  can greatly aid the Metadata Downloader in uniquely recognizing the media material in question.</p>
+
+<p>Conventional media identification engines mainly rely on the media filenames
+  in order to successfully identify and download metadata for the user's media. 
+  This identification method usually requires strictly stuctured
+  directory and file naming conventions for the user's media collection.</p>
+
+<p>Additionally, extraction of this structure requires the definition
+  of special text filters such as Tag Masks and Regural Expressions.</p>
+
+<p>This is where MeediFier comes in to rectify these problems
+  by seamlessly integrating the following capabilities: </p>
+
+<h3>
+<a id="capabilities--features" class="anchor" href="#capabilities--features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Capabilities &amp; Features</h3>
+
+<h4>
+<a id="intelligent--adaptive-media-files-importer" class="anchor" href="#intelligent--adaptive-media-files-importer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Intelligent &amp; adaptive media files importer:</h4>
+
+<p>Compared to traditional file importing plugins (tag mask importers),
+MeediFier's built-in media files importer:</p>
+
+<ul>
+<li><p>Needs very minimal initial configuration (only needs to know the location of user's media collection on disk).</p></li>
+<li><p>Recognizes and imports only media files of interest within the specified root directories, ignoring non-media files or files which do not belong to the desired media type. (film, tv episode or music)</p></li>
+<li><p>The file importing algorithm works completely idependently from video/audio extensions ensuring that you 'll never have to specify any, and also that any media file which the system is able to playback will be imported regardless of it's file extension.  </p></li>
+<li><p>Distinguishes media types of interest inside directories which contain mixed content, eliminating the need of manual media collection organizing.</p></li>
+</ul>
+
+<h4>
+<a id="audio-tag-importer" class="anchor" href="#audio-tag-importer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Audio Tag importer:</h4>
+
+<ul>
+<li><p>Extracts the track information contained in the audio file's IDV3 tags and imports them in their respective library tags.</p></li>
+<li><p>Has the ability to embed downloaded information and/or album cover into the audio file's IDV3 tags.</p></li>
+</ul>
+
+<h4>
+<a id="media-format-information-importer" class="anchor" href="#media-format-information-importer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Media format Information importer:</h4>
+
+<ul>
+<li>Similarly to the popular MediaInfo plugin, this process will analyze your media files and import media information like video/audio formats and bitrate qualities. Most modern themes display this information graphically on the frontend's interface.</li>
+</ul>
+
+<h4>
+<a id="built-in-filenames-parser-and-cleaner" class="anchor" href="#built-in-filenames-parser-and-cleaner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Built-in filenames parser and cleaner:</h4>
+
+<p>Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of this sub-process is to detect the media material's title from the filesystem and extract adittional information about the material which will later help the online identifier to recognize and import details for the media product More specifically:</p>
+
+<ul>
+<li>Cleans the filenames of media files from release format tags, and extracts the media's actual title.</li>
+<li>Locates media identification information like a film's production year and IMDb id or a tv episode's number and season number. This crucial information then helps the built-in online details downloader to automatically identify the media file without requiring user assistance.</li>
+<li>Parses .nfo files existing in a film's or music album's directory and extracts required media identification information further increasing matching acurracy.</li>
+</ul>
+
+<h4>
+<a id="media-details-and-cover-art-downloader" class="anchor" href="#media-details-and-cover-art-downloader" aria-hidden="true"><span class="octicon octicon-link"></span></a>Media details and cover art downloader:</h4>
+
+<ul>
+<li><p>Matches the media file's unique hash or 'fingerprint' with online databases (OSdb and MusicIP) to identify films, tv episodes and music. Requires no previously existing information for the media file to recognize it and tremendously maximizes the identifier's acurracy and minimizes the need of identifying assistance from the user.</p></li>
+<li>
+<p>Downloads media information from multiple online databases:</p>
+
+<ul>
+<li>imdb.com, themoviedb.org and opensubtitles.org for films.</li>
+<li>thetvdb.com and imdb.com for tv series.</li>
+</ul>
+</li>
+<li>
+<p>Downloads cover art and frontend backdrops fully unattended from the following online sources: (switching between them as necessary)</p>
+
+<ul>
+<li>themoviedb.org, ImpAwards and IMDb for films.</li>
+<li>thetvdb.com for tv shows &amp; tv series.</li>
+</ul>
+</li>
+<li><p>Provides ability to disable unattended operation on the fly, letting you select your preferred cover image from the found images on all sources. </p></li>
+<li><p>Saves film description .xml files on sucessful identification. In case the user's Films media section is re-imported from scratch, the plugin will acquire the required information from these descriptors, skipping the online lookup and significantly decrease importing time.</p></li>
+</ul>
+
+<h4>
+<a id="automated-video-subtitles-downloader" class="anchor" href="#automated-video-subtitles-downloader" aria-hidden="true"><span class="octicon octicon-link"></span></a>Automated video subtitles downloader:</h4>
+
+<ul>
+<li><p>Downloads from OpenSubtitles.org synchronized subtitles for your films or tv episodes in your preferred language(s).</p></li>
+<li><p>The video fingerprint matching algorithm ensures that the subtitles will always be perfectly synchronized to the particular version of your film.</p></li>
+<li><p>Allows to specify an alternative language in case no subtitles are found for your primary language.</p></li>
+</ul>
+
+<h4>
+<a id="media-organizer" class="anchor" href="#media-organizer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Media Organizer:</h4>
+
+<ul>
+<li>Automatically sorts (renames and moves) identified media files to your specified locations for each media type according to your desired filesystem structure.</li>
+</ul>
+
+<h4>
+<a id="library-cleaner" class="anchor" href="#library-cleaner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Library Cleaner:</h4>
+
+<ul>
+<li><p>Automatically deletes library items which refer to non-existent (deleted) media files. The built-in network diagnostics will ensure that files residing on offline drives will not be accidentaly deleted.</p></li>
+<li><p>Optionally removes empty library section tags ensuring a cleaner media section and faster library accessing opearations.</p></li>
+<li><p>Scans and links together multiple video files which constitute a single film. This process ensures that those video files will be chained together even if a previously used file importer was unable to do so.</p></li>
+</ul>
+
+<h4>
+<a id="archive-extractor" class="anchor" href="#archive-extractor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Archive Extractor:</h4>
+
+<ul>
+<li>Automatically extracts compressed archives contained in the specified media locations and imports any media files of interest they contain. Optionally deletes extracted archives. Is also able to mantain a user-specified free space amount.</li>
+</ul>
+
+<h4>
+<a id="media-archiver" class="anchor" href="#media-archiver" aria-hidden="true"><span class="octicon octicon-link"></span></a>Media Archiver:</h4>
+
+<ul>
+<li>Optionally compresses and stores in your specified location a compressed archive for each already watched film, (containing the entire film's directory) for disk space and archiving purposes. Each archived film is removed from the media library, ensuring that only new material is displayed in the frontend.</li>
+</ul>
+
+<h4>
+<a id="miscellaneous" class="anchor" href="#miscellaneous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Miscellaneous:</h4>
+
+<ul>
+<li><p>Intelligently detects media files which reside on a network disk and skips them if your file server or network disk is offline.</p></li>
+<li><p>Built-in internet connection and databases availability diagnostics, to cut down retrying delays and prevent connection errors.</p></li>
+</ul>
+
+<h4>
+<a id="downloading-locations" class="anchor" href="#downloading-locations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Downloading Locations:</h4>
+
+<p><a href="http://www.meedios.com/OpenMAIDOS/detail.php?plugin_id=3AE69DCF-B3C6-4DD3-85A8-2744A3B50452">Download from MeediOS OpenMAID plugin repository</a></p>
+
+<p><a href="http://code.google.com/p/mediafairy-for-meedios">Download from Google Code</a></p>
+
+<p><strong>Important:</strong></p>
+
+<p>Users with 64-bit operating sytem will need to seperately download
+from <a href="http://mediainfo.sourceforge.net/el/Download">here</a> the 64-bit version
+of MediaInfo.dll and copy it to the plugin's directory replacing it's original 32-bit version.</p>
+
+<h3>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h3>
+
+<p>For detailed installation, configuration and usage instructions 
+please refer to the corresponding plugin's wiki pages on Google Code:</p>
+
+<p><a href="http://code.google.com/p/mediafairy-for-meedios/w/list">Wiki Documentation</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">MeediFier for MeediOS maintained by <a href="https://github.com/stavrossk">stavrossk</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
