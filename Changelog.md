@@ -1,4 +1,4 @@
-v0.6.2
+###v0.6.2
 
 -Updated media folders engine to latest MediaFolders API.
 
@@ -11,7 +11,7 @@ v0.6.2
 
 
 
-0.6.3
+###v0.6.3
 
 -Removed Song lyrics downloader.
 
@@ -23,7 +23,7 @@ v0.6.2
 
 
 
-0.6.4
+###v0.6.4
 
 -Removed Video Subtitle Downloader.
 
@@ -33,7 +33,7 @@ v0.6.2
 
 
 
-v0.6.5
+###v0.6.5
 
 -Removed Film Releases Updater.
 
@@ -41,7 +41,7 @@ v0.6.5
 
 
 
-v0.6.6
+###v0.6.6
 
 
 -Revamped Settings screen.
@@ -51,7 +51,7 @@ v0.6.6
 
 
 
-v0.6.7
+###v0.6.7
 
 -Removed Media Archivers
 
@@ -62,7 +62,7 @@ v0.6.7
 
 
 
-v0.6.8
+###v0.6.8
 
 -Various fixes and optimizations for IMDb film details downloader.
 
@@ -73,7 +73,7 @@ v0.6.8
 
 
 
-v0.6.9
+###v0.6.9
 
 
 -Removed Media Library Synchronizer.
@@ -83,7 +83,7 @@ v0.6.9
 -Removed Automated Version Updater.
 
 
-v0.7
+###v0.7.0
 
  
 -Revamped settings screen for easier configuration.
@@ -92,7 +92,7 @@ v0.7
 
 
 
-v0.7.1
+###v0.7.1
 
 -Removed AllMediaGuide film details downloader.
  
@@ -102,7 +102,7 @@ v0.7.1
 
  
 
-v0.7.2
+###v0.7.2
 
 -Removed MeedioFr.org music artist backdrop downloader.
 
@@ -124,7 +124,7 @@ v0.7.2
 
 
 
- 0.7.3
+###v0.7.3
 
 -Removed setting for MovieNight compatibility. (MovieNight is a Meedio-only plugin)
 
@@ -138,7 +138,7 @@ v0.7.2
 
 
 
-v0.7.4
+###v0.7.4
 
 -Removed music album cover art downloader.
 
