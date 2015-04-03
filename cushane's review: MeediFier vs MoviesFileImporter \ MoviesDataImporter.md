@@ -2,21 +2,21 @@ When I used Meedio I was a big fan of MediaFairy. Using Meedios I uncovered some
 
 In version 0.5.5 Enthalpient incorporated MetaDataFolders and MediaFolders so I decided to try it again. Rather than just testing it for the sake of testing it, I decided I would do a side-by-side comparison to the MFI/MDI combo I was currently using. Here is what I found: 
 
-###MediaFairy: 
-98% of trailers were correctly excluded (160/163) 
-100% of movie files were imported (491/491) 
-99% of movies were identified (488/491) 
-97% of movies were correctly identified (473/491) 
-47 minutes to complete the import 
-Errors: 4 filename parsing errors & 1"series tags extractor" error 
+###MeediFier: 
++98% of trailers were correctly excluded (160/163) 
++100% of movie files were imported (491/491) 
++99% of movies were identified (488/491) 
++97% of movies were correctly identified (473/491) 
++47 minutes to complete the import 
++Errors: 4 filename parsing errors & 1"series tags extractor" error 
 
 ###MFI/MDI: 
-100% of trailers were correctly excluded (163/163) 
-99% of movie files were imported (486/491) 
-91% of movies were identified (444/491) 
-84% of movies were correctly identified (408/491) 
-113 minutes to complete the import 
-Errors: none 
++100% of trailers were correctly excluded (163/163) 
++99% of movie files were imported (486/491) 
++91% of movies were identified (444/491) 
++84% of movies were correctly identified (408/491) 
++113 minutes to complete the import 
++Errors: none 
 
 How I score it: 
 
