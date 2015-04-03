@@ -200,8 +200,8 @@ please refer to the corresponding plugin's wiki pages on Google Code:
 
 
 
-++See a side-by-side review of MeediFier vs MoviesFileImporter / MoviesDataImporter++
-++based on a real-world test case by MeediOS forum member cu_shane:++
+**See a side-by-side review of MeediFier vs MoviesFileImporter / MoviesDataImporter**
+**based on a real-world test case by MeediOS forum member cu_shane:**
 
 https://github.com/stavrossk/MeediFier_for_MeediOS/blob/master/cushane's%20review:%20MeediFier%20vs%20MoviesFileImporter%20%5C%20MoviesDataImporter.md
 
