@@ -18,7 +18,7 @@ In version 0.5.5 Enthalpient incorporated MetaDataFolders and MediaFolders so I 
 + 113 minutes to complete the import 
 + Errors: none 
 
-How I score it: 
+##How I score it: 
 
 ###Trailers: 
 MediaFairy pulled in three that it shouldn't have, but the new version that has just been posted is supposed to remedy this problem. So I won't hold it against MF. Winner: Tie 
