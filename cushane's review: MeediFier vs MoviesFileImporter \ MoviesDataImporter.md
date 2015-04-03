@@ -1,4 +1,4 @@
-When I used Meedio I was a big fan of MediaFairy. Using Meedios I uncovered some MediaFairy bugs and started to shy away from it. The rapid advancement of as MoviesFileImporter and MovieDataImporter eventually reduced my use of MediaFairy to nothing but a subtitle downloader. 
+When I used Meedio I was a big fan of MeediFier. Using Meedios I uncovered some MeediFier bugs and started to shy away from it. The rapid advancement of as MoviesFileImporter and MovieDataImporter eventually reduced my use of MedediFier to nothing but a subtitle downloader. 
 
 In version 0.5.5 Enthalpient incorporated MetaDataFolders and MediaFolders so I decided to try it again. Rather than just testing it for the sake of testing it, I decided I would do a side-by-side comparison to the MFI/MDI combo I was currently using. Here is what I found: 
 
@@ -21,19 +21,23 @@ In version 0.5.5 Enthalpient incorporated MetaDataFolders and MediaFolders so I 
 ##How I score it: 
 
 ###Trailers: 
-MediaFairy pulled in three that it shouldn't have, but the new version that has just been posted is supposed to remedy this problem. So I won't hold it against MF. Winner: Tie 
+MeediFier pulled in three that it shouldn't have, but the new version that has just been posted is supposed to remedy this problem. So I won't hold it against MF. 
+Winner: Tie 
 
 ###Importing: 
 The fact that MoviesFileImporter skipped 5 movies completely is a real problem. But because it appears to have to do with file extensions I'm sure it will be easily remedied once I post it on the plugin's thread. So I'll still call it a wash. Winner: Tie 
 
 ###Identifying: 
-I'll skip the number identified and go straight to the number correctly identified because that is what ultimately matters. MediaFairy clearly performed much better in this area. Whats even more, a MF update has just been released which should improve "the plugin's ability to import and automatically identify films" Winner: MediaFairy 
+I'll skip the number identified and go straight to the number correctly identified because that is what ultimately matters. MeediFier clearly performed much better in this area. Whats even more, a MF update has just been released which should improve "the plugin's ability to import and automatically identify films" 
+Winner: MeediFier 
 
 ###Run Time: 
-This is an area were MDI really needs to make some improvements. It took nearly 2.5x longer to complete! Winner: MediaFairy 
+This is an area were MDI really needs to make some improvements. It took nearly 2.5x longer to complete! 
+Winner: MeediFier 
 
 ###Error Handling: 
-My take on this one might surprise you given the results I posted. Even though MF threw 5 errors it is very important to note that the importer did not halt. Instead, a message was displayed in the system tray. After running this test, I reran MDI with poster resizing enabled. MDI generated 2 errors. I wouldn't penalize MDI for this because image resizing was not in the scope of this test; however, MDI's error handling gives it a significant disadvantage. MDI's importing actually stops until the user clicks "ok" on the error message. This is extremely annoying if you want to run a large unattended import -- you could come back to find that your import is nowhere close to being finished because it is waiting on the user to click "ok". Winner: MediaFairy 
+My take on this one might surprise you given the results I posted. Even though MF threw 5 errors it is very important to note that the importer did not halt. Instead, a message was displayed in the system tray. After running this test, I reran MDI with poster resizing enabled. MDI generated 2 errors. I wouldn't penalize MDI for this because image resizing was not in the scope of this test; however, MDI's error handling gives it a significant disadvantage. MDI's importing actually stops until the user clicks "ok" on the error message. This is extremely annoying if you want to run a large unattended import -- you could come back to find that your import is nowhere close to being finished because it is waiting on the user to click "ok". 
+Winner: MeediFier 
 
 #Final Score: MFI/MDI - 0, MF - 3 
 
