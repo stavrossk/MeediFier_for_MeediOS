@@ -195,11 +195,10 @@ of MediaInfo.dll and copy it to the plugin's directory replacing it's original 3
 ###Documentation
 For detailed installation, configuration and usage instructions 
 please refer to the corresponding plugin's wiki pages on Google Code:
-
 [Wiki Documentation](http://code.google.com/p/mediafairy-for-meedios/w/list)
 
 
-**For release notes, usage instructions, bug reports or suggestions, please refer to the plugin's official forum thread on MeediOS forum:**
+For release notes, usage instructions, bug reports or suggestions, please refer to the plugin's official forum thread on MeediOS forum:
 [Official forum thread for MeediFier for MeediOS](http://www.meedios.com/EN/forum/viewtopic.php?f=65&t=4564)
 
 
