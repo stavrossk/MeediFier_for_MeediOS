@@ -1,0 +1,105 @@
+- Improve importer behavior when sources are unconnectable.
+
+- Improve unconnectable sources disabler.
+
+- Use same Regex if possible for cleaning up all IMDb html pages.
+
+- Text IMDb grabber regexes
+
+- OSDb film tags should be the same with the IMDb ones.
+
+- Show IMDb movie page links in UI.
+
+- Get all taglines (option)
+
+- Remove html code from IMDb details.
+
+- Get all Production Co. (studios) (option)
+
+
+- Update the film descriptors with the new IMDb info.
+
+- Update film details form
+
+- Option for optimized IMDb film details downloading!
+    - Low: Trim main HTML page.
+    - Normal: Trim all html pages.
+    - High: Get all info from main html page only. (no trimming)
+    - Extreme: Get all info from main html page only. (with trimming)
+
+
+- Add country selection for Release Date (other uses?)
+ 
+- Fix film descriptors
+
+- Grab details for international IMDb sites
+
+- What is the country for the Walt's IMDb constructor for?
+
+
+- Seperate Assisted search options for Posters, film fanart, music fanart, album covers, and tv images.
+
+- Individual enabling/disabling of film poster sources.
+
+- Add secondary film posters source selection.
+
+- Add duplicate Handling
+
+- Add Expert Settings Mode
+
+- Make Settings Wizard
+
+- Improve User Interface 
+
+- Re-write IMDb engine
+
+- Ask people if Release Date is correct for their country
+
+- Move IMDb regexes to an ini file
+
+- Allow user to change priority of film details sources
+
+- Add option to use next details source if details are missing from previous source.
+
+- Add option to use next details source if current source is unconnectable.
+
+- Add options to select which sources will be used. 
+
+- Let user select which film details will be imported.
+
+- 'Combine film details sources' option:
+ - Disabled
+ - Primay + Secondary
+ - All
+
+
+
+- Improve & simplify media importing engine.
+
+
+- Add alternative film title matching engine based on Google search api.
+
+- Implement IMDb film title matching engine priorities.
+
+
+- Import Weather
+
+-IMDb Top 250
+
+- IMDb search by episode name
+
+- IMDb use Advanced search
+
+- Add ability to use Google for the IMDb film Title matcher.
+
+- Option to use the combined IMDb page to extract details.
+
+- Detect if TVDb is offline and disable it.
+
+- Meediofr.org music artist fanart downloader is broken.
+
+- Fix subtitles downloader.
+
+- Improve multi-part detector.
+
+- get combined file duration for multi-part films.
