@@ -1,0 +1,179 @@
+﻿[color=darkblue][size=16][b][i]        MediaFairy - An intelligent Media Importing System.[/i][/color][/size][/b]
+
+
+
+                            [size=14]   [b] [color=green]PURPOSE[/color][/b][/size]
+ The main scope of this import-type Meedio plugin is to automatically import, identify, organize (physically and logically) and download online data for the user's digital media collection in order for these media files to be properly recognized and presented by Meedio's graphical interface.
+
+
+                            [size=14]   [b] [color=green]INTRODUCTION[/color][/b][/size]
+
+[i][size=11]          -      -          -      -      -      -     [color=darkorange][b]Note: Information about basic concepts of media organizing follows. Experienced Meedio users may safely skip this chapter[/b] [/color]-       -      -      -      -      -      -[/size][/i]
+ An important feature of modern HTPC (Home Theater PC) applications is to be able to not only play a user's media file (video or music), but also present to the user key information about the media material in question and it's associated art in an attractive graphical interface, as well as provide advanced media organizing and searching capabilities.
+
+ Depending on it's design, the frontend application may acquire this information and art by looking up and downloding information about the media product in question from online databases like IMDb, TheMovieDatabase, OpenSubtitles.org and Amazon.com. In Meedio, this task is currently performed mainly by the Import-type plugins MovieMee and MediaFairy for movies, meeTvShows and MediaFairy for tv series, and MediaFairy for music.
+
+   But for these plugins to be able to recognize the media and download it's relevant metadata, at least the media's name or title must exist in the user's Meedio library.
+   But not only that but the media's title must be 'cleaned up', that is the 'name' or 'Title' field of the library item which represents that media file must contain almost the [i]exact[/i] media's Title for these plugins to be able to download its information and related art. 
+  In most cases, adittional key information about the media product can greatly aid the 'Detailer' plugin to recognize uniquely the media material, and if this information is unique enough, then we say that we have an 'exact match', which means that the plugin was able to uniquely recognize the media, and no other media product was found with the same properties.
+ Some examples of media product information that can help the 'Detailer' plugin uniqely recognize the media in question are:
+ - IMDb Id and Production Year for movies.
+ - Series name, Episode name, Season number, Episode number for Tv Series.
+ - PUID, MusicBrainz Id, Production Year, Artist, Album for music tracks.
+ - Manifest information for applications and games.
+ 
+  But how one can be sure that the 'Detailer' plugin can have this media identifying information in a proper structure (in the Meedio library tags) in order to download media information?
+ Until now, the user had to either rename the video files to contain the proper media Title, use strictly defined directory and file naming conventions, and import his/her media files with text filters like the popular among the Meedio community 'tag masks'. Unfortunately, the problem with these methods is that they require the user's media filenames to be strictly structured in order to function properly. Not to mention the difficulty many users experience comprehending them.
+ This is where MediaFairy comes in to rectify these problems by seamlessly integrating the following capabilities: 
+-    -    -     -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -     -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    -    
+
+
+
+[size=14]   [b] [color=green]CAPABILITIES[/color][/b][/size]
+
+[size=12][b] Intelligent & adaptive media files importer:[/b][/size]
+ Compared to traditional file importing plugins (tag mask importers), MediaFairy's built-in media files importer:
+
+ - Needs very minimal initial configuration (only needs to know the location of user's media collection on disk).
+
+- Recognizes and imports only media files of interest within the specified root directories, ignoring non-media files or files which do not belong to the desired media type. (film, tv episode or music)
+
+ - The file importing algorithm works completely idependently from video/audio extensions ensuring that you 'll never have to specify any. 
+
+ - Distinguishes media types of interest inside directories which contain mixed content, eliminating the need of manual media collection organizing.
+
+
+
+[size=12][b] Audio Tag importer:[/b][/size]
+
+ - Extracts the track information contained in the audio file's IDV3 tags and imports them in their respective library tags.
+
+ - Has the ability to embed downloaded information and/or album cover into the audio file's IDV3 tags.
+
+
+
+[size=12][b] Media format Information importer:[/b][/size]
+
+ - Similarly to the popular MediaInfo plugin, this process will analyze your media files and import media information like video/audio formats and bitrate qualities. Most modern themes display this information graphically on the frontend's interface.
+
+
+
+[size=12][b] Built-in filenames parser and cleaner :[/b][/size]
+ Inspired from the SmartMovieSorter and SmartSeriesSorter plugins, the purpose of this sub-process is to detect the media material's title from the filesystem and extract adittional information about the material which will later help the online identifier to recognize and import details for the media product More specifically:
+
+ - Cleans the filenames of media files from release format tags, and extracts the media's actual title.
+
+ - Locates media identification information like a film's production year and IMDb id or a tv episode's number and season number. This crucial information then helps the built-in online details downloader to automatically identify the media file without requiring user assistance.
+
+ - Parses .nfo files existing in a film's or music album's directory and extracts required media identification information further increasing matching acurracy.
+
+
+
+[size=12][b] Media details and cover art downloader:[/b][/size]
+
+ - Matches the media file's unique hash or 'fingerprint' with online databases (OSdb and MusicIP) to identify films, tv episodes and music. Requires no previously existing information for the media file to recognize it and tremendously maximizes the identifier's acurracy and minimizes the need of identifying assistance from the user.
+
+ - Downloads media information from multiple online databases:
+      - IMDb, OSDb and allmovie.com for films.
+      - TVdb for tv series.
+      - MusicDNS and allmusic.com for music.
+
+ - Downloads cover art and frontend backdrops fully unattended from the following online sources: (switching between them as necessary)
+      - NiceCovers.com, TheMovieDatase (TMdb) and IMDb for films.
+      - TVdb and TMdb for tv series.
+      - Amazon.com for music.
+
+ - Provides you with the ability to disable unattended operation on the fly, letting you select your preferred cover image from the found images on all sources. 
+
+ - Saves film description .xml files on sucessful identification.
+ In case the user's Films media section is re-imported from scratch, the plugin will acquire the required information from these descriptors, skipping the online lookup and significantly decrease importing time.
+
+
+[size=12][b] Automated subtitles downloader:[/b][/size]  
+
+ - Downloads from OpenSubtitles.org  synchronized subtitles for your films or tv episodes in your preferred language(s).
+
+ - The video fingerprint matching algorithm ensures that the subtitles will always be perfectly synchronized to the particular version of your film.
+
+ - Allows to specify an alternative language in case no subtitles are found for your primary language.
+
+
+
+[size=12][b] Media Organizer: [/b][/size]
+
+ - Automatically sorts (renames and moves) identified media files to your specified locations for each media type according to your desired filesystem structure.
+
+
+
+[size=12][b] Online Content Downloader: [/b][/size]
+
+ - Downloads to the user's specified location any online file the address (URL) of which is contained in the user's specified tag of the media library. Possible applications for this feature are downloading online trailers or online images.
+
+
+
+[size=12][b] Library Cleaner: [/b][/size]
+
+ - Automatically deletes library items which refer to non-existent (deleted) media files. The built-in network diagnostics will ensure that files residing on offline drives will not be accidentaly deleted.
+
+ - Optionally removes empty library section tags ensuring a cleaner media section and faster library accessing opearations.
+
+ - Scans and links together multiple video files which constitute a single film. This process ensures that those video files will be chained together even if a previously used file importer was unable to do so.
+
+
+
+[size=12][b] Archive Extractor: [/b][/size]    
+
+ - Automatically extracts compressed archives contained in the specified media locations and imports any media files of interest they contain. Optionally deletes extracted archives. Is also able to mantain a user-specified free space amount.
+
+
+
+[size=12][b] Media Archiver: [/b][/size]    
+
+ - Optionally compresses and stores in your specified location a compressed archive for each already watched film, (containing the entire film's directory) for disk space and archiving purposes. Each archived film is removed from the media library, ensuring that only new material is displayed in the frontend.
+
+
+
+[size=12][b] RSS Releases Updater: [/b][/size]    
+
+ - Scans the user-provided rss feeds for newly available film releases and downloads those films using your default Bittorrent client. LegalTorrents.com (default source) and mininova.org are currently supported. 
+
+
+
+ 
+ [b]Miscellaneous:[/b]
+
+ - Intelligently detects media files which reside on a network disk and skips them if your file server or network disk is offline.
+
+ - Built-in internet connection and databases availability diagnostics, to cut down retrying delays and prevent connection errors.
+
+
+
+
+
+[url=http://www.meedios.com/OpenMAID/detail.php?plugin_id=01E3628A-29AF-4C2A-8234-C5CB71849E16][size=18]Download MediaFairy[/size][/url]
+
+
+[url=http://www.meedios.com/wiki/index.php?title=Plugin_01E3628A-29AF-4C2A-8234-C5CB71849E16] [size=14]Please refer to the plugin's Wiki[/size][/url] [size=14]for detailed usage instructions, current Changelog, planned features and more information.[/size]
+
+
+
+
+ 
+                                 [size=14]   [b] [color=green]Thanks to / Credits[/color][/b][/size]
+
+ - Opensubtitles.org designer and developer.
+ - Walts81 for his open-source IMDb C# library.
+ - All Meedio plugin developers for their invaluable help to new Meedio users.
+ - Gabest for the video hash algorithm.
+ -  ccrocker for his invaluable help with iTunes and DvdId lookup functions.
+ - EC for his contribution to the plugin's wiki.
+ - You, for downloading and using MediaFairy.
+
+
+ This application's video identification capabilities wouldn't be possible without the hard work of the OpenSubtitles.org developers and users.
+  If you like and use this feature, consider supporting OpenSubtitles.org database by making a small donation:
+[url=http://www.opensubtitles.org/][img]http://www.opensubtitles.org/gfx/banners/banner_1_350x20.png[/img][/url]
+[size=9] [b]disclaimer:[/b] The plugin's developer is not associated with OpenSubtitles.org in any way.[/size]
+
+ If you would like to donate to the plugin's developer for this project, then please click the paypal button below.
+[url=https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=48DK8RHRJTMEJ&lc=GB&item_name=Meedio%20plugins&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted][img]https://www.paypal.com/en_GB/i/btn/btn_donate_SM.gif[/img][/url]

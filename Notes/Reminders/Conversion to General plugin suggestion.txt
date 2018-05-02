@@ -1,0 +1,16 @@
+﻿On another note, something to think about: MediaFairy can update all libraries
+ when the plugin is only installed in one library. 
+If a user wants to update a library from within Meedios (meepopupprovider/meepopupimporter),
+ the updater will run all the importers for the current library.
+  So are currently two ways to update a library if MF is my importer
+   (1) browse to the library were MF is configured and update ALL libraries 
+   (2) install mediafairy in each library and configure them all individually. 
+
+Let me know if that is incorrect (I haven't actually played with it). 
+If I am right, I was thinking that one possible solution might be to turn MF
+ into a general plugin. Then flclsd could add MF support
+  to mepoppupimporter (This would be ideal) OR you could create a second plugin 
+  that the user would have to install in each library
+   that basically ties it to the general plugin. 
+
+Not a high priority...I'm just throwing stuff out there...

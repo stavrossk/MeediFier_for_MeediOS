@@ -1,0 +1,35 @@
+﻿I am trying to test this plugin new version. 
+As far as I have seen from previous releases there is a feature I miss and that made me develop my own plugins to manage it. 
+What I would need is to: 
+1) Get movie information from Italian Language online databases/websites, like www.mymovies.it 
+2) Combine information from different movie databases. For example, IMDB source is for sure much more complete and reliable than any other, but if I want the short and long overview in Italian I need to get these information from another source. Moreover, my movies titles are in Italian so I first have to convert them in english and then go to IMDB to get the information. 
+
+What I actually did is: 
+1) first "translate" the title by getting the "originaltitle" information from my italian source (www.movies.it) 
+2) then I use moviemee importer to get the info from IMDB (I didn't want to include its code in my plugin since I don't want to be oblied to fix it when IMDB html pages change...) 
+3) then I use my plugin again to get the info from the www.mymovies.it italian site. I have to do it after 2) becouse otherwise info grabbed will be overwritten by moviemee. In this step actually I use not only www.mymovies.it but also another source www.35mm.it. This is becouse I want the short overview from one site and the longoverview from another. 
+
+As you can see it is quite complex, but it would be quite easy if managed all by the same plugin. 
+For example, one could set the importer field by field, setting up a list of "priorities" of online dbs for each field. 
+
+Let's assume we have 3 different sources: A, B, C and 5 library fields F1, F2, F3, F4, F5. 
+What I would like to do is, after having programmed the A, B, C grabber, choose the sources like these: 
+
+Field F1 ---> source A, if A not available then source B, if A and B not available then source C 
+Field F2 ---> source C, if C not available then source B, if C and B not available then source A 
+Field F3 ---> source A, if A not available then source C, if A and C not available then source B 
+Field F4 ---> source B, if B not available then source A, if B and A not available then source C 
+Field F5 ---> source C, if C not available then source A, if C and A not available then source B 
+
+and so on. 
+
+What do you think about such a feature? 
+I think all the international non english speaking community would be very grateful for it. 
+
+Obviously it would be nice to have a modular approach to grabber like moviemee tried to do in the last releases, so that anyone can easily add and mantain sources. 
+I am ready to contribute for the italian sources. 
+
+This is just my 2c. Waiting for your opinion. 
+
+Dakkar
+

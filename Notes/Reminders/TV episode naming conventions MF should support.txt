@@ -1,0 +1,18 @@
+﻿Hello folks- 
+
+MediaFairy has been working great for movies for me. Thanks for the great plugin!! 
+
+I just turned it loose on some test TV series and keep encountering the same error while importing. Not sure if this is a MediaFairy bug, a change to TVDB's API, or a problem with how I've got my tv files stored. 
+
+Some quick background on my setup: 
+I've turned off Automatically detect media types and have explicitly entered the path to my TV roots. 
+I've tried the following directory/file structures and have the same problems with all of them: 
+
+<SeriesName>\Season <SeasonNumber>\<EpisodeNumber> - <EpisodeName>.ext 
+<SeriesName>\Season <SeasonNumber>\<SeriesName> - <EpisodeNumber> - <EpisodeName>.ext 
+<SeriesName>\Season <SeasonNumber>\<SeriesName> - S<SeasonNumber>E<EpisodeNumber> - <EpisodeName>.ext 
+<SeriesName>\Season <SeasonNumber>\<SeriesName> - <SeasonNumber>x<EpisodeNumber> - <EpisodeName>.ext
+
+If no EpisodeName, obviously, I leave that out (as in the case below with The Office S04E01). 
+
+In all cases, the single-digit season and episode numbers are padded with zeros for easy sorting. (Could that be the problem?) 

@@ -1,0 +1,50 @@
+﻿Meedio is very versatile at importing your media, probably more than any other HTPC software. This guide is here to show you the recommended way of importing things, not the only way  Please use this thread for discussion if you have a different kind of setup. 
+
+Movies 
+
+The recommended way of storing your movies on a file system is to have them in their own directory with separate folders named after the IMDB title. For increased accuracy an .nfo text file can reside in the directory with a link to the imdb URL. 
+
+Code:
+C:\Movies\The Terminator\theterminator.mkv
+C:\Movies\The Terminator\theterminator.nfo
+C:\Movies\Eternal Sunshine of the Spotless Mind\dvd.iso
+C:\Movies\Eternal Sunshine of the Spotless Mind\dvd.nfo
+C:\Movies\Crash\VIDEO_TS.IFO
+C:\Movies\Crash\VIDEO_TS.BUP
+C:\Movies\Crash\VTS_01_1.VOB
+...ect
+
+
+To import into meedio you will need to use the file mask importer to get the movie name into the library. Set the tag mask as <Name>\<>.<EXT>
+
+Then you can use the moviemee importer to grab all the details and cover art from IMDB and themoviedb.com
+
+Music
+The recommended way of storing your music is in separate folders based on albums. The most important thing is that the each item of music is fully tagged with Artist, Title, Album, Year, Genre and Track Number, the recomended software to manage tags is mp3tag. Meedio supports separate libraries so you could have an albums library, singles library and Various Artist Library for example. You can also place some cover art in the album folder named folder.jpg
+
+Code:
+C:\Music\Albums\Coldplay - A Rush of Blood to the Head\1.mp3
+C:\Music\Albums\Coldplay - A Rush of Blood to the Head\2.mp3
+C:\Music\Albums\Coldplay - A Rush of Blood to the Head\folder.jpg
+C:\Music\Albums\Coldplay - Parachutes\1-yellow.flac
+C:\Music\Albums\Coldplay - Parachutes\2-trouble.flac
+C:\Music\Albums\Coldplay - Parachutes\folder.png
+...ect
+
+
+Once your music is tagged and sorted into a directory you will need to use the audio importer. Simply point it to the "Albums" directory and it will import all your music into Meedio.
+
+TVShows
+The recommended way of storing TV shows is in a separate folder for each show. The actual episode naming schemes can vary but the most popular ones are S01E01 and 101.
+
+Code:
+C:\TVShows\heroes\Heroes.S02E01.720p.HDTV.x264-CTU.mkv
+C:\TVShows\heroes\Heroes.202.Lizards.HDTV.XviD.avi
+C:\TVShows\heroes\heroes.s03.e03.720p.bluray.x264
+C:\TVShows\Lost\Lost.S02E01.HDTV.XviD-LOL.avi
+...ect
+
+
+There are 2 importers needed import tv shows. The SmartSeriesImporter will scan the directory and pick up the show name, series number and episode number. 
+
+Then the Meetvshows Importer will grab lots of additional information such as episode details and coverart.
