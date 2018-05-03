@@ -102,9 +102,9 @@ namespace MeediFier.MediaSnapshotEngine.MediaAnalyzer
                 }
 
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                Debugger.LogMessageToFile("");
+                Debugger.LogMessageToFile("An error occured while trying to convert audio duration. The error was: " + exception);
             }
 
 
@@ -227,7 +227,8 @@ namespace MeediFier.MediaSnapshotEngine.MediaAnalyzer
 
             try
             {
-                int openResult = mediaInfo.Open(file.FullName);   
+                int openResult = mediaInfo.Open(file.FullName);
+                Debugger.LogMessageToFile("The media file's open result is: " + openResult);
             }
             catch (Exception e)
             {

@@ -210,7 +210,7 @@ namespace MeediFier.IMDb
 
         }
 
-
+        //TODO: Why is CleanHtmlPage method never used? Isn't the main HTML page of IMDb trimmed?
         private static string CleanHtmlPage(string html)
         {
             IMDbRegEx imDbRegEx = new IMDbRegEx();

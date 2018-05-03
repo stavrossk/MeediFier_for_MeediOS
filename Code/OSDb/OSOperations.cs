@@ -103,6 +103,7 @@ namespace MeediFier
             string[] hash = new string[1];
             hash[0] = moviehash;
 
+            //TODO: Have only one user agent variable in Settings.cs instead of many.
             const string useragent = "TemporaryUserAgent";
 
             const string prefix = "http://www.opensubtitles.org/en/search2/sublanguageid-eng/moviehash-";

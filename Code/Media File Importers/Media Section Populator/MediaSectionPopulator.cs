@@ -313,8 +313,7 @@ namespace MeediFier.MediaSnapshotEngine
             item.SaveTags();
 
 
-            //BUG: Enabling this function makes importer unable to inport files!
-
+            //TODO: Enabling this function makes importer unable to inport files!
             //MediaSectionPopulatorHelpers.ImportDates(item, externalID);
 
 

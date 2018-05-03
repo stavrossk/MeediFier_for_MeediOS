@@ -20,7 +20,6 @@
 
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
@@ -115,13 +114,21 @@ namespace MeediFier
 
 
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
                 StatusForm.statusForm.TrayIcon.ShowBalloonTip(20000,"Filename cleaner dictionary not found",
-                    "MediaFairy was unable to open and read a dictionary file for video filename cleaning usage.  " +
+                    "MeediFier was unable to open and read a dictionary file for video filename cleaning usage.  " +
                     "Please make sure all needed filename cleaner dictionary files are present in the plugin's directory" +
                     " and try again.  Missing dictionary file might seriously affect the filename cleaner's performance.",
                     ToolTipIcon.Warning);
+
+                Debugger.LogMessageToFile
+                (
+                    "MeediFier was unable to open and read a dictionary file for video filename cleaning usage.  " +
+                    "Please make sure all needed filename cleaner dictionary files are present in the plugin's directory" +
+                    " and try again.  Missing dictionary file might seriously affect the filename cleaner's performance." +
+                    "The exact error was: " + exception
+                );
 
                 Thread.Sleep(20000);
 

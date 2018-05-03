@@ -296,14 +296,14 @@ namespace MeediFier.Code.Metadata_Scrapers.Cover_Art
            
 
             #region Try to load XML stream
-            XmlDocument doc = new XmlDocument();
+            var doc = new XmlDocument();
             try
             {
-                doc.Load(stream);
+                if (stream != null) doc.Load(stream);
             }
-            catch (Exception e)
+            catch (Exception exception  )
             {
-                Debugger.LogMessageToFile("An error occurred while trying to load TMDb's XML stream: " + e.ToString());
+                Debugger.LogMessageToFile("An error occurred while trying to load TMDb's XML stream: " + exception);
                 return urlList;
             }
             #endregion
@@ -328,58 +328,48 @@ namespace MeediFier.Code.Metadata_Scrapers.Cover_Art
                             foreach (XmlNode unknown in result.ChildNodes)
                             {
                                 //MessageBox.Show("Fourth level: " + unknown.Name);
-                                if (unknown.Name == "movie" && !FoundFirst)
+                                if (unknown.Name != "movie" || FoundFirst) continue;
+                                FoundFirst = true;
+                                //MessageBox.Show("Fifth level: " + unknown.Name);
+
+                                foreach (XmlNode tag in unknown.ChildNodes)
                                 {
-                                    FoundFirst = true;
-                                    //MessageBox.Show("Fifth level: " + unknown.Name);
+                                    if (tag.Name != "backdrop") continue;
 
-                                    foreach (XmlNode tag in unknown.ChildNodes)
+                                    XmlAttributeCollection atrributes = tag.Attributes;
+                                    foreach (XmlAttribute attribute in atrributes)
                                     {
-                                        if (tag.Name == "backdrop")
+                                        if (attribute.Name != "size") continue;
+
+                                        if (attribute.Value == "original")
                                         {
-                                            XmlAttributeCollection atrributes = tag.Attributes;
-                                            foreach (XmlAttribute attribute in atrributes)
-                                            {
-                                                if (attribute.Name == "size")
-                                                {
-                                                    if (attribute.Value == "original")
-                                                    {
 
-                                                        //if (Helpers.RemoteFileExists(tag.InnerText))
-                                                        //{
-                                                        //  MessageBox.Show("Remote image exists!");
-                                                        urlList.Add(tag.InnerText);
-                                                        //}
-                                                        //else
-                                                        //{
-                                                        //    MessageBox.Show("Remote image does not exist");
-                                                        //}
+                                            //if (Helpers.RemoteFileExists(tag.InnerText))
+                                            //{
+                                            //  MessageBox.Show("Remote image exists!");
+                                            urlList.Add(tag.InnerText);
+                                            //}
+                                            //else
+                                            //{
+                                            //    MessageBox.Show("Remote image does not exist");
+                                            //}
                                                
-                                                    }
-                                                    if (attribute.Value == "mid")
-                                                    {
-
-                                                        //if (Helpers.RemoteFileExists(tag.InnerText))
-                                                        //{
-                                                        //    MessageBox.Show("Remote image exists!");
-                                                        thumbUrls.Add(tag.InnerText);
-                                                        //}
-                                                        //else
-                                                        //{
-                                                        //    MessageBox.Show("Remote image does not exist");
-                                                        //}
-                                                       
-                                                    }
-
-                                                }
-                                            }
                                         }
+                                        if (attribute.Value == "mid")
+                                        {
 
-
-
-
+                                            //if (Helpers.RemoteFileExists(tag.InnerText))
+                                            //{
+                                            //    MessageBox.Show("Remote image exists!");
+                                            thumbUrls.Add(tag.InnerText);
+                                            //}
+                                            //else
+                                            //{
+                                            //    MessageBox.Show("Remote image does not exist");
+                                            //}
+                                                       
+                                        }
                                     }
-
                                 }
                             }
                         }

@@ -21,7 +21,6 @@
 
 
 using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using CustomProperties;
 using CustomProperties.PropertyData;
@@ -62,25 +61,27 @@ namespace MeediFier
             #region initialize Sections
 
             #region Create Media Library class to access media sections
-#if USE_MEEDIO
-            IMeedioLibrary MeedioLibrary = new MeedioLibrary.MediaLibrary();
-#elif USE_MEEDIOS
-            IMeedioLibrary MeedioLibrary = new MediaLibraryClass();
-            #endif
+            
+                #if USE_MEEDIO
+                IMeedioLibrary MeedioLibrary = new MeedioLibrary.MediaLibrary();
+                #elif USE_MEEDIOS
+                IMeedioLibrary meedioLibrary = new MediaLibraryClass();
+                #endif
+
             #endregion
 
 
             #region Create sectionChoices array and populate it with the names of the Media Sections
 
-            string[] sectionChoices = new string[MeedioLibrary.SectionCount + 1];
+            string[] sectionChoices = new string[meedioLibrary.SectionCount + 1];
             sectionChoices[0] = string.Empty;
 
-            for (int i = 1; i < MeedioLibrary.SectionCount + 1; i++)
+            for (int i = 1; i < meedioLibrary.SectionCount + 1; i++)
             {
                 #if USE_MEEDIO
                 SectionChoices[i] = MeedioLibrary.get_Sections(i-1);
                 #elif USE_MEEDIOS
-                sectionChoices[i] = MeedioLibrary.Sections(i-1);
+                sectionChoices[i] = meedioLibrary.Sections(i-1);
                 #endif
             }
 
@@ -112,7 +113,8 @@ namespace MeediFier
 
 
                 //DEPRECATED: Import and Update Media Types Combo Settings
-                //if (ImportAndUpdateMediaTypesCombo.ImportAndUpdateMediaTypesComboProperties(index, prop, ref counter)) return true;
+                //if (ImportAndUpdateMediaTypesCombo.ImportAndUpdateMediaTypesComboProperties(index, prop, ref counter)) 
+                //    eturn true;
 
 
 
@@ -1467,7 +1469,7 @@ namespace MeediFier
                     prop.Caption = "Disable problematic sources? ";
                     prop.Caption = TranslationProvider.Translate(prop.Caption, this);
                     //set the tool tip
-                    prop.HelpText = " Should unconnectable online sources be disabled for the rest of an importing session? ";
+                    prop.HelpText = "Should unconnectable online sources be disabled for the rest of an importing session? ";
                     prop.DefaultValue = Settings.WantToDisableSources;
                     prop.DataType = "bool";
                     return true;
@@ -1511,7 +1513,9 @@ namespace MeediFier
 
                 #region User Interface
 
+                // ReSharper disable RedundantAssignment
                 if (index == counter++)
+                // ReSharper restore RedundantAssignment
                 {
                     prop.GroupName = "UserInterface";
                     //set the internal name

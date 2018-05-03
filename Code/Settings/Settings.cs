@@ -129,7 +129,9 @@ namespace MeediFier
 
 
         #region Subtitles
+        // ReSharper disable RedundantDefaultFieldInitializer
         public static bool EnableSubtitleDownloader = false;
+        // ReSharper restore RedundantDefaultFieldInitializer
         public static string PrimaryLanguage = "eng";
         public static string SecondaryLanguage = "";
         public static string WhenToUseSecondaryLanguage = "If no subtitles at all exist for primary language";
@@ -267,7 +269,7 @@ namespace MeediFier
         public static bool UIenabled;
         public static bool WantToDisableSources = true;
         public static string[] ImporterIDs = new string[1];
-        public static int importing_limit;
+        public static int ImportingLimit;
         public static string username = string.Empty;
         public static string Password = string.Empty;
 
@@ -296,7 +298,9 @@ namespace MeediFier
 
         public static bool TMDbPostersEnabled = true;
 
+        // ReSharper disable RedundantDefaultFieldInitializer
         public static bool IMDbPostersEnabled = false;
+        // ReSharper restore RedundantDefaultFieldInitializer
         
         public static bool ImpAwardsPostersEnabled;
 

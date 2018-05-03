@@ -21,18 +21,28 @@ namespace MeediFier.IMDb
              IMDbMovie movie, string movieUrl)
 		{
 
-
+            
 			if (!showProgress)
 				return movie;
 
 
 
 
+// ReSharper disable UnusedVariable
             string creditsUrl = movieUrl + "fullcredits";
+// ReSharper restore UnusedVariable
+// ReSharper disable UnusedVariable
             string longOverviewUrl = movieUrl + "plotsummary";
+// ReSharper restore UnusedVariable
+// ReSharper disable UnusedVariable
             string goofUrl = movieUrl + "goofs";
+// ReSharper restore UnusedVariable
+// ReSharper disable UnusedVariable
             string triviaUrl = movieUrl + "trivia";
+// ReSharper restore UnusedVariable
+// ReSharper disable UnusedVariable
             string quotesUrl = movieUrl + "quotes";
+// ReSharper restore UnusedVariable
 
 
 			MainImportingEngine.ThisProgress.Progress
@@ -63,7 +73,7 @@ namespace MeediFier.IMDb
 
 			//filmDetails.GetQuotes(ref movie, quotesUrl);
 
-			//TODO: Get these additional IMDb film details
+			//TODO: Get these additional IMDb film details:
 
 			//Get Stars
 
@@ -298,8 +308,9 @@ namespace MeediFier.IMDb
 
 			try
 			{
-				string filmTitle
-					= match.Groups[1].Captures[0].Value;
+				string filmTitle = match.Groups[1].Captures[0].Value;
+                Debugger.LogMessageToFile("Film's Title extracted from regex match: " + filmTitle);
+
 				return match;
 
 			}
@@ -320,16 +331,15 @@ namespace MeediFier.IMDb
 					return match;
 
 				}
-				catch (Exception e)
+				catch (Exception exception)
 				{
-
 
 					Debugger.LogMessageToFile
 						("[IMDb Movie Details Downloader] " +
 						 "The IMDb Movie Details Downloader was unable" +
 						 " to extract the movie title " +
 						 "for the movie with IMDb ID: "
-						 + imdbID + ".");
+						 + imdbID + ". The error was: " + exception);
 
 
 					return match;
@@ -361,13 +371,17 @@ namespace MeediFier.IMDb
 				if (runtime.IndexOf(":", StringComparison.Ordinal) > -1
 					&& runtime.IndexOf(":", StringComparison.Ordinal) < runtime.Length -1)
 					runtime = runtime.Substring(runtime.IndexOf(":", StringComparison.Ordinal) + 1).Trim();
+
 				if (runtime.IndexOf("\\", StringComparison.Ordinal) > -1)
-					runtime = runtime.Substring(0, runtime.IndexOf("\\", System.StringComparison.Ordinal)).Trim();
-				if (runtime.IndexOf("/", StringComparison.Ordinal) > -1)
-					runtime = runtime.Substring(0, runtime.IndexOf("/", System.StringComparison.Ordinal)).Trim();
-				if (runtime.IndexOf(" ", System.StringComparison.Ordinal) > -1)
-					runtime = runtime.Substring(0, runtime.IndexOf(" ", System.StringComparison.Ordinal)).Trim();
-				return runtime.Trim();
+					runtime = runtime.Substring(0, runtime.IndexOf("\\", StringComparison.Ordinal)).Trim();
+				
+                if (runtime.IndexOf("/", StringComparison.Ordinal) > -1)
+					runtime = runtime.Substring(0, runtime.IndexOf("/", StringComparison.Ordinal)).Trim();
+				
+                if (runtime.IndexOf(" ", System.StringComparison.Ordinal) > -1)
+					runtime = runtime.Substring(0, runtime.IndexOf(" ", StringComparison.Ordinal)).Trim();
+				
+                return runtime.Trim();
 			}
 			catch
 			{
