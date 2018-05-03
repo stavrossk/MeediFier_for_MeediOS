@@ -80,7 +80,7 @@ namespace MeediFier
         public LoginResult SiteLogin()
         {
             CreateProxy();
-            const string userAgent = "OS Test User Agent";
+            const string userAgent = "TemporaryUserAgent";
             LoginResult loginresult = Proxy.LogIn(Settings.username, Settings.Password,"eng", userAgent);
             return loginresult;
         }
@@ -92,7 +92,7 @@ namespace MeediFier
             Proxy.Timeout = 5000;
             
             //Proxy.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.4) Gecko/20070515 Firefox/2.0.0.4";
-            Proxy.UserAgent = "OS Test User Agent";
+            Proxy.UserAgent = "TemporaryUserAgent";
             Proxy.Url = txtUrl;
         }
 
@@ -103,7 +103,7 @@ namespace MeediFier
             string[] hash = new string[1];
             hash[0] = moviehash;
 
-            const string useragent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.4) Gecko/20070515 Firefox/2.0.0.4";
+            const string useragent = "TemporaryUserAgent";
 
             const string prefix = "http://www.opensubtitles.org/en/search2/sublanguageid-eng/moviehash-";
             string hashSearchurl = prefix + moviehash + "/xml";
