@@ -72,9 +72,9 @@
     <Reference Include="CustomProperties, Version=0.6.4.0, Culture=neutral, processorArchitecture=x86">
       <HintPath>M:\Program Files (x86)\MeediOS Berlin 7826\assemblies\CustomProperties.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MeediOS_Release\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="MediaFoldersAPI">
       <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MediaFoldersAPI.dll</HintPath>
