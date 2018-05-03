@@ -3,11 +3,11 @@ using System.Net;
 using System.Windows.Forms;
 using ICSharpCode.SharpZipLib.Zip;
 using MeediOS;
+using MeediFier;
 
 
 
-
-namespace MediaFairy.OSDb
+namespace MeediFier.OSDb
 {
 
 

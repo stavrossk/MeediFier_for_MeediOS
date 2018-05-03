@@ -51,14 +51,23 @@ namespace MeediFier.OSDb
             Helpers.UpdateProgress("Performing Diagnostic Operations... ",
                                    "Connecting to OSDb...", null);
 
+            Debugger.LogMessageToFile("Connecting to OSDb...");
+            Thread.Sleep(2000);
+
             try
             {
                 connectionResult =
                     OsDbConnectionFirstTry
                         (osDbOperations, connectionResult);
+
+                Debugger.LogMessageToFile("Connection to OSDb was sucessfull!");
+                Thread.Sleep(2000);
+
             }
             catch (Exception)
             {
+                Debugger.LogMessageToFile("Connection to OSDb failed. Retrying...");
+
                 connectionResult =
                     OsDbConnectionRetry
                         (osDbOperations, connectionResult);

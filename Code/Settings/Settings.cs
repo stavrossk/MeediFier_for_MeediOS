@@ -128,6 +128,16 @@ namespace MeediFier
         #endregion
 
 
+        #region Subtitles
+        public static bool EnableSubtitleDownloader = false;
+        public static string PrimaryLanguage = "eng";
+        public static string SecondaryLanguage = "";
+        public static string WhenToUseSecondaryLanguage = "If no subtitles at all exist for primary language";
+        public static string zipfilepath = "";
+        public static bool UseSameSubtitlesFolder = false;
+        public static string SubtitlesFolder = @"D:\";
+        #endregion
+
 
 
         #region Album Covers

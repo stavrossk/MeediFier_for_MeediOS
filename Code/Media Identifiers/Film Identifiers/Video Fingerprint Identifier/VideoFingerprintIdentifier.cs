@@ -19,12 +19,12 @@ namespace MeediFier.VideoFingerprintIdentifier
         internal static string IdentifyMovieByVideoFingerprint
             (IMLItem item, ConnectionResult connectionresult,
             bool fileServerIsOnline, bool isUNC,
-            string location, string parent )
+            string location, string parent, ref string moviehash )
         {
 
             #region function variables
 
-            string moviehash = Helpers.GetTagValueFromItem(item,"Hash");
+            moviehash = Helpers.GetTagValueFromItem(item,"Hash");
             string imdbid = Helpers.GetTagValueFromItem(item,"ImdbID");
             #endregion
 
@@ -83,7 +83,7 @@ namespace MeediFier.VideoFingerprintIdentifier
 
 
         internal static bool IdentifyVideo
-            (ref string imdbid, ref string tmdbID, 
+            (ref string moviehash, ref string imdbid, ref string tmdbID, 
              ref IMDbOperations imdbOP, IMLItem Item, 
              bool fileServerIsOnline, bool IsUNC,
              string location, string parent, string Year, 
@@ -96,9 +96,9 @@ namespace MeediFier.VideoFingerprintIdentifier
 
 
             imdbid = IdentifyFilmByFingerprintOrTitle
-                (Item,imdbid,connectionresult,
-                 fileServerIsOnline,IsUNC,
-                 location,parent,imdbOP, Year);
+                (Item, ref moviehash, imdbid, connectionresult,
+                 fileServerIsOnline, IsUNC,
+                 location, parent, imdbOP, Year);
 
           
             //TMDbID = TheMovieDb.GetTmdbIdByImdbId(Item);
@@ -114,7 +114,7 @@ namespace MeediFier.VideoFingerprintIdentifier
 
 
         private static string IdentifyFilmByFingerprintOrTitle
-            (IMLItem Item, string imdbid,
+            (IMLItem Item, ref string moviehash, string imdbid,
              ConnectionResult connectionresult,
              bool fileServerIsOnline,
              bool IsUNC, string location, 
@@ -128,7 +128,7 @@ namespace MeediFier.VideoFingerprintIdentifier
 
                 imdbid = IdentifyMovieByVideoFingerprint
                     (Item, connectionresult, fileServerIsOnline,
-                     IsUNC, location, parent);
+                     IsUNC, location, parent, ref moviehash);
              
                 imdbid = FilmTitleMatchingEngine.IdentifyFilmByFilmTitleMatchingEngines
                     (Item,imdbid,imdbOP,
@@ -144,7 +144,7 @@ namespace MeediFier.VideoFingerprintIdentifier
                 
                 imdbid = IdentifyMovieByVideoFingerprint
                     (Item, connectionresult, fileServerIsOnline, 
-                    IsUNC, location, parent);         
+                    IsUNC, location, parent, ref moviehash);         
             
             }
 

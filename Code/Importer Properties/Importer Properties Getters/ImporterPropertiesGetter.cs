@@ -883,6 +883,85 @@ namespace MeediFier
 
 
 
+                //TODO: Subtitles should be downloaded for both films and tv episodes with this setting.
+                #region Subtitles
+
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "DownloadSubtitlesChoice";
+                    prop.GroupName = "Subtitles";
+                    //set name shown to user
+                    prop.Caption = "Download synchronized subtitles? ";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    //set the tool tip
+                    prop.HelpText = "Do you want MediaFairy to automatically download subtitles for your movies and TV series?";
+                    prop.GroupCaption = "                             Subtitles Settings";
+                    prop.DefaultValue = Settings.EnableSubtitleDownloader;
+                    prop.Dependencies = "False:HIDE LanguageProp,LanguagePropSecondary" +
+                                        ";True:SHOW LanguageProp,LanguagePropSecondary";
+                    prop.DataType = "bool";
+                    twochoices[0] = "eng";
+                    twochoices[1] = "ell";
+                    //Prop.Choices = choices;
+                    return true;
+                }
+
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "LanguageProp";
+                    prop.GroupName = "Subtitles";
+                    //set name shown to user
+                    prop.Caption = "Primary Subtitles language:";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    //set the tool tip
+                    prop.HelpText = "Please insert the ISO639 3-letter code of your country." + Environment.NewLine +
+                                    "MediaFairy will try to download subtitles for this language first." + Environment.NewLine +
+                                    "To find your country code use this reference: http://en.wikipedia.org/wiki/List_of_ISO_639-2_codes ";
+                    prop.DefaultValue = Settings.PrimaryLanguage;
+                    prop.DataType = "string";
+                    return true;
+                }
+
+
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "LanguagePropSecondary";
+                    //set name shown to user
+                    prop.GroupName = "Subtitles";
+                    prop.Caption = "Secondary subtitles language:";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    //set the tool tip
+                    prop.HelpText = "If no subtitles are found for your primary language, MediaFairy will search for subtitles for this language.";
+                    prop.DefaultValue = Settings.SecondaryLanguage;
+                    prop.DataType = "string";
+                    return true;
+                }
+
+                if (index == counter++)
+                {
+                    //set the internal name
+                    prop.Name = "WhenToUseSecondaryLanguageProp";
+                    //Set the property's group.
+                    prop.GroupName = "Subtitles";
+                    //set name shown to user
+                    prop.Caption = "When to use secondary language?";
+                    //set the tool tip
+                    prop.HelpText = "Reserved for next version";
+                    prop.DefaultValue = Settings.WhenToUseSecondaryLanguage;
+                    prop.DataType = "string";
+                    twochoices[0] = "If no synchronized subs exist for primary language";
+                    twochoices[1] = "If no subtitles at all exist for primary language";
+                    prop.Choices = twochoices;
+                    prop.IsMandatory = false;
+                    return true;
+                }
+
+                //TODO: Add "Use the same folder for all subtitles" option.
+
+                #endregion
 
 
 
@@ -1410,6 +1489,23 @@ namespace MeediFier
                     return true;
                 }
 
+                if (index == counter++)
+                {
+                    prop.GroupName = "Diagnostics";
+                    //set the internal name
+                    prop.Name = "DebugLogProp";
+                    //set name shown to user
+                    prop.Caption = "Write Debug.log file";
+                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
+                    prop.GroupCaption = "                          Diagnostics";
+                    //set the tool tip
+                    prop.HelpText = "If enabled, MeediFier will write a debug log containing" + Environment.NewLine +
+                                    "important information from the last importing session for debugging purposes.";
+                    prop.DefaultValue = Settings.WriteDebugLog;
+                    prop.DataType = "bool";
+                    return true;
+                }
+
                 #endregion
 
 
@@ -1434,25 +1530,7 @@ namespace MeediFier
                 }
 
 
-                if (index == counter++)
-                {
-                    prop.GroupName = "UserInterface";
-                    //set the internal name
-                    prop.Name = "DebugLogProp";
-                    //set name shown to user
-                    prop.Caption = "Write debug log file";
-                    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
-                    prop.GroupCaption = "                          User Interface";
-                    //set the tool tip
-                    prop.HelpText = "If enabled, MediaFairy will write a debug log containing" + Environment.NewLine + 
-                                    "important information from the last importing session for debugging purposes.";
-                    prop.DefaultValue = Settings.WriteDebugLog;
-                    prop.DataType = "bool";
-                    return true;
-                }
-
-
-
+                //TODO: Add "Limit files to import" feature back. 
 
                 //if (Index == counter++)
                 //{

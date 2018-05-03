@@ -1,4 +1,5 @@
 ﻿
+using MeediFier.OSDb;
 using MeediFier.ImportingEngine;
 using MeediOS;
 
@@ -14,7 +15,7 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 
         internal static bool PerformSecondaryFilmItemUpdating
             (IMLSection moviesSection,
-             IMLItemList allFilmItems, IMLItem item)
+             IMLItemList allFilmItems, IMLItem item, string location, string moviehash, string imdbid, ConnectionResult connectionresult)
         {
 
             if (MeediFier.Helpers.UserCancels
@@ -23,12 +24,12 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
                 return false;
 
 
-            //VideoSusbtitleDownloader
-            //    .DownloadSubtitleForVideoParent
-            //    (moviehash, imdbid, Item,
-            //     location, connectionresult,
-            //    Settings.UseSameSubtitlesFolder,
-            //    Settings.SubtitlesFolder, true);
+            VideoSusbtitleDownloader
+                .DownloadSubtitleForVideoParent
+                (moviehash, imdbid, item,
+                 location, connectionresult,
+                MeediFier.Settings.UseSameSubtitlesFolder,
+                MeediFier.Settings.SubtitlesFolder, true);
              
 
             //MediaArchivers

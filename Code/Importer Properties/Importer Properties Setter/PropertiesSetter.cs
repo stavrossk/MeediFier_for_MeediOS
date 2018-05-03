@@ -180,7 +180,23 @@ namespace MeediFier
             #endregion
 
 
+            #region Subtitles
 
+            if (properties["DownloadSubtitlesChoice"] != null)
+                Settings.EnableSubtitleDownloader = (bool)properties["DownloadSubtitlesChoice"];
+
+            if (properties["LanguageProp"] != null) Settings.PrimaryLanguage = (string)properties["LanguageProp"];
+            
+            if (properties["LanguagePropSecondary"] != null)
+                Settings.SecondaryLanguage = (string)properties["LanguagePropSecondary"];
+
+            if (properties["WhenToUseSecondaryLanguageProp"] != null)
+                Settings.WhenToUseSecondaryLanguage = (string)properties["WhenToUseSecondaryLanguageProp"];
+
+            if (properties["SameSubsFolderProp"] != null)
+                Settings.UseSameSubtitlesFolder = (bool)properties["SameSubsFolderProp"];
+
+            #endregion
 
 
             if (properties["ConnectionDiagnosticsProp"] != null)
@@ -362,20 +378,18 @@ namespace MeediFier
                     (string) properties["PrimaryFilmIdentificationMethodProp"];
 
 
-
+            #region Film Title Matching Engines
 
             if (properties["PrimaryFilmTitleMatchingEngineProp"] != null)
                 Settings.PrimaryFilmTitleMatchingEngine
                     = (string)properties["PrimaryFilmTitleMatchingEngineProp"];
 
 
-
-
             if (properties["PrimaryImdbFilmTitleMatchingEngineProp"] != null)
                 Settings.PrimaryIMDbFilmTitleMatchingEngine 
                     = (string) properties["PrimaryImdbFilmTitleMatchingEngineProp"];
 
-
+            #endregion
 
 
             if (properties["WriteFilmDescriptorsProp"] != null)
@@ -437,20 +451,24 @@ namespace MeediFier
 
 
 
-
+            #region TV Series Details and Images
 
             if (properties["WantEpisodeDetailsProp"] != null)
                 Settings.WantEpisodeDetails = (bool) properties["WantEpisodeDetailsProp"];
+
             if (properties["WantEpisodeThumbnailsProp"] != null)
                 Settings.WantEpisodeThumbnails = (bool) properties["WantEpisodeThumbnailsProp"];
+            
             if (properties["WantSeriesBannersProp"] != null)
                 Settings.WantSeriesBanners = (bool) properties["WantSeriesBannersProp"];
+            
             if (properties["WantSeriesBackdropsProp"] != null)
                 Settings.WantSeriesBackdrops = (bool) properties["WantSeriesBackdropsProp"];
+            
             if (properties["WantSeasonImagesProp"] != null)
                 Settings.WantSeasonImages = (bool) properties["WantSeasonImagesProp"];
 
-
+            #endregion
 
 
 
@@ -475,6 +493,7 @@ namespace MeediFier
             //    Settings.MovieNightCompatibility 
             //        = (bool) properties["MovieNightCompatibleProp"];
 
+            #region Film Optical Discs Importers
 
             if (properties["ImportDvdFoldersProp"] != null)
                 Settings.ImportDvdFolders = (bool) properties["ImportDvdFoldersProp"];
@@ -483,6 +502,7 @@ namespace MeediFier
             if (properties["ImportBluRayImagesProp"] != null)
                 Settings.ImportBluRayImages = (bool) properties["ImportBluRayImagesProp"];
 
+            #endregion
             if (properties["ImportRarFilmsProp"] != null)
                 Settings.ImportFilmsInRarArchives = (bool) properties["ImportRarFilmsProp"];
 

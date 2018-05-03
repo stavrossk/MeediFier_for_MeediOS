@@ -64,7 +64,7 @@ namespace MeediFier.SingleItemUpdaters
             Debugger.LogMessageToFile
                 ("Initializing item variables...");
 
-
+            string moviehash = Helpers.GetTagValueFromItem(item, "Hash");
             string imdbid = Helpers.GetTagValueFromItem(item, "ImdbID");
             string tmdbID = Helpers.GetTagValueFromItem(item, "TMDbID");
 
@@ -162,7 +162,7 @@ namespace MeediFier.SingleItemUpdaters
                 if (
                     !VideoFingerprintIdentifier
                     .VideoFingerprintIdentifier
-                    .IdentifyVideo(ref imdbid, 
+                    .IdentifyVideo(ref moviehash, ref imdbid, 
                     ref tmdbID, ref imdbOp,
                     item, fileServerIsOnline,
                     isUNC, location, parent.FullName,
@@ -360,7 +360,7 @@ namespace MeediFier.SingleItemUpdaters
 
             if (!FilmItemSecondaryUpdater
                 .PerformSecondaryFilmItemUpdating
-                (moviesSection, allFilmItems, item))
+                (moviesSection, allFilmItems, item, location, moviehash, imdbid, connectionresult))
                 return false;
 
 

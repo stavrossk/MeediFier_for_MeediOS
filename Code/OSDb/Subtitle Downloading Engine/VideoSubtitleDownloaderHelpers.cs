@@ -7,12 +7,13 @@ using System.Windows.Forms;
 using System.Xml;
 using CookComputing.XmlRpc;
 using ICSharpCode.SharpZipLib.Zip;
-using MediaFairy.ImportingEngine;
+using MeediFier;
+using MeediFier.ImportingEngine;
 using MeediOS;
 
 
 
-namespace MediaFairy.OSDb
+namespace MeediFier.OSDb
 {
 
     class VideoSubtitleDownloaderHelpers

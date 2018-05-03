@@ -73,7 +73,7 @@
       <HintPath>M:\Program Files (x86)\MeediOS Berlin 7826\assemblies\CustomProperties.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MediaFoldersAPI">
@@ -137,9 +137,9 @@
     <Compile Include="Code\Helpers\ImageFileConstructor.cs" />
     <Compile Include="Code\File Metadata Extractors\EpisodeFileMetadataExtractor.cs" />
     <Compile Include="Code\Downloaders\HtmlDownloaders.cs" />
-    <Compile Include="Code\Importer Properties\FilmDetailsPropertiesGetter.cs" />
-    <Compile Include="Code\Importer Properties\LibraryManagementPropertiesGetter.cs" />
-    <Compile Include="Code\Importer Properties\MediaOrganizersPropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\FilmDetailsPropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\LibraryManagementPropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\MediaOrganizersPropertiesGetter.cs" />
     <Compile Include="Code\Media File Importers\Media Analyzer\MediaExtensionDictionaryMatcher.cs" />
     <Compile Include="Code\Media File Importers\Media Importing Engine\MediaSectionCacher.cs" />
     <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\TMDb\TMDbTitleMatchingEngine.cs" />
@@ -182,8 +182,8 @@
     <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\IMDbTitleMatchingEngineInternal.cs" />
     <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\TitleMatchingEngineHelpers.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\Cover Art\ImpAwardsFilmCoverArtDownloader.cs" />
-    <Compile Include="Code\Importer Properties\ConfigurationMode.cs" />
-    <Compile Include="Code\Importer Properties\MediaImporters.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\ConfigurationModePropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\MediaImportersPropertiesGetter.cs" />
     <Compile Include="Code\Importing Engine\MainImportingEngine.cs" />
     <Compile Include="Code\Media Snapshot Engine\MediaSnapshotEngine.cs" />
     <Compile Include="Code\Library Cleaners\LibraryCleaners.cs" />
@@ -224,6 +224,8 @@
     <Compile Include="Code\OSDb\OsDbConnector.cs" />
     <Compile Include="Code\OSDb\OSInterface.cs" />
     <Compile Include="Code\Downloaders\Web Data Miners\RegExDataMiners.cs" />
+    <Compile Include="Code\OSDb\Subtitle Downloading Engine\VideoSubtitleDownloaderHelpers.cs" />
+    <Compile Include="Code\OSDb\Subtitle Downloading Engine\VideoSusbtitleDownloader.cs" />
     <Compile Include="Code\RSS Importer\RssNewsImporter.cs" />
     <Compile Include="Code\RSS Importer\RssReader.cs" />
     <Compile Include="Code\Settings\ImdbFilmDetailsIndividualChoices.cs" />
@@ -276,24 +278,16 @@
     <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\IMDb\Internal\IMDbRegEx.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\Details\IMDb\IMDbLib\Movies\IMDbSearchResult.cs" />
     <Compile Include="Code\Media Identifiers\Film Identifiers\Title Matching Engines\filmTitleMatchingEngine.cs" />
-    <Compile Include="Code\Importer Properties\MediaSections.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\MediaSectionsPropertiesGetter.cs" />
     <Compile Include="Code\Importer.cs" />
     <Compile Include="Forms\InputBoxForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Code\Importing Engine\ImportingEngineHelpers.cs" />
     <Compile Include="Code\Importing Engine\MediaSectionsAllocator.cs" />
-    <Compile Include="Code\Importer Properties\ImporterProperties.cs" />
-    <Compile Include="Code\Importer Properties\PropertiesSetter.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Getters\ImporterPropertiesGetter.cs" />
+    <Compile Include="Code\Importer Properties\Importer Properties Setter\PropertiesSetter.cs" />
     <Compile Include="Code\Metadata Scrapers\Film\Details\Film Descriptors\MovieDescriptorReader.cs" />
-    <Compile Include="Memorial\CleanVideoFilename.cs" />
-    <Compile Include="Memorial\FileMetadataExtractors.cs" />
-    <Compile Include="Memorial\IMDbLib.cs" />
-    <Compile Include="Memorial\Movie Trailer Downloader.cs" />
-    <Compile Include="Memorial\NewVersionChecker.cs" />
-    <Compile Include="Memorial\Old IMDb methods.cs" />
-    <Compile Include="Memorial\RecognizeSeries.cs" />
-    <Compile Include="Memorial\SearchMovieInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\StatusForm.cs">
       <SubType>Form</SubType>
@@ -462,7 +456,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetDir)*.*" "M:\Program Files (x86)\MeediOS\Plugins\import\MediaFairy"
-xcopy /y "$(TargetDir)*.*" "M:\Program Files (x86)\MeediOS Berlin 7826\Plugins\import\MediaFairy"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.*" "M:\Program Files (x86)\MeediOS v2.1.5\Plugins\import\MediaFairy"</PostBuildEvent>
   </PropertyGroup>
 </Project>
