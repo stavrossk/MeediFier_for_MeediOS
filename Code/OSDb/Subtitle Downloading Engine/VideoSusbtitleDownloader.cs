@@ -47,27 +47,36 @@ namespace MeediFier.OSDb
             {
 
 
-            
                 firstsub = VideoSubtitleDownloaderHelpers.SearchForSubtitleByVideoHashParent(videoHash, language);
 
+                if (String.IsNullOrEmpty(firstsub))
+                {
+                    Debugger.LogMessageToFile("The fetching of the online address of the first subtitle by using the video hash failed. Trying to search for subtitle by IMDbID...");
+                    firstsub = String.Empty;
+                }
+
+                Debugger.LogMessageToFile("The first subtitle's online address is: " + firstsub);
 
                 if (!VideoSubtitleDownloaderHelpers.SearchForSubtitleByIMDbIdParent(imdbid, language,
                     logintoken, item, isMovie, ref firstsub))
+                {
+                    Debugger.LogMessageToFile("The fetching of the online address of the first subtitle by using the video IMDbID failed. Subtitle downloading cannot continue.");
                     return false;
+                }
 
                 if (!VideoSubtitleDownloaderHelpers.PerformSubtitleDownload(item, zipfilePath, webClient, firstsub))
                     return false;
 
 
             }
-            catch (Exception e)
+            catch (Exception error)
             {
                 MessageBox.Show(@"An error occured while trying to download
                 the subtitle on online address: " + firstsub + @" to local location: "
-                + zipfilePath + @". The error was: " + e);
+                + zipfilePath + @". The error was: " + error);
 
-                Debugger.LogMessageToFile("Error occured in subtitles downloading function: "
-                    + e + ".  The intented subtitle zip location was: " + zipfilePath + 
+                Debugger.LogMessageToFile("An error occured in subtitles downloading function: "
+                    + error + ".  The intented subtitle zip location was: " + zipfilePath + 
                     "  and oline subtitle location was: " + firstsub);
 
                 return false;
