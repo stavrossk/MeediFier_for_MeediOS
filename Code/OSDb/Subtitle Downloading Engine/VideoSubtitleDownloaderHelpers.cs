@@ -678,6 +678,8 @@ namespace MeediFier.OSDb
             decimal maxRating = 0;
             int preferred = 0;
 
+            Debugger.LogMessageToFile(Environment.NewLine + "We will now loop through all the found subtitles in order to decide which subtitle to download: " + Environment.NewLine);
+
             for (int i = 0; i < subtitle.Count; i++)
             {
                 string sublink = download[i].InnerText;
@@ -700,6 +702,10 @@ namespace MeediFier.OSDb
 
                 if (downloadlink.StartsWith("/download"))
                     downloadlink = "http://www.opensubtitles.org" + downloadlink;
+
+                //TODO: The returned subtitle zip file from OSDb is just an HTML file. I should fix the subtitle downloader in order to download a valid subtitle zip file.
+                Debugger.LogMessageToFile(Environment.NewLine + "The prefered subtitle's download link is: "
+                    + downloadlink + Environment.NewLine);
 
                 return downloadlink;
 
@@ -752,6 +758,8 @@ namespace MeediFier.OSDb
                 MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,
                                                           "Searching OSdb for subtitle (by video hash)...");
 
+                Debugger.LogMessageToFile(Environment.NewLine + "Searching OSdb for subtitle (by video hash)..." + Environment.NewLine);
+
 
                 firstsub = SearchForSubtitleByVideoHash
                     (videoHash, language);
@@ -762,6 +770,9 @@ namespace MeediFier.OSDb
 
                 MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,
                                                           "Unable to search for video subtitle. Video fingerprint is unknown.");
+
+                Debugger.LogMessageToFile(Environment.NewLine 
+                    + "Unable to search for video subtitle by video hash. Video fingerprint is unknown." + Environment.NewLine);
 
                 Thread.Sleep(2000);
 
