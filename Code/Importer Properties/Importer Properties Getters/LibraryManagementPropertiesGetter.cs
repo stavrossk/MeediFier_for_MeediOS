@@ -168,21 +168,21 @@ namespace MeediFier.Code.Importer_Properties
             }
 
 
-            //if (index == counter++)
-            //{
-            //    prop.GroupName = "LibraryCleanup";
-            //    //set the internal name
-            //    prop.Name = "MovieNightCompatibleProp";
-            //    //set name shown to user
-            //    prop.Caption = "MovieNight compatibility (for Meedio version)";
-            //    prop.Caption = TranslationProvider.Translate(prop.Caption, this);
-            //    //set the tool tip
-            //    prop.HelpText = "Enable this setting if you are a user of MovieNight media module for Meedio." + Environment.NewLine +
-            //                    "Your film library tags in this case will be named according to this module's definitions.";
-            //    prop.DefaultValue = Settings.MovieNightCompatibility;
-            //    prop.DataType = "bool";
-            //    return true;
-            //}
+            if (index == counter++)
+            {
+                prop.GroupName = "LibraryCleanup";
+                //set the internal name
+                prop.Name = "MovieNightCompatibleProp";
+                //set name shown to user
+                prop.Caption = "MovieNight compatibility (for Meedio version)";
+                prop.Caption = TranslationProvider.Translate(prop.Caption, importerProperties);
+                //Set the tool tip
+                prop.HelpText = "Enable this setting if you are a user of MovieNight media module for Meedio." + Environment.NewLine +
+                                "Your film library tags in this case will be named according to this module's definitions.";
+                prop.DefaultValue = MeediFier.Settings.MovieNightCompatibility;
+                prop.DataType = "bool";
+                return true;
+            }
 
 
             if (index == counter++)

@@ -266,12 +266,19 @@ namespace MeediFier
 
 
 
-        public static bool UIenabled;
-        public static bool WantToDisableSources = true;
-        public static string[] ImporterIDs = new string[1];
-        public static int ImportingLimit;
-        public static string username = string.Empty;
-        public static string Password = string.Empty;
+        internal static bool UserInterfaceEnabled;
+
+        //Option to disable online sources for the rest of the importing session if they are unconnectable on the first try.
+        internal static bool WantToDisableSources = true;
+
+        internal static string[] ImporterIDs = new string[1];
+        
+        internal static int ImportingLimit;
+
+        #region OpenSubtitles.org Username and Password.
+        internal static string Username = string.Empty;
+        internal static string Password = string.Empty;
+        #endregion
 
 
         #endregion

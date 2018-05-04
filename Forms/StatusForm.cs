@@ -195,7 +195,7 @@ namespace MeediFier
             #endregion
 
 
-            if (Settings.UIenabled)
+            if (Settings.UserInterfaceEnabled)
             {
                 #region Fill Sections Datagrids
 

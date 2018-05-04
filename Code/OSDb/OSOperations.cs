@@ -81,7 +81,7 @@ namespace MeediFier
         {
             CreateProxy();
             const string userAgent = "MeediFier for MeediOS v0.7.9";
-            LoginResult loginresult = Proxy.LogIn(Settings.username, Settings.Password,"eng", userAgent);
+            LoginResult loginresult = Proxy.LogIn(Settings.Username, Settings.Password,"eng", userAgent);
             return loginresult;
         }
 

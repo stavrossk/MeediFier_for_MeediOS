@@ -19,8 +19,6 @@
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
-using System;
-using System.Windows.Forms;
 using MeediFier.Code.Settings;
 using MeediOS;
 
@@ -488,10 +486,10 @@ namespace MeediFier
             if (properties["ImpAwardsPostersEnabledProp"] != null)
                 Settings.ImpAwardsPostersEnabled = (bool) properties["ImpAwardsPostersEnabledProp"];
 
-
-            //if (properties["MovieNightCompatibleProp"] != null)
-            //    Settings.MovieNightCompatibility 
-            //        = (bool) properties["MovieNightCompatibleProp"];
+            //Compatibility setting for MovieNight for Meedio.
+            if (properties["MovieNightCompatibleProp"] != null)
+                Settings.MovieNightCompatibility 
+                    = (bool) properties["MovieNightCompatibleProp"];
 
             #region Film Optical Discs Importers
 
