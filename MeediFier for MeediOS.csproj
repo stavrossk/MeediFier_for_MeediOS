@@ -77,27 +77,27 @@
       <HintPath>bin\MeediOS_Release\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="MediaFoldersAPI">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MediaFoldersAPI.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\MediaFoldersAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MediaLibrary">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MediaLibrary.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\MediaLibrary.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MeediOS.Cache">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MeediOS.Cache.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\MeediOS.Cache.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MeediOS.Configuration">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MeediOS.Configuration.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\MeediOS.Configuration.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MeediOSInterfaces">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MeediOSInterfaces.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\MeediOSInterfaces.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="MetaDataFoldersAPI">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\MetaDataFoldersAPI.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\MetaDataFoldersAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RestSharp, Version=104.3.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -121,7 +121,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="taglib-sharp">
-      <HintPath>M:\Program Files (x86)\MeediOS\assemblies\taglib-sharp.dll</HintPath>
+      <HintPath>..\..\Program Files (x86)\MeediOS\assemblies\taglib-sharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TMDbLib, Version=0.7.6.0, Culture=neutral, processorArchitecture=MSIL">

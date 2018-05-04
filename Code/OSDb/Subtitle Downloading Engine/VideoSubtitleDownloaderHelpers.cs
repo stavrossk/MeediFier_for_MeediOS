@@ -656,7 +656,7 @@ namespace MeediFier.OSDb
             const string prefix = "http://www.opensubtitles.org/search/sublanguageid-";
             string searchstring = prefix + language + "/moviehash-" + moviehash + "/simplexml";
 
-            const string useragent = "TemporaryUserAgent";
+            const string useragent = "MeediFier for MeediOS v0.7.9";
             XmlDocument xDoc = new XmlDocument();
             #endregion
 

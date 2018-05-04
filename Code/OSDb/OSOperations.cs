@@ -80,7 +80,7 @@ namespace MeediFier
         public LoginResult SiteLogin()
         {
             CreateProxy();
-            const string userAgent = "TemporaryUserAgent";
+            const string userAgent = "MeediFier for MeediOS v0.7.9";
             LoginResult loginresult = Proxy.LogIn(Settings.username, Settings.Password,"eng", userAgent);
             return loginresult;
         }
@@ -90,9 +90,8 @@ namespace MeediFier
         {
             Proxy = XmlRpcProxyGen.Create<IOpenSubtitlesRemoteFunctions>();
             Proxy.Timeout = 5000;
-            
-            //Proxy.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.4) Gecko/20070515 Firefox/2.0.0.4";
-            Proxy.UserAgent = "TemporaryUserAgent";
+
+            Proxy.UserAgent = "MeediFier for MeediOS v0.7.9";
             Proxy.Url = txtUrl;
         }
 
@@ -104,7 +103,7 @@ namespace MeediFier
             hash[0] = moviehash;
 
             //TODO: Have only one user agent variable in Settings.cs instead of many.
-            const string useragent = "TemporaryUserAgent";
+            const string useragent = "MeediFier for MeediOS v0.7.9";
 
             const string prefix = "http://www.opensubtitles.org/en/search2/sublanguageid-eng/moviehash-";
             string hashSearchurl = prefix + moviehash + "/xml";

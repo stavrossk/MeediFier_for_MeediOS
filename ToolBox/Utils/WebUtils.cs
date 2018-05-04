@@ -108,7 +108,9 @@ namespace MeediFier.ToolBox.Utils
 			}
 		}
 
+        // ReSharper disable InconsistentNaming
 		public static string POST(string url, string Params)
+        // ReSharper restore InconsistentNaming
 		{
 			try
 			{
@@ -130,7 +132,9 @@ namespace MeediFier.ToolBox.Utils
 			}
 		}
 
+        // ReSharper disable InconsistentNaming
 		public static string GET(string URL)
+        // ReSharper restore InconsistentNaming
 		{
 			try
 			{

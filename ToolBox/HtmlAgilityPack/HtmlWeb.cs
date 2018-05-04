@@ -830,9 +830,10 @@ namespace HtmlAgilityPack
         public bool UseCookies
         {
             get { return _useCookies; }
-            set { _useCookies = value; }
+            set { _useCookies = value; } 
         }
 
+       
         /// <summary>
         /// Gets or Sets the User Agent HTTP 1.1 header sent on any webrequest
         /// </summary>

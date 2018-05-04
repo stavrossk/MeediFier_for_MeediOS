@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using MeediFier.Code.Metadata_Scrapers.Cover_Art;
-using MeediFier.Code;
 using MeediFier.ImportingEngine;
 using MeediOS;
 using TagLib;
