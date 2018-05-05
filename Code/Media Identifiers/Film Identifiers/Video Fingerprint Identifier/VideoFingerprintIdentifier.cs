@@ -15,17 +15,22 @@ namespace MeediFier.VideoFingerprintIdentifier
 
 
 
-
+        //TODO: This function should also be used for identifying for TV episodes with change to the ReadMovieDescripton code.
         internal static string IdentifyMovieByVideoFingerprint
             (IMLItem item, ConnectionResult connectionresult,
             bool fileServerIsOnline, bool isUNC,
-            string location, string parent, ref string moviehash )
+            string location, string parent, ref string videoHash )
         {
 
             #region function variables
 
-            moviehash = Helpers.GetTagValueFromItem(item,"Hash");
+            if (String.IsNullOrEmpty(videoHash))
+            {
+                videoHash = Helpers.GetTagValueFromItem(item, "Hash");
+            }
+
             string imdbid = Helpers.GetTagValueFromItem(item,"ImdbID");
+            
             #endregion
 
 
@@ -33,7 +38,7 @@ namespace MeediFier.VideoFingerprintIdentifier
                 return imdbid;
 
             #region Compute Hash
-            if (String.IsNullOrEmpty(moviehash))
+            if (String.IsNullOrEmpty(videoHash))
             {
                 //if ( Importer.EnableHashing)
                 //{
@@ -44,8 +49,8 @@ namespace MeediFier.VideoFingerprintIdentifier
                         Debugger.LogMessageToFile("Computing video fingerprint for " + item.Name + "...");
                         MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Computing video fingerprint for " + item.Name + "...");
                         Thread.Sleep(200);
-                        moviehash = Hasher.ComputeHash(location, item);
-                        item.Tags["Hash"] = moviehash;
+                        videoHash = Hasher.ComputeHash(location, item);
+                        item.Tags["Hash"] = videoHash;
                         item.SaveTags();
                     }
                     else
@@ -56,7 +61,7 @@ namespace MeediFier.VideoFingerprintIdentifier
                 }
                 //}
             }
-            else moviehash = Helpers.GetTagValueFromItem(item,"Hash");
+            else videoHash = Helpers.GetTagValueFromItem(item,"Hash");
 
             item.SaveTags();
             #endregion
@@ -84,9 +89,9 @@ namespace MeediFier.VideoFingerprintIdentifier
 
         internal static bool IdentifyVideo
             (ref string moviehash, ref string imdbid, ref string tmdbID, 
-             ref IMDbOperations imdbOP, IMLItem Item, 
-             bool fileServerIsOnline, bool IsUNC,
-             string location, string parent, string Year, 
+             ref IMDbOperations imdbOp, IMLItem item, 
+             bool fileServerIsOnline, bool isUNC,
+             string location, string parent, string year, 
              ConnectionResult connectionresult,
              IMLSection moviesSection)
         {
@@ -96,14 +101,14 @@ namespace MeediFier.VideoFingerprintIdentifier
 
 
             imdbid = IdentifyFilmByFingerprintOrTitle
-                (Item, ref moviehash, imdbid, connectionresult,
-                 fileServerIsOnline, IsUNC,
-                 location, parent, imdbOP, Year);
+                (item, ref moviehash, imdbid, connectionresult,
+                 fileServerIsOnline, isUNC,
+                 location, parent, imdbOp, year);
 
           
-            //TMDbID = TheMovieDb.GetTmdbIdByImdbId(Item);
+            //TMDbID = TheMovieDb.GetTmdbIdByImdbId(item);
 
-            TheMovieDb.TmdbGetTmdbIdByFilmImdbId(Item);
+            TheMovieDb.TmdbGetTmdbIdByFilmImdbId(item);
 
             return true;
         

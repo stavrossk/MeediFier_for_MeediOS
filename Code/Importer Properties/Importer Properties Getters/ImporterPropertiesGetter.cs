@@ -118,15 +118,12 @@ namespace MeediFier
 
 
 
-
-
                 if (ImporterPropertiesGroups
                     .MediaImporters
                     .MediaImportersProperties
                     (this, index, prop, 
                     twochoices, ref counter))
                     return true;
-
 
 
 
@@ -921,7 +918,7 @@ namespace MeediFier
                     prop.HelpText = "Please insert the ISO639 3-letter code of your country." + Environment.NewLine +
                                     "MediaFairy will try to download subtitles for this language first." + Environment.NewLine +
                                     "To find your country code use this reference: http://en.wikipedia.org/wiki/List_of_ISO_639-2_codes ";
-                    prop.DefaultValue = Settings.PrimaryLanguage;
+                    prop.DefaultValue = Settings.PrimarySubtitleLanguage;
                     prop.DataType = "string";
                     return true;
                 }

@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace MeediFier.Code.Diagnostics
 {
@@ -34,10 +35,12 @@ namespace MeediFier.Code.Diagnostics
                         if (!Directory.Exists(root))
                         {
                             Debugger.LogMessageToFile("Your file server is offline. MediaFairy will skip all video files which do not reside locally.");
-                            MeediFier.Helpers.UpdateProgress("Performing Diagnostic operations", "Your file server is offline. MediaFairy will skip all video files which do not reside locally.", null);
-                            //Progress.Progress(Importer.CurrentProgress, "Your media server is offline. MediaFairy will skip all video files which do not reside locally.");
-                            //StatusForm.statusForm.TrayIcon.ShowBalloonTip(3000, "Media server is offline", "Your media server is offline. MediaFairy will skip file operations for all media files which do not reside locally.", ToolTipIcon.Warning);
+
+                            Helpers.UpdateProgress("Performing Diagnostic operations", "Your file server is offline. MediaFairy will skip all video files which do not reside locally.", null);
+   
+                            StatusForm.statusForm.TrayIcon.ShowBalloonTip(3000, "Media server is offline", "Your media server is offline. MediaFairy will skip file operations for all media files which do not reside locally.", ToolTipIcon.Warning);
                             Thread.Sleep(2000);
+                            
                             fileServerIsOnline = false;
                             fileServerChecked = true;
 

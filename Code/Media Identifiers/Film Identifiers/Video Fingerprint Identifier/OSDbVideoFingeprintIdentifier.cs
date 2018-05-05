@@ -1,11 +1,13 @@
 ﻿using System;
 using MeediFier.ImportingEngine;
+using MeediFier.OSDb;
 using MeediOS;
 
 namespace MeediFier.VideoFingerprintIdentifier
 {
     class OSDbVideoFingeprintIdentifier
     {
+
         internal static string IdentifyMovieByHashOSDb(IMLItem item, ConnectionResult connectionresult)
         {
 
@@ -36,31 +38,13 @@ namespace MeediFier.VideoFingerprintIdentifier
             #region Get ImdBID
 
 
-            imdbid = OSoperations.FindImdbIDbyHash2(moviehash, item, connectionresult.OsDbLoginResult.token, ref connectionresult.OSDbIsOnline);
+            imdbid = OSoperations.FindImdbIDbyHashUsingXmlRpc(moviehash, item, connectionresult.OsDbLoginResult.token,
+                ref connectionresult.OSDbIsOnline);
 
-            #region Construct correct IMDbID in case it was received wrong
-            if (!String.IsNullOrEmpty(imdbid))
-            {
-                if (!imdbid.StartsWith("tt"))
-                {
-                    if (imdbid.Length == 6)
-                        imdbid = "0" + imdbid;
+            imdbid = ConstructCorrectImdbIdInCaseItWasReceivedWrong(imdbid);
 
-                    imdbid = "tt" + imdbid;
-                }
-                else
-                {
-                    if (imdbid.Length == 8)
-                    {
-                        imdbid = imdbid.Remove(0, 2);
-                        imdbid = "0" + imdbid;
-                        imdbid = "tt" + imdbid;
-                    }
-                }
-            }
-            #endregion
 
-            #region Save found IMDbID to item's tag
+            #region Save found ImdbId to item's tag
             if (!String.IsNullOrEmpty(imdbid))
             {
 
@@ -90,12 +74,41 @@ namespace MeediFier.VideoFingerprintIdentifier
                      " fingerprint (using OSDb)" +
                      " was not possible.");
 
-
             }
             #endregion
 
+
             #endregion
 
+
+            return imdbid;
+        }
+
+
+        private static string ConstructCorrectImdbIdInCaseItWasReceivedWrong(string imdbid)
+        {
+
+            if (!String.IsNullOrEmpty(imdbid))
+            {
+
+                if (!imdbid.StartsWith("tt"))
+                {
+                    if (imdbid.Length == 6)
+                        imdbid = "0" + imdbid;
+
+                    imdbid = "tt" + imdbid;
+                }
+                else
+                {
+                    if (imdbid.Length == 8)
+                    {
+                        imdbid = imdbid.Remove(0, 2);
+                        imdbid = "0" + imdbid;
+                        imdbid = "tt" + imdbid;
+                    }
+                }
+
+            }
 
             return imdbid;
         }

@@ -129,10 +129,11 @@ namespace MeediFier
 
 
         #region Subtitles
+        internal static string OsdbUserAgent = "MeediFier for MeediOS v0.7.9";
         // ReSharper disable RedundantDefaultFieldInitializer
         public static bool EnableSubtitleDownloader = false;
         // ReSharper restore RedundantDefaultFieldInitializer
-        public static string PrimaryLanguage = "eng";
+        public static string PrimarySubtitleLanguage = "ell";
         public static string SecondaryLanguage = "";
         public static string WhenToUseSecondaryLanguage = "If no subtitles at all exist for primary language";
         public static string zipfilepath = "";

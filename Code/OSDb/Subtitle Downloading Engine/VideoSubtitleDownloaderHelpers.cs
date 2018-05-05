@@ -154,7 +154,7 @@ namespace MeediFier.OSDb
 
 
             bool subsDownloadResult = VideoSusbtitleDownloader.GetSubtitleForVideo
-                (moviehash, imdbid, Settings.PrimaryLanguage,
+                (moviehash, imdbid, Settings.PrimarySubtitleLanguage,
                  connectionresult.OsDbLoginResult.token, item, 
                  parentPath, videoFilename, isMovie);
 

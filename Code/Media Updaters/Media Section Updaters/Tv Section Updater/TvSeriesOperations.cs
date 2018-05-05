@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using MeediFier.ImportingEngine;
+using MeediFier.OSDb;
 using TVDBLibrary;
 using System.Threading;
 
@@ -59,7 +60,7 @@ namespace MeediFier
         }
 
 
-
+        //TODO: The method GetIMDbIdByVideoHash is never used. Implement fetching of IMDbID for TV episodes by the episode's hash.
         private static string GetIMDbIdByVideoHash(IMLItem item,
             ConnectionResult connectionresult, 
             string imdbid, string moviehash)
@@ -73,7 +74,7 @@ namespace MeediFier
             if (!String.IsNullOrEmpty(imdbid))
                 return imdbid;
             
-            imdbid = OSoperations.FindImdbIDbyHash2
+            imdbid = OSoperations.FindImdbIDbyHashUsingXmlRpc
                 (moviehash, item, connectionresult.OsDbLoginResult.token,
                  ref connectionresult.OSDbIsOnline);
 

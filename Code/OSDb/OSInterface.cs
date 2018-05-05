@@ -19,17 +19,11 @@
 //'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
-
-
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using CookComputing.XmlRpc;
 
+// ReSharper disable CheckNamespace
 namespace MeediFier
+// ReSharper restore CheckNamespace
 {
 
     public interface IOpenSubtitlesRemoteFunctions : IXmlRpcProxy

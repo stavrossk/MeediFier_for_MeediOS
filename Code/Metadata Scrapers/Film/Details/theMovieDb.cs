@@ -27,14 +27,14 @@ using System.Net;
 using System.IO;
 using System.Xml;
 using System.Windows.Forms;
-#if USE_MEEDIO
-using Meedio;
-#elif USE_MEEDIOS
-using MeediOS;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
+#if USE_MEEDIO
+using Meedio;
+#elif USE_MEEDIOS
+using MeediOS;
 #endif
 
 
@@ -127,14 +127,14 @@ namespace MeediFier
 
 
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
 
                 Debugger.LogMessageToFile
                     ("[TMDb Film Title Matching Engine] " +
                      "An error occured while trying to perform TMDb search " +
                      "for the film with Title: " + filmTitle + ". " +
-                     "The error was: " + e.ToString());
+                     "The error was: " + exception);
                 
             }
 

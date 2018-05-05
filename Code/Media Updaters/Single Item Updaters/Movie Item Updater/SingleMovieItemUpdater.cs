@@ -6,6 +6,7 @@ using MeediFier.Code.Metadata_Scrapers.Cover_Art;
 using MeediFier.IMDb;
 using MeediFier.ImportingEngine;
 using MeediFier.MediaFileDescriptors;
+using MeediFier.OSDb;
 using MeediOS;
 
 
@@ -175,6 +176,7 @@ namespace MeediFier.SingleItemUpdaters
                     return true;
 
                 }
+
                 Debugger.LogMessageToFile
                     ("Video identification was succesfull!");
 
@@ -182,9 +184,6 @@ namespace MeediFier.SingleItemUpdaters
                 if (Helpers.UserCancels
                     (MainImportingEngine.SpecialStatus, item))
                     return false;
-
-
-                
 
                 #endregion
 
@@ -248,10 +247,10 @@ namespace MeediFier.SingleItemUpdaters
 
 
 
-                        #region download details
+                    #region Download film details from IMDb and OSDb.
 
 
-                       imdbid = FilmItemUpdaterHelpers.IMDbDetailer
+                    imdbid = FilmItemUpdaterHelpers.IMDbDetailer
                            (moviesSection, imdbOp,
                            item, itemTitle, imdbid);
                         
@@ -360,7 +359,7 @@ namespace MeediFier.SingleItemUpdaters
 
             if (!FilmItemSecondaryUpdater
                 .PerformSecondaryFilmItemUpdating
-                (moviesSection, allFilmItems, item, location, moviehash, imdbid, connectionresult))
+                (moviesSection, allFilmItems, item, location, moviehash, imdbid, fileServerIsOnline, connectionresult))
                 return false;
 
 

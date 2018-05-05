@@ -23,21 +23,12 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
-//using System.Linq;
-using System.Text;
-//using CookComputing.XmlRpc;
-using ICSharpCode.SharpZipLib.Zip;
 using System.Threading;
 using System.IO;
 using System.Net;
-using System.Web;
 using System.Xml;
-//using System.Windows.Forms.Design;
 using System.Windows.Forms;
 using CookComputing.XmlRpc;
-using MeediFier;
-
 
 #if USE_MEEDIO 
 using Meedio; 
@@ -47,12 +38,12 @@ using MeediOS;
 #endif
 
 
-namespace MeediFier
+namespace MeediFier.OSDb
 {
 
     public class OSoperations
     {
-        private string txtUrl = "http://api.opensubtitles.org/xml-rpc";
+        private const string TxtUrl = "http://api.opensubtitles.org/xml-rpc";
 
         internal static IOpenSubtitlesRemoteFunctions Proxy;
       
@@ -85,21 +76,22 @@ namespace MeediFier
             return loginresult;
         }
 
-
+        //TODO: Make CreateProxy static and test it.
         private void CreateProxy()
         {
             Proxy = XmlRpcProxyGen.Create<IOpenSubtitlesRemoteFunctions>();
             Proxy.Timeout = 5000;
 
             Proxy.UserAgent = "MeediFier for MeediOS v0.7.9";
-            Proxy.Url = txtUrl;
+            Proxy.Url = TxtUrl;
         }
 
-
-        public static string FindImdbIDbyHash(string moviehash, IMLItem Item)
+        #region Methods to find ImdbId.
+        //Old method of finding the video's ImdbId by hash. This is not used anymore. Searching is now done with XMLRPC.
+        public static string FindImdbIDbyHash(string moviehash, IMLItem item)
         {
             string imdbid = string.Empty;
-            string[] hash = new string[1];
+            var hash = new string[1];
             hash[0] = moviehash;
 
             //TODO: Have only one user agent variable in Settings.cs instead of many.
@@ -113,7 +105,7 @@ namespace MeediFier
             request.Timeout = 10000;
             WebResponse response = request.GetResponse();
 
-            XmlDocument xDoc = new XmlDocument();
+            var xDoc = new XmlDocument();
 
 
 
@@ -124,26 +116,26 @@ namespace MeediFier
             {
                 StreamReader sr = new StreamReader(stream);
                 //MessageBox.Show(sr.ReadToEnd());
-                string html_line = sr.ReadLine();
+                string htmlLine = sr.ReadLine();
                 //MessageBox.Show("html_line: " + html_line);
                 stream.Close();
 
-                if (html_line != null && html_line.Contains("DOCTYPE html"))
+                if (htmlLine != null && htmlLine.Contains("DOCTYPE html"))
                 {
                     //MessageBox.Show("Passed inside html parser");
 
-                    html_line = sr.ReadLine();
+                    htmlLine = sr.ReadLine();
 
                     #region see if imdbid exists in the html and if yes, return it
-                    if (html_line.Contains("imdbid-"))
+                    if (htmlLine.Contains("imdbid-"))
                     {
                    
-                        MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,Item.Name + " was succesfully identified by fingerprint! ");
+                        MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,item.Name + " was succesfully identified by fingerprint! ");
                         Thread.Sleep(1500);
 
-                        int imdbid_index = html_line.IndexOf("imdbid-", System.StringComparison.Ordinal);
+                        int imdbid_index = htmlLine.IndexOf("imdbid-", System.StringComparison.Ordinal);
                         //MessageBox.Show("imdb_index: " + Convert.ToString(imdbid_index));
-                        imdbid = html_line.Substring(imdbid_index + 7, 7);
+                        imdbid = htmlLine.Substring(imdbid_index + 7, 7);
                         if (imdbid.EndsWith("/"))
                         {
                             imdbid = imdbid.TrimEnd('/');
@@ -163,7 +155,7 @@ namespace MeediFier
                 if (imdbidTags.Count == 0)
                     return "";
 
-                MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,Item.Name + " was succesfully identified by fingerprint! ");
+                MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress,item.Name + " was succesfully identified by fingerprint! ");
                 Thread.Sleep(1500);
 
                 imdbid = imdbidTags[0].InnerText;
@@ -180,18 +172,20 @@ namespace MeediFier
         }
 
 
-        public static string FindImdbIDbyHash2(string moviehash, IMLItem item, string token,ref bool OsIsOnline)
+        public static string FindImdbIDbyHashUsingXmlRpc
+            (string moviehash, IMLItem item, string connectionToken,ref bool osIsOnline)
         {
+
             #region init vars
-            string[] hash = new string[1];
+            var hash = new string[1];
             hash[0] = moviehash;
             string imdbid = "";
-            XmlRpcStruct mystruct;
+            XmlRpcStruct checkMovieHashStruct;
             #endregion
 
 
             #region verify connection token
-            if (token == null)
+            if (connectionToken == null)
             {
                 MainImportingEngine.ThisProgress.Progress(MainImportingEngine.CurrentProgress, "Unable to request data from OSdb. Connection token is not available.");
                 Debugger.LogMessageToFile("Unable to request data from OSdb. Connection token is not available");
@@ -205,8 +199,11 @@ namespace MeediFier
             Helpers.UpdateProgress("", "Identifying video " + item.Name + "...",  item);
             try
             {
-                mystruct = Proxy.CheckMovieHash(token, hash);
-                imdbid = GetImdbidFromXmlRpcStruct(item, mystruct);
+
+                checkMovieHashStruct = Proxy.CheckMovieHash(connectionToken, hash);
+
+                imdbid = GetImdbidFromXmlRpcStruct(item, checkMovieHashStruct);
+                
                 return imdbid;
             }
             catch (Exception)
@@ -217,8 +214,8 @@ namespace MeediFier
 
                 try
                 {
-                    mystruct = Proxy.CheckMovieHash(token, hash);
-                    imdbid = GetImdbidFromXmlRpcStruct(item, mystruct);
+                    checkMovieHashStruct = Proxy.CheckMovieHash(connectionToken, hash);
+                    imdbid = GetImdbidFromXmlRpcStruct(item, checkMovieHashStruct);
                     return imdbid;
                 }
                 catch (Exception)
@@ -228,8 +225,8 @@ namespace MeediFier
 
                     try
                     {
-                        mystruct = Proxy.CheckMovieHash(token, hash);
-                        imdbid = GetImdbidFromXmlRpcStruct(item, mystruct);
+                        checkMovieHashStruct = Proxy.CheckMovieHash(connectionToken, hash);
+                        imdbid = GetImdbidFromXmlRpcStruct(item, checkMovieHashStruct);
                         return imdbid;
                     }
                     catch (Exception)
@@ -240,7 +237,7 @@ namespace MeediFier
                         Thread.Sleep(2000);
 
                         if (Settings.WantToDisableSources)
-                            OsIsOnline = false;
+                            osIsOnline = false;
 
                         return String.Empty;
                     }
@@ -253,22 +250,26 @@ namespace MeediFier
         }
 
 
-        private static string GetImdbidFromXmlRpcStruct(IMLItem Item, XmlRpcStruct mystruct)
+        private static string GetImdbidFromXmlRpcStruct(IMLItem item, IEnumerable imdbIdStruct)
         {
-            string token = String.Empty;
             string imdbid = String.Empty;
 
             Debugger.LogMessageToFile("Parsing the XMLRPC structure returned by OSdb...");
             try
             {
                 #region scan entries and get imdbid
-                foreach (DictionaryEntry d in mystruct)
+                foreach (DictionaryEntry d in imdbIdStruct)
                 {
-                    token = Convert.ToString(d.Key);
-                    if (token != "data") continue;
+                    string Token = Convert.ToString(d.Key);
+
+                    if (Token != "data")
+                        continue;
+                    
                     Debugger.LogMessageToFile("data structure found.");
+
                     object value = d.Value;
-                    XmlRpcStruct s = (XmlRpcStruct)value; //unboxing 
+                    var s = (XmlRpcStruct)value; //unboxing
+
                     foreach (DictionaryEntry e in s)
                     {
                         object objb = e.Value;
@@ -280,27 +281,30 @@ namespace MeediFier
                         {
                             //Importer.thisProgress.Progress(Item.Name + " could not be identified by fingerpint. Will search by film's title...");
                             //Thread.Sleep(Importer.Importer.SleepValue);
-                            Debugger.LogMessageToFile("OSdb returned multiple XMLRPC structures. " + Item.Name + " could not be identified by video fingerprint.");
-                            Item.Tags["OSdbMatched"] = "false";
-                            Item.SaveTags();
+                            Debugger.LogMessageToFile("OSdb returned multiple XMLRPC structures. " + item.Name + " could not be identified by video fingerprint.");
+                            item.Tags["OSdbMatched"] = "false";
+                            item.SaveTags();
                             return "";
                         }
 
 
 
-                        XmlRpcStruct movie = (XmlRpcStruct)objb; //unboxing
+                        var movie = (XmlRpcStruct)objb; //unboxing
+
                         foreach (DictionaryEntry f in movie)
                         {
-                            token = Convert.ToString(f.Key);
+                            Token = Convert.ToString(f.Key);
 
-                            if (token != "MovieImdbID") continue;
+                            if (Token != "MovieImdbID") continue;
                             object g = f.Value;
                             imdbid = (string)g;
-                            Item.Tags["OSdbMatched"] = "true";
-                            Item.SaveTags();
+                            item.Tags["OSdbMatched"] = "true";
+                            item.SaveTags();
                             Debugger.LogMessageToFile("The film's IMDbID was successfully extracted from OSdb response.");
-                        }//foreach d in dictionary
-                    }//foreach e in dictionary
+                        }//End of foreach d in dictionary
+
+                    }//End of foreach e in dictionary
+
                 }
                 #endregion
             }
@@ -312,11 +316,11 @@ namespace MeediFier
 
             return imdbid;
         }
-
+        #endregion
 
 
         public static void GetDetailsFromOSdb
-            (string imdbid, IMLItem Item, bool osDbIsOnline, bool filmIsListed  )
+            (string imdbid, IMLItem item, bool osDbIsOnline, bool filmIsListed  )
         {
 
             if (!Settings.FilmOSDbDetailsDownloaderIsEnabled)
@@ -335,7 +339,7 @@ namespace MeediFier
             Debugger.LogMessageToFile
                 ("Attempting to download" +
                  " film details for item "
-                 + Item.Name + " from OSdb ..."); 
+                 + item.Name + " from OSdb ..."); 
 
 
             mystruct = Proxy.GetImdbMovieDetails
@@ -502,8 +506,8 @@ namespace MeediFier
 
             if (!String.IsNullOrEmpty(m.Name))
             {
-                Item.Name = m.Name;
-                Item.Tags["Title"] = m.Name;
+                item.Name = m.Name;
+                item.Tags["Title"] = m.Name;
             }
             //Item.Tags["Poster URL"] = m.Cover;
 
@@ -516,40 +520,40 @@ namespace MeediFier
                         TaglineTag = "Subtitle";
                     else TaglineTag = "Tagline";
 
-                    Item.Tags[TaglineTag] = m.Tagline;
+                    item.Tags[TaglineTag] = m.Tagline;
                 }
 
                 if (!String.IsNullOrEmpty(m.Year))
-                Item.Tags["Year"] = m.Year;
+                item.Tags["Year"] = m.Year;
 
                 if (!String.IsNullOrEmpty(m.Duration))
-                Item.Tags["Runtime"] = m.Duration;
+                item.Tags["Runtime"] = m.Duration;
 
                 if (!String.IsNullOrEmpty(m.Plot))
-                Item.Tags["Overview"] = m.Plot;
+                item.Tags["Overview"] = m.Plot;
 
                 if (!String.IsNullOrEmpty(m.Directors))
-                Item.Tags["Director"] = m.Directors;
+                item.Tags["Director"] = m.Directors;
 
                 if (!String.IsNullOrEmpty(m.Cast))
-                Item.Tags["Actors"] = m.Cast;
+                item.Tags["Actors"] = m.Cast;
 
                 if (!String.IsNullOrEmpty(m.Genres))
-                Item.Tags["Genre"] = m.Genres;
+                item.Tags["Genre"] = m.Genres;
 
                 if (!String.IsNullOrEmpty(m.Writers))
-                Item.Tags["Writer"] = m.Writers;
+                item.Tags["Writer"] = m.Writers;
 
                 if (!String.IsNullOrEmpty(m.Trivia))
-                Item.Tags["Trivia"] = m.Trivia;
+                item.Tags["Trivia"] = m.Trivia;
 
                 if (!String.IsNullOrEmpty(m.Goofs))
-                Item.Tags["Mistakes"] = m.Goofs;
+                item.Tags["Mistakes"] = m.Goofs;
 
             }
 
 
-            Item.SaveTags();
+            item.SaveTags();
             #endregion
 
 

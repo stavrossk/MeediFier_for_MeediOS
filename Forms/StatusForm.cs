@@ -65,8 +65,8 @@ public struct LoginResult
 public struct SearchParams
 {
     public string sublanguageid;
-    //public string moviehash;
-    //public double moviesize;
+    public string moviehash;
+    public double moviesize;
     public string imdbid;
 }
 

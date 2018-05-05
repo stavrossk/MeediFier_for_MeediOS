@@ -15,21 +15,25 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
 
         internal static bool PerformSecondaryFilmItemUpdating
             (IMLSection moviesSection,
-             IMLItemList allFilmItems, IMLItem item, string location, string moviehash, string imdbid, ConnectionResult connectionresult)
+             IMLItemList allFilmItems, IMLItem item, string location, string moviehash, string imdbid, bool fileServerIsOnline,
+            ConnectionResult connectionresult)
         {
 
-            if (MeediFier.Helpers.UserCancels
+            if (Helpers.UserCancels
                 (MainImportingEngine
                 .SpecialStatus, item))
                 return false;
 
+            VideoSusbtitleDownloader.DownloadSubtitleForVideoUsingOsdbNet("Movies", item, location, moviehash, imdbid, connectionresult,
+                MeediFier.Settings.UseSameSubtitlesFolder, MeediFier.Settings.SubtitlesFolder, true, fileServerIsOnline);
 
-            VideoSusbtitleDownloader
-                .DownloadSubtitleForVideoParent
-                (moviehash, imdbid, item,
-                 location, connectionresult,
-                MeediFier.Settings.UseSameSubtitlesFolder,
-                MeediFier.Settings.SubtitlesFolder, true);
+            //DEPRECATED: DownloadSubtitleForVideoParent.
+            //VideoSusbtitleDownloader
+            //    .DownloadSubtitleForVideoParent
+            //    (moviehash, imdbid, item,
+            //     location, connectionresult,
+            //    MeediFier.Settings.UseSameSubtitlesFolder,
+            //    MeediFier.Settings.SubtitlesFolder, true);
              
 
             //MediaArchivers
@@ -38,7 +42,7 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
             //    Settings.ArchiveLocation);
 
 
-            if (MeediFier.Helpers.UserCancels
+            if (Helpers.UserCancels
                 (MainImportingEngine
                 .SpecialStatus, item))
                 return false;
@@ -50,7 +54,7 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
                  allFilmItems, item);
 
 
-            if (MeediFier.Helpers.UserCancels
+            if (Helpers.UserCancels
                 (MainImportingEngine
                 .SpecialStatus, item))
                 return false;

@@ -183,7 +183,7 @@ namespace MeediFier
             if (properties["DownloadSubtitlesChoice"] != null)
                 Settings.EnableSubtitleDownloader = (bool)properties["DownloadSubtitlesChoice"];
 
-            if (properties["LanguageProp"] != null) Settings.PrimaryLanguage = (string)properties["LanguageProp"];
+            if (properties["LanguageProp"] != null) Settings.PrimarySubtitleLanguage = (string)properties["LanguageProp"];
             
             if (properties["LanguagePropSecondary"] != null)
                 Settings.SecondaryLanguage = (string)properties["LanguagePropSecondary"];
