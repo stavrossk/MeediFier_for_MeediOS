@@ -5,7 +5,9 @@ using MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater;
 using MeediFier.Code.Metadata_Scrapers.Cover_Art;
 using MeediFier.IMDb;
 using MeediFier.ImportingEngine;
+// ReSharper disable RedundantUsingDirective
 using MeediFier.MediaFileDescriptors;
+// ReSharper restore RedundantUsingDirective
 using MeediFier.OSDb;
 using MeediOS;
 
@@ -66,7 +68,7 @@ namespace MeediFier.SingleItemUpdaters
                 ("Initializing item variables...");
 
             string moviehash = Helpers.GetTagValueFromItem(item, "Hash");
-            string imdbid = Helpers.GetTagValueFromItem(item, "ImdbID");
+            string imdbId = Helpers.GetTagValueFromItem(item, "ImdbID");
             string tmdbID = Helpers.GetTagValueFromItem(item, "TMDbID");
 
             string filmYear = Helpers.GetTagValueFromItem(item, "Year");
@@ -128,12 +130,12 @@ namespace MeediFier.SingleItemUpdaters
                     (fileServerIsOnline, ref imdbOp,
                     pluginpath, combinedSceneTags,
                     parent, isUNC, item,
-                    ref imdbid, out b))
+                    ref imdbId, out b))
                     return b;
 
 
                 imdbOp.ImdbMovie = null;
-                imdbOp.ImdbId = imdbid;
+                imdbOp.ImdbId = imdbId;
 
 
                 //#region Set IsExactMatched flag for the video fingerprint uploader
@@ -163,7 +165,7 @@ namespace MeediFier.SingleItemUpdaters
                 if (
                     !VideoFingerprintIdentifier
                     .VideoFingerprintIdentifier
-                    .IdentifyVideo(ref moviehash, ref imdbid, 
+                    .IdentifyVideo(ref moviehash, ref imdbId, 
                     ref tmdbID, ref imdbOp,
                     item, fileServerIsOnline,
                     isUNC, location, parent.FullName,
@@ -189,57 +191,15 @@ namespace MeediFier.SingleItemUpdaters
 
 
                 #region Set Updating Flags
-
-
-
-
+                //TODO: Why Set Updating Flags region is empty?
                 #endregion
 
 
-                #region extract important fields for online searches
-
-                string imdbidTmp = Helpers.GetTagValueFromItem(item, "ImdbID");
-
-                #region Get IMDbID
-
-                if (!String.IsNullOrEmpty(imdbidTmp))
-                {
-                    imdbid = Helpers.GetTagValueFromItem(item, "ImdbID");
-                    imdbOp.ImdbId = Helpers.GetTagValueFromItem(item, "ImdbID");
-                }
-                else
-                {
-                    if (!String.IsNullOrEmpty(imdbOp.ImdbId))
-                        imdbid = imdbOp.ImdbId;
-                    else imdbOp.ImdbId = imdbid;
-
-                    item.Tags["ImdbID"] = imdbOp.ImdbId;
-                }
-
-                //MessageBox.Show("Item tag imdbid: " + Helpers.GetTagValueFromItem(Item,"ImdbID"]);
-
-                #endregion
-
-                #region Get ItemTitle
-
-                itemTitle = Helpers.GetTagValueFromItem(item, "Title");
-
-                if (String.IsNullOrEmpty(itemTitle))
-                {
-                    if (!String.IsNullOrEmpty(item.Name))
-                    {
-                        itemTitle = item.Name;
-                    }
-                    else return true;
-                }
-
-                #endregion
-
-                #endregion
+                if (ExtractImportantFieldsForFilmOnlineSearches(imdbOp, item, out itemTitle, ref imdbId))
+                    return true;
 
                 #region Metadata Downloaders
 
-                //MessageBox.Show("Can work online:" + connectionresult.CanWorkOnline);
 
                 if (connectionresult.InternetConnectionAvailable
                     || !Settings.ConnectionDiagnosticsEnabled)
@@ -249,61 +209,29 @@ namespace MeediFier.SingleItemUpdaters
 
                     #region Download film details from IMDb and OSDb.
 
-
-                    imdbid = FilmItemUpdaterHelpers.IMDbDetailer
+                    imdbId = FilmItemUpdaterHelpers.IMDbDetailer
                            (moviesSection, imdbOp,
-                           item, itemTitle, imdbid);
+                           item, itemTitle, imdbId);
                         
 
-
                     OSoperations.GetDetailsFromOSdb
-                        (imdbid, item, connectionresult.OSDbIsOnline,
+                        (imdbId, item, connectionresult.OSDbIsOnline,
                         !imdbOp.NotListed);
     
-
                     #endregion
 
 
-                        if (Helpers.UserCancels
-                            (MainImportingEngine
-                            .SpecialStatus, item))
+                    if (Helpers.UserCancels(MainImportingEngine.SpecialStatus, item))
                             return false;
 
 
-                        #region Get ItemTitle
+                    if (GetFilmItemTitleAfterDownloadingFilmDetails(item, out itemTitle))
+                        return true;
 
-                        if (!String.IsNullOrEmpty(Helpers.GetTagValueFromItem(item, "Title")))
-                        {
-                            itemTitle = Helpers.GetTagValueFromItem(item, "Title");
-                        }
-                        else if (!String.IsNullOrEmpty(item.Name))
-                        {
-                            itemTitle = item.Name;
-                        }
-                        else return true;
 
-                        #endregion
-
-                        #region Set SortTitle
-
-                        if (!String.IsNullOrEmpty
-                            (itemTitle) 
-                            && String.IsNullOrEmpty
-                            (sortTitle))
-                        {
-                            if (itemTitle.StartsWith("The"))
-                            {
-                                sortTitle = itemTitle.Remove(0, 4) + ", The ";
-                                Debugger.LogMessageToFile
-                                    ("Set item's SortTitle to: '" + sortTitle + "'.");
-                            }
-                            else sortTitle = itemTitle;
-
-                            item.Tags["SortTitle"] = sortTitle;
-                            item.SaveTags();
-                        }
-
-                        #endregion
+                    //TODO: Test the setting of the SortTitle tag.
+                    //TODO: Add the description of the "Film Sort Title" feature to the plugin's Readme.md and User Manual.
+                    SetFilmSortTitle(item, itemTitle, sortTitle);
 
 
 
@@ -325,24 +253,20 @@ namespace MeediFier.SingleItemUpdaters
                             return false;
 
 
-                        //MovieDescriptorWriter
-                        //    .WriteMovieDescriptor
-                        //    (item, itemTitle, imdbid, 
-                        //    parent.FullName,
-                        //    fileServerIsOnline, isUNC);
+                    //MovieDescriptorWriter
+                    //    .WriteMovieDescriptor
+                    //    (item, itemTitle, imdbid, 
+                    //    parent.FullName,
+                    //    fileServerIsOnline, isUNC);
 
 
 
-                        if (Helpers.UserCancels
-                            (MainImportingEngine
-                            .SpecialStatus, item))
-                            return false;
+                    if (Helpers.UserCancels(MainImportingEngine.SpecialStatus, item))
+                        return false;
 
 
 
-                        if (!DownloadFilmCoverAndBakdropArt
-                            (fileServerIsOnline, mdfSettingsa, 
-                            ibs, item, isUNC, itemTitle, location,
+                    if (!DownloadFilmCoverAndBakdropArt(fileServerIsOnline, mdfSettingsa, ibs, item, isUNC, itemTitle, location,
                             parent, videoFilename))
                             return false;
 
@@ -350,6 +274,7 @@ namespace MeediFier.SingleItemUpdaters
                 }
 
                 #endregion
+
             }
 
             #endregion
@@ -359,7 +284,7 @@ namespace MeediFier.SingleItemUpdaters
 
             if (!FilmItemSecondaryUpdater
                 .PerformSecondaryFilmItemUpdating
-                (moviesSection, allFilmItems, item, location, moviehash, imdbid, fileServerIsOnline, connectionresult))
+                (moviesSection, allFilmItems, item, location, moviehash, imdbId, fileServerIsOnline, connectionresult))
                 return false;
 
 
@@ -370,6 +295,109 @@ namespace MeediFier.SingleItemUpdaters
             return true;
 
         }
+
+        private static bool GetFilmItemTitleAfterDownloadingFilmDetails(IMLItem item, out string itemTitle)
+        {
+
+            if (!String.IsNullOrEmpty(Helpers.GetTagValueFromItem(item, "Title")))
+            {
+                itemTitle = Helpers.GetTagValueFromItem(item, "Title");
+            }
+            else if (!String.IsNullOrEmpty(item.Name))
+            {
+                itemTitle = item.Name;
+            }
+            else
+            {
+                itemTitle = String.Empty;
+                return true;
+            }
+
+            return false;
+        }
+
+
+        private static void SetFilmSortTitle(IMLItem item, string itemTitle, string sortTitle)
+        {
+
+            if (!String.IsNullOrEmpty(sortTitle))
+            {
+                Debugger.LogMessageToFile("This item's SortTitle tag is already populated. MeediFier will not proceed to set the SortTitle.");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(itemTitle))
+            {
+                Debugger.LogMessageToFile("This item's Title is not populated. MeediFier cannot proceed to set the item's SortTitle tag.");
+                return;
+            }
+
+            
+            if (itemTitle.StartsWith("The"))
+            {
+                Debugger.LogMessageToFile("This item's Title starts with \"The\". MeediFier will now set its SortTitle tag.");
+                sortTitle = itemTitle.Remove(0, 4) + ", The ";
+                Debugger.LogMessageToFile
+                    ("Set item's SortTitle to: '" + sortTitle + "'.");
+            }
+            else sortTitle = itemTitle;
+
+            item.Tags["SortTitle"] = sortTitle;
+            item.SaveTags();
+        }
+
+
+        private static bool ExtractImportantFieldsForFilmOnlineSearches(IMDbOperations imdbOp, IMLItem item,
+                                                                        out string itemTitle, ref string imdbid)
+        {
+
+            GetImdbIdForFilmOnlineSearches(imdbOp, item, ref imdbid);
+
+            #region Get ItemTitle
+
+            itemTitle = Helpers.GetTagValueFromItem(item, "Title");
+
+            if (String.IsNullOrEmpty(itemTitle))
+            {
+                if (!String.IsNullOrEmpty(item.Name))
+                {
+                    itemTitle = item.Name;
+                }
+                else return true;
+            }
+
+            #endregion
+
+            return false;
+        }
+
+
+        private static void GetImdbIdForFilmOnlineSearches(IMDbOperations imdbOp, IMLItem item, ref string imdbid)
+        {
+
+            string imdbidTmp = Helpers.GetTagValueFromItem(item, "ImdbID");
+
+            #region Get IMDbID
+
+            if (!String.IsNullOrEmpty(imdbidTmp))
+            {
+                imdbid = Helpers.GetTagValueFromItem(item, "ImdbID");
+                imdbOp.ImdbId = Helpers.GetTagValueFromItem(item, "ImdbID");
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(imdbOp.ImdbId))
+                    imdbid = imdbOp.ImdbId;
+                else imdbOp.ImdbId = imdbid;
+
+                item.Tags["ImdbID"] = imdbOp.ImdbId;
+            }
+
+            //MessageBox.Show("Item tag imdbid: " + Helpers.GetTagValueFromItem(Item,"ImdbID"]);
+
+            #endregion
+        }
+
 
         private static bool DownloadFilmCoverAndBakdropArt
             (bool fileServerIsOnline, string mdfSettingsa,
@@ -386,7 +414,9 @@ namespace MeediFier.SingleItemUpdaters
                  fileServerIsOnline, isUNC,
                  mdfSettingsa, ibs);
 
+            // ReSharper disable ConvertIfStatementToReturnStatement
             if (Helpers.UserCancels
+            // ReSharper restore ConvertIfStatementToReturnStatement
                 (MainImportingEngine
                      .SpecialStatus, item))
                 return false;

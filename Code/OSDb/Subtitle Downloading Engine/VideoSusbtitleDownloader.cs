@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
-using CookComputing.XmlRpc;
 using ICSharpCode.SharpZipLib.Zip;
 using MeediOS;
 using OSDBnet;
-using OSDBnet.Backend;
-using Subtitle = OSDBnet.Subtitle;
 
 
 namespace MeediFier.OSDb

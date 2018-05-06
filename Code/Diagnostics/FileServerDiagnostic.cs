@@ -14,7 +14,7 @@ namespace MeediFier.Code.Diagnostics
 
         internal static bool CheckFileServer
             (bool fileServerDiagnosticIsEnabled, 
-             string location, ref bool IsUNC,
+             string location, ref bool isUNC,
              ref bool fileServerChecked, string root,
              ref bool fileServerIsOnline)
         {
@@ -24,12 +24,12 @@ namespace MeediFier.Code.Diagnostics
 
                 if (location.StartsWith("\\"))
                 {
-                    IsUNC = true;
+                    isUNC = true;
 
                     if ( !fileServerChecked)
                     {
                         Debugger.LogMessageToFile("Checking file server availability..");
-                        MeediFier.Helpers.UpdateProgress("Performing Diagnostic operations", "Checking file server availability...", null);
+                        Helpers.UpdateProgress("Performing Diagnostic operations", "Checking file server availability...", null);
                         //Progress.Progress(Importer.CurrentProgress, "Checking file server availability...");
                         
                         if (!Directory.Exists(root))

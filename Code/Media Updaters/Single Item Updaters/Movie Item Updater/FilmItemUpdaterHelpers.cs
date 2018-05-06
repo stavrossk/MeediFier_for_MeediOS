@@ -69,12 +69,9 @@ namespace MeediFier.Code.Media_Updaters.Single_Item_Updaters.Movie_Item_Updater
         
         }
 
-        internal static string IMDbDetailer
-            (IMLSection moviesSection, 
-             IMDbOperations imdbOp,
-             IMLItem item,
-             string itemTitle,
-             string imdbid)
+
+        internal static string IMDbDetailer(IMLSection moviesSection, IMDbOperations imdbOp, IMLItem item, string itemTitle,
+            string imdbid)
         {
 
 
