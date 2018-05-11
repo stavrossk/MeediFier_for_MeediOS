@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading;
@@ -37,15 +38,52 @@ namespace MeediFier.OSDb
 
         }
 
+
+        internal static string ConstructSubtitlePathForOsdbNet(string location,
+            out string parentPath, out string subfileSub)
+        {
+
+            var videoLocationFileInfo =
+                new FileInfo(location);
+
+            //string videoFilenameWithExtension = videoLocationFileInfo.Name;
+
+            parentPath = videoLocationFileInfo.DirectoryName;
+
+            if (Settings.UseSameSubtitlesFolder)
+            {
+                if (!String.IsNullOrEmpty(Settings.SubtitlesFolder))
+                    parentPath = Settings.SubtitlesFolder;
+            }
+
+            string subFilenameWithoutExtension = Path.GetFileNameWithoutExtension(location);
+            //Old method:
+            //string subFilenameWithoutExtension = 
+            //    videoFilenameWithExtension.Remove(videoFilename.Length - 3);
+
+
+            string subfileSrt = subFilenameWithoutExtension + ".srt";
+            subfileSub = subFilenameWithoutExtension + ".sub";
+
+
+            return subfileSrt;
+        }
+
+
+
+
+
         internal static string ConstructSubtitlePath(string location, bool useSameFolder, string subtitlesFolder,
                                                     out string subfilePathSrt, out string subfilePathSub, out string parentPath)
         {
 
-            FileInfo locationFI = 
+            var videoLocationFileInfo = 
                 new FileInfo(location);
 
-            string videoFilename = locationFI.Name;
-            parentPath = locationFI.DirectoryName;
+            string videoFilenameWithExtension = videoLocationFileInfo.Name;
+           
+           
+            parentPath = videoLocationFileInfo.DirectoryName;
 
             if (useSameFolder)
             {
@@ -53,19 +91,23 @@ namespace MeediFier.OSDb
                     parentPath = subtitlesFolder;
             }
 
-
-            string subfile = 
-                videoFilename.Remove(videoFilename.Length - 3);
+            //TODO: Get the subtitle's filename without extension, regardless the length of the video file's extension.
+            string subFilenameWithoutExtension = Path.GetFileNameWithoutExtension(location);
+            //string subFilenameWithoutExtension = 
+            //    videoFilenameWithExtension.Remove(videoFilename.Length - 3);
             
-            string subfileSrt = subfile + "srt";
-            string subfileSub = subfile + "sub";
+            //string subfileSrt = subFilenameWithoutExtension + "srt";
+            string subfileSrt = subFilenameWithoutExtension + ".srt";
+            //string subfileSub = subFilenameWithoutExtension + "sub";
+            string subfileSub = subFilenameWithoutExtension + ".sub";
             
             subfilePathSrt = parentPath + "\\" + subfileSrt;
             subfilePathSub = parentPath + "\\" + subfileSub;
 
 
-            return videoFilename;
+            return videoFilenameWithExtension;
         }
+
 
         internal static bool CheckForExistingSubtitleSetHasSubtitleFlag
             (string itemName, IMLItem item, string parentPath,
@@ -781,6 +823,30 @@ namespace MeediFier.OSDb
             return firstsub;
 
 
+        }
+
+        internal static bool CheckIfSubtitlesWereFound(IMLItem item, IList<OSDBnet.Subtitle> subtitlesResults)
+        {
+            if (subtitlesResults.Count <= 0)
+            {
+                MessageBox.Show("No subtitles found in any language for the video: " + item.Name);
+                Debugger.LogMessageToFile("No subtitles found in any language for the video: " + item.Name);
+                return false;
+            }
+            return true;
+        }
+
+        internal static SearchParams[] ConstructSubtitleSearchParameters(string videoHash, string imdbid)
+        {
+
+            var searchParamsArray = new SearchParams[1];
+            searchParamsArray[0].moviehash = videoHash;
+            searchParamsArray[0].sublanguageid = Settings.PrimarySubtitleLanguage;
+
+            string imdbIdTrimmed = imdbid.Substring(2);
+            searchParamsArray[0].imdbid = imdbIdTrimmed;
+
+            return searchParamsArray;
         }
     }
 

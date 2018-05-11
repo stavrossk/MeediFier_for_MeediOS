@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
@@ -152,7 +151,7 @@ namespace MeediFier.OSDb
                 Helpers.UpdateProgress("Updating " + mediaSectionFriendlyName + " Section.", "Searching for subtitles for video: " + item.Name, item);
                 var subtitlesResults = osdbClient.SearchSubtitlesFromFile(Settings.PrimarySubtitleLanguage, location);
 
-                if (!CheckIfSubtitlesWereFound(item, subtitlesResults))
+                if (!VideoSubtitleDownloaderHelpers.CheckIfSubtitlesWereFound(item, subtitlesResults))
                     return false;
 
                 foreach (OSDBnet.Subtitle subtitlesResult in subtitlesResults)
@@ -163,11 +162,21 @@ namespace MeediFier.OSDb
                     if (subtitlesResult.LanguageId == Settings.PrimarySubtitleLanguage)
                     // ReSharper restore InvertIf
                     {
+                        string subfileSub;
+                        string parentPath;
+
+                        Debugger.LogMessageToFile("Constructing the video subtitle's path...");
+                        string subfileSrt = VideoSubtitleDownloaderHelpers.ConstructSubtitlePathForOsdbNet(location, out parentPath,
+                                                                                                           out subfileSub);
+                        Debugger.LogMessageToFile("The video subtitle's filename is: "  + subfileSrt);
+
                         OSDBnet.Subtitle subtitle = subtitlesResult;
                         Helpers.UpdateProgress("Updating " + mediaSectionFriendlyName + " Section.", "Downloading subtitle for video: " + item.Name, item);
+                        Debugger.LogMessageToFile("Downloading subtitle for video: " + item.Name);
 
-                        //TODO: Download subtitle to the video file's path.
-                        osdbClient.DownloadSubtitleToPath(@"M:\", subtitle);
+                        //osdbClient.DownloadSubtitleToPath(@"M:\", subtitle, "Inglorious Basterds (2009).srt");
+                        osdbClient.DownloadSubtitleToPath(parentPath, subtitle, subfileSrt);
+
                         return true;
                     }
                 }
@@ -188,21 +197,6 @@ namespace MeediFier.OSDb
                 return false;
             }
 
-        }
-
-
-
-        
-   
-        private static bool CheckIfSubtitlesWereFound(IMLItem item, IList<OSDBnet.Subtitle> subtitlesResults)
-        {
-            if (subtitlesResults.Count <= 0)
-            {
-                MessageBox.Show("No subtitles found in any language for the video: " + item.Name);
-                Debugger.LogMessageToFile("No subtitles found in any language for the video: " + item.Name);
-                return false;
-            }
-            return true;
         }
 
 
@@ -327,22 +321,6 @@ namespace MeediFier.OSDb
             return subsDownloadResult;
 
 
-        }
-
-        private static SearchParams[] ConstructSubtitleSearchParameters(string videoHash, string imdbid)
-        {
-            #region Construct subtitles search parameters.
-
-            var searchParamsArray = new SearchParams[1];
-            searchParamsArray[0].moviehash = videoHash;
-            searchParamsArray[0].sublanguageid = Settings.PrimarySubtitleLanguage;
-
-            string imdbIdTrimmed = imdbid.Substring(2);
-            searchParamsArray[0].imdbid = imdbIdTrimmed;
-
-            #endregion
-
-            return searchParamsArray;
         }
     }
 

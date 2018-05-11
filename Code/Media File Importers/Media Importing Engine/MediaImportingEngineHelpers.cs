@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using MeediFier.ImportingEngine;
 using MediaInfoLib;
 using MeediFier.Code.Media_File_Importers.Media_Importing_Engine;
 using MeediOS;
@@ -90,11 +89,13 @@ namespace MeediFier.MediaSnapshotEngine
                 return;
 
             Debugger.LogMessageToFile
-                ("Deleting media snapshots...");
+                ("All Media Sections are empty. Deleting media snapshots...");
 
             foreach (FileInfo datfile in datfiles)
+            {
+                Debugger.LogMessageToFile("Deleting media snapshot: " + datfile.FullName);
                 File.Delete(datfile.FullName);
-
+            }
 
         }
 

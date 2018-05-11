@@ -18,9 +18,9 @@ namespace MeediFier.ImportingEngine
             IEnumerable<string> combinedSceneTags)
         {
 
+            Debugger.LogMessageToFile("----------------------   START OF MEDIA IMPORTERS   ----------------");
 
             #region Media Importers
-
 
             GeneralStatus = "Performing media importing...";
             SpecialStatus = String.Empty;
@@ -38,6 +38,7 @@ namespace MeediFier.ImportingEngine
 
             #endregion
 
+            Debugger.LogMessageToFile("----------------------   END OF MEDIA IMPORTERS   ----------------");
 
             #region Media Updaters
 
@@ -47,10 +48,9 @@ namespace MeediFier.ImportingEngine
 
             #endregion
 
-
+            //TODO: Bring back the previously removed Import Sequencer.
             //#region Import Secquencer
-            //ImportSequencer
-            //    .RunImports();
+            //ImportSequencer.RunImports();
             //#endregion
 
 

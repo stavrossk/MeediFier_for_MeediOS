@@ -69,7 +69,7 @@ namespace MeediFier.MediaSectionUpdaters
 
                     #region Decide selective updating
 
-                    bool SelectiveUpdatingEnabled = false;
+                    bool selectiveUpdatingEnabled = false;
                     Debugger.LogMessageToFile("Scanning section for Selective Updating request...");
 
                     try
@@ -79,7 +79,7 @@ namespace MeediFier.MediaSectionUpdaters
                             IMLItem Item = MediaSectionsAllocator.MoviesSection.FindItemByID(id);
                             if (Item.Tags["SelectiveUpdating"] != null &&
                                 Helpers.GetTagValueFromItem(Item, "SelectiveUpdating") != "")
-                                SelectiveUpdatingEnabled = true;
+                                selectiveUpdatingEnabled = true;
                         }
                     }
                     catch (NullReferenceException)
@@ -112,7 +112,7 @@ namespace MeediFier.MediaSectionUpdaters
 
                     #region Cache films section for the chain linking
 
-                    if (!SelectiveUpdatingEnabled && Settings.FilmItemChainLinkerIsEnabled)
+                    if (!selectiveUpdatingEnabled && Settings.FilmItemChainLinkerIsEnabled)
                     {
                         allFilmItems = MediaSectionsAllocator.MoviesSection.SearchAll("*");
                     }
