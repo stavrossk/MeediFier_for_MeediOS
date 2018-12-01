@@ -16,8 +16,9 @@ to easily import and acquire meta-information for their media collections.
 The plugin currently supports importing media files and downloading media information for:
 
 * Movies
-* tv series/tv shows
+* TV Series / TV Shows
 * Music
+* PC Games
 * RSS Feeds
 
 
