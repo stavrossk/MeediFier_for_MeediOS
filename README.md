@@ -18,7 +18,9 @@ The plugin currently supports importing media files and downloading media inform
 * Movies
 * TV Series / TV Shows
 * Music
+* Shoutcast Radio Stations
 * PC Games
+* E-books
 * RSS Feeds
 
 
